@@ -1,5 +1,6 @@
 _deploy.yml
 _site
+.deploy
 .sass-cache
 .jekyll-cache
 .jekyll-metadata
