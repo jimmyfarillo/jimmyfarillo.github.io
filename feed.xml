@@ -1,4 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-03-06T00:33:53-05:00</updated><id>/feed.xml</id><title type="html">Jimmy Farillo</title><subtitle>NYC software engineer</subtitle><entry><title type="html">The Deal With Closures</title><link href="/2015/03/08/the-deal-with-closures.html" rel="alternate" type="text/html" title="The Deal With Closures" /><published>2015-03-08T00:00:00-05:00</published><updated>2015-03-08T00:00:00-05:00</updated><id>/2015/03/08/the-deal-with-closures</id><content type="html" xml:base="/2015/03/08/the-deal-with-closures.html">&lt;p&gt;Closures are functions that can refer to independent variables that existed when
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-03-06T00:37:52-05:00</updated><id>/feed.xml</id><title type="html">Jimmy Farillo</title><subtitle>NYC software engineer</subtitle><entry><title type="html">Educa.re: A Collaborative Writing Workspace Powered by Git</title><link href="/2015/05/27/educa-re-a-collaborative-writing-workspace-powered-by-git.html" rel="alternate" type="text/html" title="Educa.re: A Collaborative Writing Workspace Powered by Git" /><published>2015-05-27T00:00:00-04:00</published><updated>2015-05-27T00:00:00-04:00</updated><id>/2015/05/27/educa-re-a-collaborative-writing-workspace-powered-by-git</id><content type="html" xml:base="/2015/05/27/educa-re-a-collaborative-writing-workspace-powered-by-git.html">&lt;p&gt;I’m in the final phase of my time as a student at Fullstack Academy. The final
+2–3 weeks of the program consists of coming up with an ambitious idea for a web
+app, gathering a team of fellow students to work on it with you, building it
+out, and then presenting it to potential employers.&lt;/p&gt;
+
+&lt;p&gt;The past few weeks, my team and I have been working hard on a collaborative
+writing platform that we call Educa.re. It was built using fullstack JavaScript,
+specifically Node.js, Express, MongoDB, and AngularJS. We also used Git
+extensively, leveraging it’s capabilities to act as a database.&lt;/p&gt;
+
+&lt;p&gt;We’ve created a short demo video, so I’ll let you watch that for more
+information about our site. And check out our GitHup repo, if you want.&lt;/p&gt;
+
+&lt;p&gt;Educa.re: &lt;a href=&quot;http://educa.re&quot;&gt;http://educa.re&lt;/a&gt;
+Demo Video: &lt;a href=&quot;https://vimeo.com/129333742&quot;&gt;https://vimeo.com/129333742&lt;/a&gt;
+GitHub: &lt;a href=&quot;https://github.com/jimmyfarrell/educa.re&quot;&gt;https://github.com/jimmyfarrell/educa.re&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">I’m in the final phase of my time as a student at Fullstack Academy. The final 2–3 weeks of the program consists of coming up with an ambitious idea for a web app, gathering a team of fellow students to work on it with you, building it out, and then presenting it to potential employers.</summary></entry><entry><title type="html">The Deal With Closures</title><link href="/2015/03/08/the-deal-with-closures.html" rel="alternate" type="text/html" title="The Deal With Closures" /><published>2015-03-08T00:00:00-05:00</published><updated>2015-03-08T00:00:00-05:00</updated><id>/2015/03/08/the-deal-with-closures</id><content type="html" xml:base="/2015/03/08/the-deal-with-closures.html">&lt;p&gt;Closures are functions that can refer to independent variables that existed when
 the function was created. Many coders says that these functions “remember” the
 environment and the variables in that environment when the functions were being
 defined.&lt;/p&gt;
