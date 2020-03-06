@@ -1,9 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-03-05T23:47:13-05:00</updated><id>/feed.xml</id><title type="html">Jimmy Farillo</title><subtitle>NYC software engineer</subtitle><entry><title type="html">Iffy About IIFEs?</title><link href="/2020/03/03/iffy-about-iifes.html" rel="alternate" type="text/html" title="Iffy About IIFEs?" /><published>2020-03-03T00:00:00-05:00</published><updated>2020-03-03T00:00:00-05:00</updated><id>/2020/03/03/iffy-about-iifes</id><content type="html" xml:base="/2020/03/03/iffy-about-iifes.html">&lt;p&gt;Typically, when writing code, we build out functions and then write out some
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-03-05T23:48:57-05:00</updated><id>/feed.xml</id><title type="html">Jimmy Farillo</title><subtitle>NYC software engineer</subtitle><entry><title type="html">Iffy About IIFEs?</title><link href="/2020/03/03/iffy-about-iifes.html" rel="alternate" type="text/html" title="Iffy About IIFEs?" /><published>2020-03-03T00:00:00-05:00</published><updated>2020-03-03T00:00:00-05:00</updated><id>/2020/03/03/iffy-about-iifes</id><content type="html" xml:base="/2020/03/03/iffy-about-iifes.html">&lt;p&gt;Typically, when writing code, we build out functions and then write out some
 other code that calls those functions. Something like this:&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;function myFunc() {
   return &quot;I swear it's not me!&quot;;
-}var whatsThatSmell = myFunc();
+}
+
+var whatsThatSmell = myFunc();
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;However, there’s a cool thing in JavaScript called an IIFE (immediately-invoked
