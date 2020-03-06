@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-03-05T23:56:17-05:00</updated><id>/feed.xml</id><title type="html">Jimmy Farillo</title><subtitle>NYC software engineer</subtitle><entry><title type="html">Iffy About IIFEs?</title><link href="/2020/03/03/iffy-about-iifes.html" rel="alternate" type="text/html" title="Iffy About IIFEs?" /><published>2020-03-03T00:00:00-05:00</published><updated>2020-03-03T00:00:00-05:00</updated><id>/2020/03/03/iffy-about-iifes</id><content type="html" xml:base="/2020/03/03/iffy-about-iifes.html">&lt;p&gt;Typically, when writing code, we build out functions and then write out some
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-03-06T00:14:52-05:00</updated><id>/feed.xml</id><title type="html">Jimmy Farillo</title><subtitle>NYC software engineer</subtitle><entry><title type="html">Iffy About IIFEs?</title><link href="/2020/03/03/iffy-about-iifes.html" rel="alternate" type="text/html" title="Iffy About IIFEs?" /><published>2020-03-03T00:00:00-05:00</published><updated>2020-03-03T00:00:00-05:00</updated><id>/2020/03/03/iffy-about-iifes</id><content type="html" xml:base="/2020/03/03/iffy-about-iifes.html">&lt;p&gt;Typically, when writing code, we build out functions and then write out some
 other code that calls those functions. Something like this:&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;function myFunc() {
@@ -87,4 +87,63 @@ versatility to work in almost any industry, at companies of all sizes, anywhere
 in the world, and with many different kinds of people. I think there is also a
 lot of opportunity to create something that helps make the world a better place.
 Ultimately, I would love to work on a project that I find personally meaningful.
-I’m not quite sure what that would be, yet, but I have a few ideas.&lt;/p&gt;</content><author><name></name></author><summary type="html">I’m about to start a 13-week coding immersive at Fullstack Academy. I won’t go into the details of why I chose Fullstack, but let’s just say that, so far, I’m extremely happy with my decision. I’m also super pumped about starting!</summary></entry></feed>
+I’m not quite sure what that would be, yet, but I have a few ideas.&lt;/p&gt;</content><author><name></name></author><summary type="html">I’m about to start a 13-week coding immersive at Fullstack Academy. I won’t go into the details of why I chose Fullstack, but let’s just say that, so far, I’m extremely happy with my decision. I’m also super pumped about starting!</summary></entry><entry><title type="html">The Deal With Closures</title><link href="/2015/03/08/the-deal-with-closures.html" rel="alternate" type="text/html" title="The Deal With Closures" /><published>2015-03-08T00:00:00-05:00</published><updated>2015-03-08T00:00:00-05:00</updated><id>/2015/03/08/the-deal-with-closures</id><content type="html" xml:base="/2015/03/08/the-deal-with-closures.html">&lt;p&gt;Closures are functions that can refer to independent variables that existed when
+the function was created. Many coders says that these functions “remember” the
+environment and the variables in that environment when the functions were being
+defined.&lt;/p&gt;
+
+&lt;p&gt;Here’s an example of a closure:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var outerFunc = function() {
+  var yup = &quot;YES! I love it!&quot;;
+  var innerFunc = function() {
+    return yup;
+  };
+  return innerFunc;
+};
+
+var doYouLikePizza = outerFunc();
+doYouLikePizza();
+// &quot;YES! I love it!&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;In this example, we define an outer function that contains the variable yup as
+well as the inner function. Then it returns the inner function. Below that, we
+define the variable &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;doYouLikePizza&lt;/code&gt; to the return of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;outerFunc&lt;/code&gt; (this
+essentially means that we’re defining &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;doYouLikePizza&lt;/code&gt; to be &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;innerFunc&lt;/code&gt;). When
+we call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;doYouLikePizza()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;innerFunc&lt;/code&gt; remembers the yup variable from when it
+was created, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;doYouLikePizza()&lt;/code&gt; returns our &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;yup&lt;/code&gt; string.&lt;/p&gt;
+
+&lt;p&gt;Now let’s make the example slightly more interesting:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var outerFunc = function() {
+  var yup = &quot;YES! I love it!&quot;;
+  var nope = &quot;No. Pizza sucks.&quot;;
+  var count = 0;
+  var innerFunc = function() {
+    count++;
+    if (count % 2 === 0) return nope;
+    return yup;
+  };
+  return innerFunc;
+};
+
+var doYouLikePizza = outerFunc();
+doYouLikePizza();
+// &quot;YES! I love it!&quot;doYouLikePizza();
+// &quot;No. Pizza sucks.&quot;doYouLikePizza();
+// &quot;YES! I love it!&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now, we’re still defining &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;outerFunc&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;innerFunc&lt;/code&gt; and setting
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;doYouLikePizza&lt;/code&gt; to the return of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;outerFunc&lt;/code&gt;. But inside &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;outerFunc&lt;/code&gt;, we’ve
+defined a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nope&lt;/code&gt; variable as well as a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;count&lt;/code&gt; variable. So when we call
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;doYouLikePizza()&lt;/code&gt;, we increment &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;count&lt;/code&gt; and use it to evaluate which string we
+return.&lt;/p&gt;
+
+&lt;p&gt;Even though &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;doYouLikePizza&lt;/code&gt; does not have direct access to the variables
+defined inside of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;outerFunc&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;innerFunc&lt;/code&gt; (which was assigned to
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;doYouLikePizza&lt;/code&gt;) remembers these variables and can refer to them and write over
+them.&lt;/p&gt;
+
+&lt;p&gt;Pretty nifty!&lt;/p&gt;</content><author><name></name></author><summary type="html">Closures are functions that can refer to independent variables that existed when the function was created. Many coders says that these functions “remember” the environment and the variables in that environment when the functions were being defined.</summary></entry></feed>
