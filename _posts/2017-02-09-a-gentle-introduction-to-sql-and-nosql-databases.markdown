@@ -256,6 +256,8 @@ followed by a "read" to a different node, there are 3 possible outcomes of the
   by retrieving the most recent data, and maintain availability by responding to
   the request.
 
+![CAP Theorem Diagram](/assets/cap_theorem.jpeg)
+
 The third outcome can be dismissed because partition tolerance is an integral
 aspect of distributed database systems. Therefore, the choice comes down to
 consistency or availability.
