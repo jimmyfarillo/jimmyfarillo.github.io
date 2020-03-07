@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-03-07T14:10:57-05:00</updated><id>/feed.xml</id><title type="html">Jimmy Farillo</title><subtitle>NYC software engineer</subtitle><entry><title type="html">The Basics of Database Indexes for Relational Databases</title><link href="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html" rel="alternate" type="text/html" title="The Basics of Database Indexes for Relational Databases" /><published>2017-08-23T00:00:00-04:00</published><updated>2017-08-23T00:00:00-04:00</updated><id>/2017/08/23/the-basics-of-database-indexes-for-relational-databases</id><content type="html" xml:base="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html">&lt;p&gt;The purpose of creating an index on a particular table in your database is to
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-03-07T14:18:00-05:00</updated><id>/feed.xml</id><title type="html">Jimmy Farillo</title><subtitle>NYC software engineer</subtitle><entry><title type="html">The Basics of Database Indexes for Relational Databases</title><link href="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html" rel="alternate" type="text/html" title="The Basics of Database Indexes for Relational Databases" /><published>2017-08-23T00:00:00-04:00</published><updated>2017-08-23T00:00:00-04:00</updated><id>/2017/08/23/the-basics-of-database-indexes-for-relational-databases</id><content type="html" xml:base="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html">&lt;p&gt;The purpose of creating an index on a particular table in your database is to
 make it faster to search through the table and find the row or rows that you
 want. The downside is that indexes make it slower to add rows or make updates to
 existing rows for that table. So adding indexes can increase read performance
@@ -1468,57 +1468,119 @@ incomplete, response like I did. And if you’re interested in diving a little
 bit deeper into &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;this&lt;/code&gt;, I highly recommend the &lt;a href=&quot;https://github.com/getify/You-Dont-Know-JS/&quot;&gt;&lt;em&gt;You Don’t Know
 JS&lt;/em&gt;&lt;/a&gt; book series by Kyle Simpson.
 He has the entire series available for free on GitHub, and they are fantastic
-books!&lt;/p&gt;</content><author><name></name></author><summary type="html">Today I had a phone interview for a software engineering position. I felt fairly prepared for the interview, simply because I’ve been living/breathing/eating/sweating/crying code for 6 months straight. But a very simple JavaScript question tripped me up a little bit.</summary></entry><entry><title type="html">Getting Started With Django</title><link href="/2015/07/30/getting-started-with-django.html" rel="alternate" type="text/html" title="Getting Started With Django" /><published>2015-07-30T00:00:00-04:00</published><updated>2015-07-30T00:00:00-04:00</updated><id>/2015/07/30/getting-started-with-django</id><content type="html" xml:base="/2015/07/30/getting-started-with-django.html">&lt;p&gt;A couple weeks ago, I started learning Python. There are a few reasons I chose
-Python as the next language I wanted to learn after learning JavaScript. These
-were criteria:&lt;/p&gt;
+books!&lt;/p&gt;</content><author><name></name></author><summary type="html">Today I had a phone interview for a software engineering position. I felt fairly prepared for the interview, simply because I’ve been living/breathing/eating/sweating/crying code for 6 months straight. But a very simple JavaScript question tripped me up a little bit.</summary></entry><entry><title type="html">Lodash Methods FTW!</title><link href="/2015/08/06/lodash-methods-ftw.html" rel="alternate" type="text/html" title="Lodash Methods FTW!" /><published>2015-08-06T00:00:00-04:00</published><updated>2015-08-06T00:00:00-04:00</updated><id>/2015/08/06/lodash-methods-ftw</id><content type="html" xml:base="/2015/08/06/lodash-methods-ftw.html">&lt;p&gt;I only recently realized the power of the &lt;a href=&quot;https://lodash.com/&quot;&gt;Lodash&lt;/a&gt;
+library. Previously, I had only used the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_.extend&lt;/code&gt; method (also called
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_.assign&lt;/code&gt;) which can be used as follows:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var object1 = {
+  prop1: 'hello',
+  prop2: 'bye'
+};
+
+var object2 = {
+  prop1: 'hey',
+  prop3: 'what is up?'
+};
+
+_.extend(object1, object2);console.log(object1);
+// ==&amp;gt; { prop1: 'hey', prop2: 'bye', prop3: 'what is up?' }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Essentially, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_.extend&lt;/code&gt; takes an object as its first parameter, another object
+as its second parameter, and adds the properties from the second object to the
+first object as well as overwriting the properties on the first object if those
+properties also exist on the second object.&lt;/p&gt;
+
+&lt;p&gt;My primary use case for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_.extend&lt;/code&gt; is in PUT routes in my API back-end. That
+data flow looks like this:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Python is used in web development&lt;/li&gt;
-  &lt;li&gt;Python has true classes, unlike JS, resulting in real object-oriented
-programming&lt;/li&gt;
-  &lt;li&gt;There are many many jobs available for Python developers&lt;/li&gt;
-  &lt;li&gt;The design of Python seems well thought out compared to JavaScript&lt;/li&gt;
-  &lt;li&gt;Python syntax and forced indentation results in neatly structured code&lt;/li&gt;
+  &lt;li&gt;User updates document using a form on the front-end&lt;/li&gt;
+  &lt;li&gt;Front-end code sends the updated document to the server using an AJAX PUT
+request&lt;/li&gt;
+  &lt;li&gt;PUT route on server queries the database for the document (this is the old
+version)&lt;/li&gt;
+  &lt;li&gt;PUT route on server uses &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_.extend&lt;/code&gt; to update the old version of the document&lt;/li&gt;
+  &lt;li&gt;PUT route on server saves the newly updated document and sends it back to the
+front-end&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;I started my learning by delving into the Python track on
-&lt;a href=&quot;https://teamtreehouse.com/&quot;&gt;Treehouse&lt;/a&gt;. For learning new coding
-concepts/technologies, I prefer learning by videos and short exercises over
-using books. If you are the same, I highly suggest checking out
-&lt;a href=&quot;https://teamtreehouse.com/&quot;&gt;Treehouse&lt;/a&gt; or &lt;a href=&quot;https://www.codeschool.com/&quot;&gt;Code
-School&lt;/a&gt; or any of the other similar sites. They
-can be a great way to jumpstart your learning.&lt;/p&gt;
+&lt;h2 id=&quot;_findindex--_findwhere&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_.findIndex&lt;/code&gt; &amp;amp; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_.findWhere&lt;/code&gt;&lt;/h2&gt;
 
-&lt;p&gt;After tackling the Python track on Treehouse, I completed a smattering of
-problems on both &lt;a href=&quot;http://exercism.io/&quot;&gt;Exercism&lt;/a&gt; and
-&lt;a href=&quot;http://www.codewars.com/&quot;&gt;CodeWars&lt;/a&gt;. These sites are awesome for developing
-strong fundamentals in a particular programming language.&lt;/p&gt;
+&lt;p&gt;This week I discovered &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_.findIndex&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_.findWhere&lt;/code&gt;, and they are nice
+additions to JavaScript’s built-in array methods such as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.filter&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.forEach&lt;/code&gt;,
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.map&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.reduce&lt;/code&gt;. This is how you can use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_.findIndex&lt;/code&gt;:&lt;/p&gt;
 
-&lt;p&gt;Honestly, I still feel fairly weak in Python. But I do know the basics, and I
-feel confident that I can effectively Google my way through most problems. I
-also feel that I learn best when building things. How else can you come across
-real world problems and find ways to solve them?&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var foods = [
+  { id: 1, food: 'pizza' },
+  { id: 2, food: 'ice cream' },
+  { id: 3, food: 'ramen' },
+  { id: 4, food: 'veggie burger' }
+];
 
-&lt;p&gt;On Monday of this week, I decided to start a Django tutorial. I chose Django
-because it is, from what I can tell, the most popular Python web framework and
-it is supposed to have great documentation. I started the tutorial on the
-official Django website:&lt;/p&gt;
+var ramenIndex = _.findIndex(arr, (item) =&amp;gt; item.food === 'ramen');
+console.log(ramenIndex);
+// ==&amp;gt; 2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;[https://docs.djangoproject.com/en/1.8/intro/tutorial01/]&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_.findIndex&lt;/code&gt; returns the index of the first element in the array that returns
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;true&lt;/code&gt; in its callback function. Clutch!&lt;/p&gt;
 
-&lt;p&gt;My only experience with web development is with full stack JavaScript, so the
-idea of setting up my Django application was a bit daunting. Thankfully, this
-tutorial walks you through every step needed to setup your first Django
-application, including linking to other tutorials where it might be necessary.
-There are 6 parts to the tutorial, and I have completed the first 2 parts. Here
-are a few tips if you are getting started with Python and Django:&lt;/p&gt;
+&lt;p&gt;The second Lodash method I discovered this week is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_.findWhere&lt;/code&gt;. I am a big
+fan of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.filter&lt;/code&gt; in JavaScript. It is awesome because you can do this:&lt;/p&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;Follow this guide for installing Python 3 on your Mac:
-[http://www.macobserver.com/tmo/article/how-to-upgrade-your-mac-to-python-3]&lt;/li&gt;
-  &lt;li&gt;Follow this guide for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;virtualenv&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;virtualenvwrapper&lt;/code&gt;:
-[http://docs.python-guide.org/en/latest/dev/virtualenvs/]&lt;/li&gt;
-  &lt;li&gt;If you have issues with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;virtualenvwrapper&lt;/code&gt;, try using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;easy_install&lt;/code&gt; instead
-of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pip3&lt;/code&gt;. This solved a problem I had when trying to perform &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;source
-/usr/local/bin/virtualenvwrapper.sh&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">A couple weeks ago, I started learning Python. There are a few reasons I chose Python as the next language I wanted to learn after learning JavaScript. These were criteria:</summary></entry></feed>
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var animals = [
+  { name: 'Carl'', type: 'bunny' },
+  { name: 'Bob', type: 'bunny' },
+  { name: 'Sue', type: 'cat' },
+  { name: 'Sally', type: 'bunny' }
+];
+
+var bunnies = animals.filter((animal) =&amp;gt; animal.type === 'bunny');
+console.log(bunnies);
+// ==&amp;gt; [
+// { name: 'Carl', type: 'bunny' },
+// { name: 'Bob', type: 'bunny' },
+// { name: 'Sally', type: 'bunny' }
+// ]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;But, when you only expect/want one element out of that array, you would have to
+do this:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var animals = [
+  { name: 'Carl'', type: 'bunny' },
+  { name: 'Bob', type: 'bunny' },
+  { name: 'Sue', type: 'cat' },
+  { name: 'Sally', type: 'bunny' }
+];
+
+var sue = animals.filter((animal) =&amp;gt; animal.type === 'cat')[0];
+console.log(sue);
+// ==&amp;gt; { name: 'Sue', type: 'cat' }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Getting an array of only one element is not nice. That’s why &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_.findWhere&lt;/code&gt; is
+so awesome. It allows you to do this:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var animals = [
+  { name: 'Carl'', type: 'bunny' },
+  { name: 'Bob', type: 'bunny' },
+  { name: 'Sue', type: 'cat' },
+  { name: 'Sally', type: 'bunny' }
+];
+
+var sue = _.findWhere(animals, { type: 'cat' });
+console.log(sue);
+// ==&amp;gt; { name: 'Sue', type: 'cat' }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Same result, but much cleaner code. It searches the array and returns the first
+element where all the properties match the object you’ve passed as the second
+parameter. And that is why I love &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_.findWhere&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;I will definitely be looking into utilizing more Lodash methods in my code, now
+that I’m finally understanding how they can simplify my code and make it more
+semantic. And I definitely suggest that you check out the
+&lt;a href=&quot;https://lodash.com/&quot;&gt;Lodash&lt;/a&gt; library; because why write things that have
+already been written for you?&lt;/p&gt;</content><author><name></name></author><summary type="html">I only recently realized the power of the Lodash library. Previously, I had only used the _.extend method (also called _.assign) which can be used as follows:</summary></entry></feed>
