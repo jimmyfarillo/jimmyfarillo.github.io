@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-03-07T12:42:44-05:00</updated><id>/feed.xml</id><title type="html">Jimmy Farillo</title><subtitle>NYC software engineer</subtitle><entry><title type="html">The Basics of Database Indexes for Relational Databases</title><link href="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html" rel="alternate" type="text/html" title="The Basics of Database Indexes for Relational Databases" /><published>2017-08-23T00:00:00-04:00</published><updated>2017-08-23T00:00:00-04:00</updated><id>/2017/08/23/the-basics-of-database-indexes-for-relational-databases</id><content type="html" xml:base="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html">&lt;p&gt;The purpose of creating an index on a particular table in your database is to
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-03-07T12:49:05-05:00</updated><id>/feed.xml</id><title type="html">Jimmy Farillo</title><subtitle>NYC software engineer</subtitle><entry><title type="html">The Basics of Database Indexes for Relational Databases</title><link href="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html" rel="alternate" type="text/html" title="The Basics of Database Indexes for Relational Databases" /><published>2017-08-23T00:00:00-04:00</published><updated>2017-08-23T00:00:00-04:00</updated><id>/2017/08/23/the-basics-of-database-indexes-for-relational-databases</id><content type="html" xml:base="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html">&lt;p&gt;The purpose of creating an index on a particular table in your database is to
 make it faster to search through the table and find the row or rows that you
 want. The downside is that indexes make it slower to add rows or make updates to
 existing rows for that table. So adding indexes can increase read performance
@@ -1021,4 +1021,91 @@ application. However, as your application evolves, you can always re-evaluate
 your database needs and migrate your data over to a new system.&lt;/p&gt;
 
 &lt;p&gt;And there you go! More than you ever probably wanted to read about databases in
-the context of web development.&lt;/p&gt;</content><author><name></name></author><summary type="html">At some point during your career as a web developer, you will have to decide what type of database is best suited for your application. You might face this decision very soon, if you are planning on building your own application as a side project. And at the very least, you will probably be asked about databases in a job interview for a web developer role.</summary></entry></feed>
+the context of web development.&lt;/p&gt;</content><author><name></name></author><summary type="html">At some point during your career as a web developer, you will have to decide what type of database is best suited for your application. You might face this decision very soon, if you are planning on building your own application as a side project. And at the very least, you will probably be asked about databases in a job interview for a web developer role.</summary></entry><entry><title type="html">Make Code Reviews a Little Bit Better With Automation</title><link href="/2017/02/03/make-code-reviews-a-little-bit-better-with-automation.html" rel="alternate" type="text/html" title="Make Code Reviews a Little Bit Better With Automation" /><published>2017-02-03T00:00:00-05:00</published><updated>2017-02-03T00:00:00-05:00</updated><id>/2017/02/03/make-code-reviews-a-little-bit-better-with-automation</id><content type="html" xml:base="/2017/02/03/make-code-reviews-a-little-bit-better-with-automation.html">&lt;p&gt;As a software developer on a team that includes other software developers, code
+reviews are an important part of the job. It is probably the one duty of my job
+that I can expect to do every single day. Why? What is the purpose of code
+reviews? Well, code reviews have several purposes. They:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Help ensure that new code is comprised of sound logic.&lt;/li&gt;
+  &lt;li&gt;Help ensure that new features follow the specifications.&lt;/li&gt;
+  &lt;li&gt;Help ensure that new code conforms to the agreed upon code style (if your
+company/team doesn’t have a code style guide, you should consider adopting
+one).&lt;/li&gt;
+  &lt;li&gt;Act as announcements of new code and features to the other team members /
+maintainers of the code base.&lt;/li&gt;
+  &lt;li&gt;Share knowledge of best practices amongst the team.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;When a team of people is working and collaborating together in one code base,
+code reviews are a great tool for keeping everyone in sync.&lt;/p&gt;
+
+&lt;p&gt;However, it is not uncommon for a developer to dread the task of reviewing a
+team member’s code. Especially when the pull request is lengthy. I am definitely
+guilty of avoiding reviewing a large PR for an entire day, having it constantly
+in the back of my head that I’ll eventually have to “suffer” through the process
+of going through the proposed code line-by-line, looking for errors and
+optimizations.&lt;/p&gt;
+
+&lt;p&gt;And then at some point last year the title of an episode of the &lt;a href=&quot;https://devchat.tv/ruby-rogues&quot;&gt;Ruby
+Rogues&lt;/a&gt; podcast caught my attention:
+&lt;a href=&quot;https://devchat.tv/ruby-rogues/251-rr-automating-code-reviews-with-mindaugas-mozuras&quot;&gt;“Automating Code Reviews with Mindaugas
+Mozūras”&lt;/a&gt;
+. In the episode, they discuss &lt;a href=&quot;https://github.com/mmozuras/pronto&quot;&gt;pronto&lt;/a&gt;, a
+Ruby gem that can be used in conjunction with various runners to automate parts
+of your code review process. It even works seamlessly with GitHub and can be
+configured to automatically add review comments to new PRs. The best part is
+that it only looks at the code diff and only adds review comments on lines of
+code that were changed.&lt;/p&gt;
+
+&lt;p&gt;Very soon after listening to that episode I proposed adding the gem to the main
+application that my team works on.&lt;/p&gt;
+
+&lt;p&gt;I decided to only use the rubocop runner, since my goal was to only automate the
+“conforms to the agreed upon code style” purpose of code reviews. The setup was
+really simple, and I even created a separate account to be the pronto commenter.
+It is aptly named &lt;strong&gt;prontosaurus&lt;/strong&gt;, thanks to one of my friends at work. The
+pronto gem runs during the CI build when a PR is opened or pushed to.&lt;/p&gt;
+
+&lt;p&gt;There was some initial tweaking that needed to be done once everything was set
+up, such as enabling/disabling certain warnings based on my team’s code style
+preferences. Even now, prontosaurus will sometimes leave comments that we
+outright ignore because we don’t agree with the style being enforced… and I
+should probably open a PR to make those changes…&lt;/p&gt;
+
+&lt;p&gt;But overall I think prontosaurus has been a positive addition to our code review
+process. We view his/her comments as suggestions rather than as strict rules
+that will prevent us from merging a PR.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-advantages-of-using-pronto&quot;&gt;The advantages of using pronto:&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Reviewers can focus on looking at the code at a higher level while leaving
+code style to prontosaurus.&lt;/li&gt;
+  &lt;li&gt;When a bot tells you about little mistakes you made, you feel less ashamed
+than if it were an actual member of your team.&lt;/li&gt;
+  &lt;li&gt;Learning new code style best practices. There have been several times when
+prontosaurus has commented on my code with some method or coding style that I
+have not heard of. The more you know!&lt;/li&gt;
+  &lt;li&gt;A cute little dinosaur makes comments on your PRs!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;the-disadvantages-of-using-pronto&quot;&gt;The disadvantages of using pronto:&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Will most likely require several rounds of tweaking based on your team’s
+preferences.&lt;/li&gt;
+  &lt;li&gt;Sometimes not suitable for very large code changes. For example, when doing a
+find/replace PR, it can touch many many lines of legacy code. The pronto bot
+may have some not very nice things to say about the code style of that code,
+but it may not be the appropriate time to address those comments.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;One extra little config that I added was the ability to turn off prontosaurus’s
+comments by simply adding a “No Pronto” label to the PR. This alleviates the
+issue of prontosaurus going on a rampage for large PRs.&lt;/p&gt;
+
+&lt;p&gt;If you are interested in implementing the pronto gem for your application, I
+recommend listening to &lt;a href=&quot;https://devchat.tv/ruby-rogues/251-rr-automating-code-reviews-with-mindaugas-mozuras&quot;&gt;“Automating Code Reviews with Mindaugas
+Mozūras”&lt;/a&gt;
+and checking out the &lt;a href=&quot;https://github.com/mmozuras/pronto&quot;&gt;pronto GitHub repo&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">As a software developer on a team that includes other software developers, code reviews are an important part of the job. It is probably the one duty of my job that I can expect to do every single day. Why? What is the purpose of code reviews? Well, code reviews have several purposes. They:</summary></entry></feed>
