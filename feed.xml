@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-03-06T01:01:23-05:00</updated><id>/feed.xml</id><title type="html">Jimmy Farillo</title><subtitle>NYC software engineer</subtitle><entry><title type="html">The Basics of Database Indexes for Relational Databases</title><link href="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html" rel="alternate" type="text/html" title="The Basics of Database Indexes for Relational Databases" /><published>2017-08-23T00:00:00-04:00</published><updated>2017-08-23T00:00:00-04:00</updated><id>/2017/08/23/the-basics-of-database-indexes-for-relational-databases</id><content type="html" xml:base="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html">&lt;p&gt;The purpose of creating an index on a particular table in your database is to
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-03-07T11:45:01-05:00</updated><id>/feed.xml</id><title type="html">Jimmy Farillo</title><subtitle>NYC software engineer</subtitle><entry><title type="html">The Basics of Database Indexes for Relational Databases</title><link href="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html" rel="alternate" type="text/html" title="The Basics of Database Indexes for Relational Databases" /><published>2017-08-23T00:00:00-04:00</published><updated>2017-08-23T00:00:00-04:00</updated><id>/2017/08/23/the-basics-of-database-indexes-for-relational-databases</id><content type="html" xml:base="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html">&lt;p&gt;The purpose of creating an index on a particular table in your database is to
 make it faster to search through the table and find the row or rows that you
 want. The downside is that indexes make it slower to add rows or make updates to
 existing rows for that table. So adding indexes can increase read performance
@@ -147,4 +147,87 @@ indexes that are no longer used should be removed.&lt;/p&gt;
 of your database is to provide a data store that is often written to and rarely
 read from. If that is the case, decreasing the performance of the more common
 operation, writing, is probably not worth the increase in performance you get
-from reading.&lt;/p&gt;</content><author><name></name></author><summary type="html">The purpose of creating an index on a particular table in your database is to make it faster to search through the table and find the row or rows that you want. The downside is that indexes make it slower to add rows or make updates to existing rows for that table. So adding indexes can increase read performance and decrease write performance. Indexes are also used to enforce uniqueness constraints, but I won’t go into that for this post.</summary></entry></feed>
+from reading.&lt;/p&gt;</content><author><name></name></author><summary type="html">The purpose of creating an index on a particular table in your database is to make it faster to search through the table and find the row or rows that you want. The downside is that indexes make it slower to add rows or make updates to existing rows for that table. So adding indexes can increase read performance and decrease write performance. Indexes are also used to enforce uniqueness constraints, but I won’t go into that for this post.</summary></entry><entry><title type="html">AlterConf NYC 2017 + Social Rules for Healthy Communication</title><link href="/2017/08/21/alterconf-nyc-2017-social-rules-for-healthy-communication.html" rel="alternate" type="text/html" title="AlterConf NYC 2017 + Social Rules for Healthy Communication" /><published>2017-08-21T00:00:00-04:00</published><updated>2017-08-21T00:00:00-04:00</updated><id>/2017/08/21/alterconf-nyc-2017-social-rules-for-healthy-communication</id><content type="html" xml:base="/2017/08/21/alterconf-nyc-2017-social-rules-for-healthy-communication.html">&lt;p&gt;This weekend I attended my first &lt;a href=&quot;https://www.alterconf.com/&quot;&gt;AlterConf&lt;/a&gt;, a
+one-day conference with the aim of helping to create a more inclusive tech
+industry. There were many great talks throughout the day as the speakers shared
+their inspiring stories and delved into thought-provoking topics, including:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Designing ethically-conscious products&lt;/li&gt;
+  &lt;li&gt;Potential problems with the way tech companies express how they value their
+employees&lt;/li&gt;
+  &lt;li&gt;How to empower so-called “quiet developers”&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;One talk stood out to me for its simplicity and message of “fostering healthy
+communication on small teams”. The speaker was Rachel Vincent, the Head of
+Operations at The Recurse Center, which provides educational programming
+retreats in NYC. In Rachel’s talk, she highlighted the social rules that her
+team has adopted that help ensure they communicate with each other in efficient,
+honest, and non-harmful ways. These are the four social rules:&lt;/p&gt;
+
+&lt;h2 id=&quot;no-feigning-surprise&quot;&gt;No Feigning Surprise&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;“Really?! You don’t know about… ?”&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;This rule is about not acting surprised when a person shares that they don’t
+know about something. This type of reaction adds no benefit to the conversation
+and can often lead to making the person feel bad or insecure for not knowing
+about the topic. Furthermore, in an industry like tech where people are
+constantly learning, it is important for people to feel comfortable admitting
+that they don’t know something to their colleagues. When people feign surprise
+at such an admission, it can inhibit the learning process for that individual.&lt;/p&gt;
+
+&lt;h2 id=&quot;no-well-actuallys&quot;&gt;No Well-Actuallys&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;A: “Beethoven’s Symphony №5 is probably his most famous work, and he was 38
+years old when he finished it. It’s my favorite of his, especially the second
+movement.”
+B: “Well, actually he was 37 years old.”&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;A well-actually is when someone corrects (often by interruption) an
+insignificant fact stated by another person. While it is always important to
+convey accurate information, being corrected on small details is not beneficial
+to the actual topic being discussed. These minor corrections do not serve
+truth-seeking. Corrections that do provide real clarification to the
+conversation and are not given with a disguised yearning for admiration are, of
+course, always welcome.&lt;/p&gt;
+
+&lt;h2 id=&quot;no-backseat-driving&quot;&gt;No Backseat Driving&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;A: “Maybe running that rake task again will fix it.”
+B: “I tried running it 5 times already.”
+C: “Just clear the cache!”&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Backseat driving is when a conversation is happening between two or more people
+and someone attempts to interject with their own advice. In most cases, that
+individual does not have the full information to be providing useful advice and
+ends up slowing down the individuals actually engaged in the conversation. It is
+most efficient (and least annoying) to fully engage in the conversation first
+before offering advice.&lt;/p&gt;
+
+&lt;h2 id=&quot;no-subtle-isms&quot;&gt;No Subtle-isms&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;“It’s so easy my grandmother could do it.”&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;A subtle-ism is a statement with underlying, often unintentional, tones of
+sexism, racism, homophobia, or other similar biases that can make others feel
+uncomfortable or unwelcome. The last thing we want to do is make someone feel
+bad for various aspects about their lifestyle and/or identity, even if that was
+not the intention of the statement.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;I’m not going to lie, I have definitely broken all of these rules before, and I
+am sure that I will continue to break them. I’m not perfect. But my hope is that
+by keeping these rules in mind during both my personal and professional
+communications, I can become better at identifying when I break them so that I
+can apologize, correct myself, and move on.&lt;/p&gt;
+
+&lt;p&gt;I also highly encourage anyone who is interested to attend an AlterConf event.
+They take place throughout the year in cities across the world, the tickets are
+fairly inexpensive for a tech conference (basic tickets were $25 for the event
+I attended), and the mission of the conference is quite admirable and important
+in our largely homogenous, oftentimes uninviting industry.&lt;/p&gt;
+
+&lt;p&gt;And a big thanks to my friend &amp;amp; coworker Melissa Moy for urging me to attend
+this event!&lt;/p&gt;</content><author><name></name></author><summary type="html">This weekend I attended my first AlterConf, a one-day conference with the aim of helping to create a more inclusive tech industry. There were many great talks throughout the day as the speakers shared their inspiring stories and delved into thought-provoking topics, including:</summary></entry></feed>
