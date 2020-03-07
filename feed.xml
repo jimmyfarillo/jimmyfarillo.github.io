@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-03-07T14:29:05-05:00</updated><id>/feed.xml</id><title type="html">Jimmy Farillo</title><subtitle>NYC software engineer</subtitle><entry><title type="html">The Basics of Database Indexes for Relational Databases</title><link href="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html" rel="alternate" type="text/html" title="The Basics of Database Indexes for Relational Databases" /><published>2017-08-23T00:00:00-04:00</published><updated>2017-08-23T00:00:00-04:00</updated><id>/2017/08/23/the-basics-of-database-indexes-for-relational-databases</id><content type="html" xml:base="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html">&lt;p&gt;The purpose of creating an index on a particular table in your database is to
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-03-07T14:33:18-05:00</updated><id>/feed.xml</id><title type="html">Jimmy Farillo</title><subtitle>NYC software engineer</subtitle><entry><title type="html">The Basics of Database Indexes for Relational Databases</title><link href="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html" rel="alternate" type="text/html" title="The Basics of Database Indexes for Relational Databases" /><published>2017-08-23T00:00:00-04:00</published><updated>2017-08-23T00:00:00-04:00</updated><id>/2017/08/23/the-basics-of-database-indexes-for-relational-databases</id><content type="html" xml:base="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html">&lt;p&gt;The purpose of creating an index on a particular table in your database is to
 make it faster to search through the table and find the row or rows that you
 want. The downside is that indexes make it slower to add rows or make updates to
 existing rows for that table. So adding indexes can increase read performance
@@ -1468,283 +1468,109 @@ incomplete, response like I did. And if you’re interested in diving a little
 bit deeper into &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;this&lt;/code&gt;, I highly recommend the &lt;a href=&quot;https://github.com/getify/You-Dont-Know-JS/&quot;&gt;&lt;em&gt;You Don’t Know
 JS&lt;/em&gt;&lt;/a&gt; book series by Kyle Simpson.
 He has the entire series available for free on GitHub, and they are fantastic
-books!&lt;/p&gt;</content><author><name></name></author><summary type="html">Today I had a phone interview for a software engineering position. I felt fairly prepared for the interview, simply because I’ve been living/breathing/eating/sweating/crying code for 6 months straight. But a very simple JavaScript question tripped me up a little bit.</summary></entry><entry><title type="html">Everything You Want to Know About Koa</title><link href="/2015/08/13/everything-you-want-to-know-about-koa.html" rel="alternate" type="text/html" title="Everything You Want to Know About Koa" /><published>2015-08-13T00:00:00-04:00</published><updated>2015-08-13T00:00:00-04:00</updated><id>/2015/08/13/everything-you-want-to-know-about-koa</id><content type="html" xml:base="/2015/08/13/everything-you-want-to-know-about-koa.html">&lt;p&gt;&lt;em&gt;Update (8/20/15): I recently &lt;a href=&quot;http://www.nycnode.com/videos/jimmy-farrell-downstream-and-upstream-request-flow-with-the-koa-web-framework&quot;&gt;gave a talk about
-Koa&lt;/a&gt;
-at the NYC Node.js meetup. The &lt;a href=&quot;https://github.com/jimmyfarrell/intro-to-koa&quot;&gt;GitHub
-repository&lt;/a&gt; for that talk
-provides some live code examples of Koa.&lt;/em&gt;&lt;/p&gt;
+books!&lt;/p&gt;</content><author><name></name></author><summary type="html">Today I had a phone interview for a software engineering position. I felt fairly prepared for the interview, simply because I’ve been living/breathing/eating/sweating/crying code for 6 months straight. But a very simple JavaScript question tripped me up a little bit.</summary></entry><entry><title type="html">Making a Command Line Tool Npm Package</title><link href="/2015/08/19/making-a-command-line-tool-npm-package.html" rel="alternate" type="text/html" title="Making a Command Line Tool Npm Package" /><published>2015-08-19T00:00:00-04:00</published><updated>2015-08-19T00:00:00-04:00</updated><id>/2015/08/19/making-a-command-line-tool-npm-package</id><content type="html" xml:base="/2015/08/19/making-a-command-line-tool-npm-package.html">&lt;p&gt;This article is meant to be a quick tutorial on creating a globally installed
+npm package that provides a simple command line tool to users. Our command line
+tool will be a clone of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ls&lt;/code&gt; command line tool, which prints a list of the
+contents of a directory.&lt;/p&gt;
 
-&lt;h2 id=&quot;the-basics&quot;&gt;The Basics&lt;/h2&gt;
+&lt;h2 id=&quot;setting-up-the-package&quot;&gt;Setting Up the Package&lt;/h2&gt;
 
-&lt;p&gt;If you’re a &lt;a href=&quot;https://nodejs.org/&quot;&gt;Node.js&lt;/a&gt; developer, you most likely use
-&lt;a href=&quot;http://expressjs.com/&quot;&gt;Express&lt;/a&gt; as your web application framework. I believe
-it has become the default technology. But that doesn’t mean it is the only
-option you have. In fact, the team behind Express also created another web
-application framework called &lt;a href=&quot;http://koajs.com/&quot;&gt;Koa&lt;/a&gt;. This post will serve as
-a basic introduction so that you can begin using Koa for your next web app.&lt;/p&gt;
+&lt;p&gt;Start off by creating a directory to house your package and then moving into
+that directory. Name it whatever you want.&lt;/p&gt;
 
-&lt;p&gt;The most unique aspect of Koa, especially if you’re coming from Express, is
-that Koa leverages ES6 generator functions in its architecture. This blog post
-will not go in-depth on generators, so if you are unfamiliar with generators,
-you can learn more
-&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*&quot;&gt;here&lt;/a&gt;
-or &lt;a href=&quot;http://davidwalsh.name/es6-generators&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;In Express you would define middleware like this:&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var express = require('express');
-var app = express();
-
-app.use(function(req, res, next) {
-  console.log('Do something');
-  next();
-});
-
-app.listen(8000);
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mkdir list-tool
+cd list-tool
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;In Koa, that same middleware would be defined like this:&lt;/p&gt;
+&lt;p&gt;Then you’ll want to create a package.json file, which you can easily do by
+running:&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var koa = require('koa');
-var app = koa();
-
-app.use(function*(next) {
-  console.log('Do something');
-  yield next;
-});
-
-app.listen(8000);
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;npm init
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;These trivial middleware functions both do the same thing: print “Do something”
-and then allow the request to continue downstream along to the next piece in
-the pipeline.&lt;/p&gt;
+&lt;p&gt;You’ll be asked a series of questions, and you can use the default values for
+all of them, or specify alternate values if you wish. When you are ready to
+publish your package, you’ll want to revisit your package.json to make sure all
+the values are updated and correct.&lt;/p&gt;
 
-&lt;h2 id=&quot;bidirectional-request-flow&quot;&gt;Bidirectional Request Flow&lt;/h2&gt;
+&lt;p&gt;For this package, we don’t need to install any dependencies. However, if you do
+need to install dependencies, you can run the following command to install and
+save them in your package.json:&lt;/p&gt;
 
-&lt;p&gt;Fairly similar so far. But Express is unidirectional, whereas Koa allows for
-downstream &lt;strong&gt;AND&lt;/strong&gt; upstream request flow. Here’s an example of downstream and
-upstream flow:&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var koa = require('koa');
-var app = koa();
-
-app.use(function*(next) {
-  console.log('A');
-  yield next;
-  console.log('B');
-});
-
-app.use(function*(next) {
-  console.log('C');
-  yield next;
-  console.log('D');
-});
-
-app.use(function*(next) {
-  console.log('E');
-  yield next;
-});
-
-app.listen(8000);
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;npm install --save &amp;lt;package name&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;You might’ve guessed, but the order that these letters prints out is: A, C, E,
-D, then B. The request flows through the first function where it prints A, then
-it yields to the next function in the middleware pipeline, that function prints
-C and then yields to the next function, that function prints E then yields to
-the next function (which in this case, since there is no more middleware, is an
-internal Koa generator). Since the request reached the “bottom” of the pipeline
-and the previous two generators have not completed, the request begins flowing
-upstream. The second generator function resumes where it left off and then
-prints D, then the request continues flowing upstream, and the first generator
-function resumes where it left off and prints B.&lt;/p&gt;
+&lt;p&gt;We only need to create 2 more files for this package, but both files need to be
+housed inside a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bin&lt;/code&gt; directory inside of our package’s directory. So run the
+following commands from inside the root directory of the package:&lt;/p&gt;
 
-&lt;p&gt;This can be a bit trippy to understand at first. The &lt;a href=&quot;https://github.com/koajs/koa/blob/master/docs/guide.md&quot;&gt;Koa
-Guide&lt;/a&gt; calls the code
-before the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;yield next&lt;/code&gt; the “capture phase” and the code after the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;yield next&lt;/code&gt;
-the “bubble phase”. I just call it awesome.&lt;/p&gt;
-
-&lt;p&gt;It might be difficult to think of times when you would want to utilize this
-upstream request flow, but there are use cases. With upstream request flow, you
-can attach properties to the server response that may be dependent on other
-downstream middleware. But really, it’s more of a design choice than a feature
-that expands your server’s functionality in a mind-blowing manner.&lt;/p&gt;
-
-&lt;h2 id=&quot;asynchronous-operations&quot;&gt;Asynchronous Operations&lt;/h2&gt;
-
-&lt;p&gt;In my opinion, the coolest thing about Koa is how you are able to handle async
-code. With Node.js, we are familiar with callbacks and promises. Let’s show a
-simple GET route that makes a database query.&lt;/p&gt;
-
-&lt;p&gt;First with a callback using Express:&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var express = require('express');
-var app = express();
-
-app.get('/', function(req, res) {
-  User.find({}, function(err, users) {
-    res.json(users);
-  });
-});
-
-app.listen(8000);
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mkdir bin cd bin
+touch list-tool
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Now with a promise in Express:&lt;/p&gt;
+&lt;p&gt;Your package directory should look something like this:&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var express = require('express');
-var app = express();
-
-app.get('/', function(req, res) {
-  User.find()
-    .then(function(users) {
-      res.json(users);
-    });
-});
-
-app.listen(8000);
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;list-tool
+│ list-tool
+│ package.json
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;But with Koa, you can forget about callbacks and promises, because there is an
-even simpler way to handle async operations using generators.&lt;/p&gt;
+&lt;p&gt;Before we get to the code, there are 2 properties you’ll need to add to your
+package.json: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bin&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;preferGlobal&lt;/code&gt;.&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var koa = require('koa');
-var app = koa();
-var router = require('koa-router');
-
-router.get('/', function*() {
-  var users = yield User.find();
-  this.body = users;
-});
-
-app.use(router.routes());app.listen(8000);
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&quot;bin&quot;: {
+  &quot;list-tool&quot;: &quot;list-tool&quot;
+},
+&quot;preferGlobal&quot;: &quot;true&quot;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;A few things are happening in this small block of code, so let’s go through it.
-The first 2 lines are requiring in Koa and creating an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app&lt;/code&gt; instance. The
-third line is requiring in a third-party router that can be used with Koa since
-Koa does not come with its own router. We use the router by passing it to our
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app&lt;/code&gt;, like in the second to last line of this code block. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;router.routes()&lt;/code&gt;
-returns a generator function that Koa can use. This router allows us to create
-routes like our &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;router.get&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bin&lt;/code&gt; tells npm where your executable file is so that it can install it into
+the PATH. And &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;preferGlobal&lt;/code&gt;, if set to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;true&lt;/code&gt;, will warn users if they try to
+install the package locally. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;preferGlobal&lt;/code&gt; is not necessary, but it can be
+nice to let users know that the package is meant to be installed globally.&lt;/p&gt;
 
-&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;router.get&lt;/code&gt; defines the URL for this route as well as a generator function
-to be used. The first line of this generator is declaring a variable &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;users&lt;/code&gt;
-and then yielding to the database query &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;User.find()&lt;/code&gt;. Since this is an
-asynchronous operation, this generator will pause and wait for the database
-query to finish. When the database query finishes, the generator resumes and
-the result of the query is stored in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;users&lt;/code&gt; variable.&lt;/p&gt;
+&lt;h2 id=&quot;creating-the-package&quot;&gt;Creating the Package&lt;/h2&gt;
 
-&lt;p&gt;On the last line of the generator, we set &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;this.body&lt;/code&gt; to our &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;users&lt;/code&gt; variable.
-In Koa, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;this&lt;/code&gt; is the Koa context, which is essentially a wrapper for the
-Node.js request and response. By setting &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;this.body&lt;/code&gt;, we are setting the
-server’s response body that will get sent back to the client.&lt;/p&gt;
+&lt;p&gt;Now we have the basics set up for our package. Let’s get into the code.&lt;/p&gt;
 
-&lt;p&gt;The last line simply starts our server and has it listening on port 8000.&lt;/p&gt;
+&lt;p&gt;Open up the list-tool file. This is our executable file, so we first need to tell the machine how to run this file:&lt;/p&gt;
 
-&lt;p&gt;As you can see, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;yield&lt;/code&gt; keyword lets us write extremely readable code that
-appears synchronous. No need for annoying callbacks or mysterious promises
-(TBH, I LOVE promises!). Just super simple code.&lt;/p&gt;
-
-&lt;h2 id=&quot;error-handling&quot;&gt;Error Handling&lt;/h2&gt;
-
-&lt;p&gt;Okay, but there is no error handling in that code. True, let’s talk about that.&lt;/p&gt;
-
-&lt;p&gt;Error handling in Koa is pretty straightforward. Again, I’m going to compare
-with callbacks and promises in Express.&lt;/p&gt;
-
-&lt;p&gt;In Express, you define error handling middleware by creating a middleware with
-a specific signature, namely, a function with 4 parameters.&lt;/p&gt;
-
-&lt;p&gt;Error handling with callbacks in Express:&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var express = require('express');
-var app = express();
-
-app.get('/', function(req, res) {
-  User.find({}, function(err, users) {
-    if (err) next(err);
-    res.json(users);
-  });
-});
-
-app.use(function(err, req, res, next) {
-  res.status = err.status || 500;
-  res.send(err.message || 'Internal server error.');
-});
-
-app.listen(8000);
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;!/usr/bin/env node
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Error handling with promises in Express:&lt;/p&gt;
+&lt;p&gt;Now let’s require in the built-in Node.js &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fs&lt;/code&gt; module.&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var express = require('express');
-var app = express();
-
-app.get('/', function(req, res) {
-  User.find()
-    .then(function(users) {
-      res.json(users);
-    })
-    .then(null, next);
-});
-
-app.use(function(err, req, res, next) {
-  res.status = err.status || 500;
-  res.send(err.message || 'Internal server error.');
-});
-
-app.listen(8000);
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var fs = require('fs');
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;In Koa, you also define error handling middleware at the top of the pipeline
-and give it a signature of:&lt;/p&gt;
+&lt;p&gt;Then, we are going to need to read the filenames in the current directory. To
+do this, we are going to use the the synchronous version of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fs.readdir&lt;/code&gt;
+method, which is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fs.readdirSync&lt;/code&gt;. The reason we will use the synchronous
+version is because this is a simple program, and all we need to do is read the
+filenames and print them out. No need for asynchronous operations.&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;try {
-  yield next;
-}
+&lt;p&gt;The code for this should look like:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var files = fs.readdirSync(process.cwd());
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Here is an example of error handling in Koa:&lt;/p&gt;
+&lt;p&gt;If you didn’t guess already, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;process.cwd()&lt;/code&gt; returns the current working
+directory. This is important because our command line tool should work
+correctly no matter where the tool is being called.&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var koa = require('koa');
-var app = koa();
-var router = require('koa-router');
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fs.readdirSync&lt;/code&gt; will return an array of all the filenames. So all we need to
+do now is print them out one-by-one. You can do this using the
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Array.prototype.forEach&lt;/code&gt; method:&lt;/p&gt;
 
-app.use(function*(next) {
-  try {
-    yield next;
-  } catch (err) {
-    this.status = err.status || 500;
-    this.body = err.message || 'Internal server error';
-    this.app.emit('error', err, this);
-  }
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;files.forEach(function(file) {
+  console.log(file);
 });
-
-router.get('/', function*() {
-  try {
-    var users = yield User.find();
-    this.body = users;
-  } catch (err) {
-    this.throw(err, 500);
-  }
-});
-
-app.use(router.routes());app.listen(8000);
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;As our first middleware function, we define a generator that tries to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;yield
-next&lt;/code&gt; and catches an error if there is one. Koa will use this middleware if we
-throw an error somewhere in our code, like we are doing in our GET route.&lt;/p&gt;
+&lt;p&gt;It’s that easy. So all of the code together is:&lt;/p&gt;
 
-&lt;p&gt;In the GET route, we are attempting to retrieve the users from the database and
-set them to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;this.body&lt;/code&gt;. If an error occurs, we move into the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;catch&lt;/code&gt; block
-where we throw an error using the Koa context’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;throw&lt;/code&gt; method. This causes the
-request to flow to our error handling middleware, where set the response status
-and body as well as emit an error to our Koa app. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;this.app.emit&lt;/code&gt; line is
-recommended by the Koa creators to allow your Koa app’s default error handling
-behavior to execute.&lt;/p&gt;
-
-&lt;p&gt;If you made it this far, you’re definitely ready to start implementing your own
-back-end using Koa. May the generators guide you well!&lt;/p&gt;</content><author><name></name></author><summary type="html">Update (8/20/15): I recently gave a talk about Koa at the NYC Node.js meetup. The GitHub repository for that talk provides some live code examples of Koa.</summary></entry></feed>
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var fs = require('fs');
+var files = fs.readdirSync('.');files.forEach(function(file) {
+  console.log(file);
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">This article is meant to be a quick tutorial on creating a globally installed npm package that provides a simple command line tool to users. Our command line tool will be a clone of the ls command line tool, which prints a list of the contents of a directory.</summary></entry></feed>
