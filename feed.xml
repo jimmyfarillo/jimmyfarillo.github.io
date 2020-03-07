@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-03-07T12:49:05-05:00</updated><id>/feed.xml</id><title type="html">Jimmy Farillo</title><subtitle>NYC software engineer</subtitle><entry><title type="html">The Basics of Database Indexes for Relational Databases</title><link href="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html" rel="alternate" type="text/html" title="The Basics of Database Indexes for Relational Databases" /><published>2017-08-23T00:00:00-04:00</published><updated>2017-08-23T00:00:00-04:00</updated><id>/2017/08/23/the-basics-of-database-indexes-for-relational-databases</id><content type="html" xml:base="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html">&lt;p&gt;The purpose of creating an index on a particular table in your database is to
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-03-07T12:54:22-05:00</updated><id>/feed.xml</id><title type="html">Jimmy Farillo</title><subtitle>NYC software engineer</subtitle><entry><title type="html">The Basics of Database Indexes for Relational Databases</title><link href="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html" rel="alternate" type="text/html" title="The Basics of Database Indexes for Relational Databases" /><published>2017-08-23T00:00:00-04:00</published><updated>2017-08-23T00:00:00-04:00</updated><id>/2017/08/23/the-basics-of-database-indexes-for-relational-databases</id><content type="html" xml:base="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html">&lt;p&gt;The purpose of creating an index on a particular table in your database is to
 make it faster to search through the table and find the row or rows that you
 want. The downside is that indexes make it slower to add rows or make updates to
 existing rows for that table. So adding indexes can increase read performance
@@ -1108,4 +1108,114 @@ issue of prontosaurus going on a rampage for large PRs.&lt;/p&gt;
 &lt;p&gt;If you are interested in implementing the pronto gem for your application, I
 recommend listening to &lt;a href=&quot;https://devchat.tv/ruby-rogues/251-rr-automating-code-reviews-with-mindaugas-mozuras&quot;&gt;“Automating Code Reviews with Mindaugas
 Mozūras”&lt;/a&gt;
-and checking out the &lt;a href=&quot;https://github.com/mmozuras/pronto&quot;&gt;pronto GitHub repo&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">As a software developer on a team that includes other software developers, code reviews are an important part of the job. It is probably the one duty of my job that I can expect to do every single day. Why? What is the purpose of code reviews? Well, code reviews have several purposes. They:</summary></entry></feed>
+and checking out the &lt;a href=&quot;https://github.com/mmozuras/pronto&quot;&gt;pronto GitHub repo&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">As a software developer on a team that includes other software developers, code reviews are an important part of the job. It is probably the one duty of my job that I can expect to do every single day. Why? What is the purpose of code reviews? Well, code reviews have several purposes. They:</summary></entry><entry><title type="html">How to Become a Web Developer</title><link href="/2017/02/01/how-to-become-a-web-developer.html" rel="alternate" type="text/html" title="How to Become a Web Developer" /><published>2017-02-01T00:00:00-05:00</published><updated>2017-02-01T00:00:00-05:00</updated><id>/2017/02/01/how-to-become-a-web-developer</id><content type="html" xml:base="/2017/02/01/how-to-become-a-web-developer.html">&lt;p&gt;About 2 years ago, I switched careers from marketing to web development. I won’t
+bore you with the whole story of why or how I did it. Find any other millennial
+that attended a coding bootcamp, and I’m sure my story is very similar.&lt;/p&gt;
+
+&lt;p&gt;However, I will say that the switch to web development has been without a doubt
+the greatest major life decision I’ve ever made. But it hasn’t been without its
+struggles. This post is for aspiring and newly minted web developers to pass
+along whatever knowledge I’ve gained in my first couple years as a web
+developer.&lt;/p&gt;
+
+&lt;h2 id=&quot;learn-the-basics&quot;&gt;Learn the Basics&lt;/h2&gt;
+
+&lt;p&gt;The first step towards becoming a web developer is to learn the basics about
+programming. Strings, floats, variables, arrays, hashes, objects, loops, etc.
+You have to start learning the vocabulary of developers and how to create simple
+programs that solve simple problems.&lt;/p&gt;
+
+&lt;p&gt;Many people suggest learning the basics with Ruby, JavaScript, or Python. I
+think that’s good advice since all are 1) very beginner-friendly and 2) are
+likely the languages you will be using in your first job as a developer. By
+“beginner-friendly”, I mean that the languages are high-level; they don’t
+require you to deal with such things as a multi-step build process or garbage
+collection. They all also have robust features.&lt;/p&gt;
+
+&lt;p&gt;Here are the resources I highly recommend:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.codecademy.com/&quot;&gt;Codecademy&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://rubymonk.com/&quot;&gt;RubyMonk&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://eloquentjavascript.net/&quot;&gt;Eloquent JavaScript&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;practice-coding-exercises&quot;&gt;Practice Coding Exercises&lt;/h2&gt;
+
+&lt;p&gt;After you’ve got the basics down, the next step is to practice the crap out of
+coding exercises. If you plan to attend a coding bootcamp, you will most likely
+have to take a coding assessment as part of your application. That assessment
+will consist of several coding exercises that will test your ability to solve
+problems using code. If you don’t plan to attend a coding bootcamp, these types
+of coding exercises will come up in job interviews. And even if you just want to
+learn to code as a side hobby, coding exercises help you learn about algorithms,
+data structures, features of the language, and how to write efficient code.
+Practicing coding is so important.&lt;/p&gt;
+
+&lt;p&gt;The resources I’ve used for coding exercises are:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.codewars.com/&quot;&gt;CodeWars&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://exercism.io/&quot;&gt;Exercism&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.hackerrank.com/&quot;&gt;HackerRank&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;start-building-web-applications&quot;&gt;Start Building Web Applications&lt;/h2&gt;
+
+&lt;p&gt;This step is a little more broad than the others. I count my time at my coding
+bootcamp for this step.&lt;/p&gt;
+
+&lt;p&gt;There are so many topics you can choose from, but I think a good place to start
+is by building a front-end application using a popular JavaScript framework such
+as React, AngularJS, or Ember.js.&lt;/p&gt;
+
+&lt;p&gt;You could also start by learning jQuery, but trust me, you don’t want to become
+a jQuery expert. You might not know what jQuery is, but just know that it’s the
+past. The future (and really the present) of front-end web development is
+JavaScript frameworks. But starting with jQuery will give you an introduction to
+DOM (&lt;strong&gt;D&lt;/strong&gt;ocument &lt;strong&gt;O&lt;/strong&gt;bject &lt;strong&gt;M&lt;/strong&gt;odel) manipulation and browser events.&lt;/p&gt;
+
+&lt;p&gt;After learning some front-end development concepts, you could venture to the
+back-end. Ruby on Rails is a popular web framework that many companies use.
+Node.js is a JavaScript runtime environment that is becoming hugely popular
+right now. Django is another large web framework (like Ruby on Rails), but it
+uses Python.&lt;/p&gt;
+
+&lt;p&gt;Learning about databases is also good. Learn the differences between relational
+and non-relational databases. And definitely learn some SQL, as many many
+companies use relational databases such as MySQL and PostrgreSQL.&lt;/p&gt;
+
+&lt;p&gt;Some good places to start learning web development concepts are:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://learnredux.com/&quot;&gt;Learn Redux&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://egghead.io/&quot;&gt;Egghead&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://teamtreehouse.com/&quot;&gt;Treehouse&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.codeschool.com/&quot;&gt;Code School&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://sqlzoo.net/&quot;&gt;SQLZOO&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;level-up-with-computer-science-fundamentals&quot;&gt;Level Up with Computer Science Fundamentals&lt;/h2&gt;
+
+&lt;p&gt;This last step should probably be done continuously and while doing the other
+steps. But I’m putting it last because CS fundamentals are often tested during
+job interviews.&lt;/p&gt;
+
+&lt;p&gt;By CS fundamentals, I’m talking primarily about data structures and algorithms.
+Data structures such as linked lists, binary trees, binary search tress, and
+graphs. Searching and sorting algorithms such as binary search, merge sort, and
+quick sort.&lt;/p&gt;
+
+&lt;p&gt;To get more practice with CS fundamentals, try:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.khanacademy.org/computing/computer-science/algorithms&quot;&gt;Khan Academy:
+Algorithms&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.edx.org/course/introduction-computer-science-harvardx-cs50x&quot;&gt;Harvard CS50 @
+edX&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;Cracking the Coding Interview&lt;/em&gt; by Gayle Laakmann McDowell&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These are roughly the steps that I followed for my transition to web
+development. I don’t claim to know the best way to learn web development, but I
+found these resources useful, and I hope you do, too.&lt;/p&gt;</content><author><name></name></author><summary type="html">About 2 years ago, I switched careers from marketing to web development. I won’t bore you with the whole story of why or how I did it. Find any other millennial that attended a coding bootcamp, and I’m sure my story is very similar.</summary></entry></feed>
