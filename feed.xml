@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-03-07T13:00:13-05:00</updated><id>/feed.xml</id><title type="html">Jimmy Farillo</title><subtitle>NYC software engineer</subtitle><entry><title type="html">The Basics of Database Indexes for Relational Databases</title><link href="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html" rel="alternate" type="text/html" title="The Basics of Database Indexes for Relational Databases" /><published>2017-08-23T00:00:00-04:00</published><updated>2017-08-23T00:00:00-04:00</updated><id>/2017/08/23/the-basics-of-database-indexes-for-relational-databases</id><content type="html" xml:base="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html">&lt;p&gt;The purpose of creating an index on a particular table in your database is to
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-03-07T13:35:29-05:00</updated><id>/feed.xml</id><title type="html">Jimmy Farillo</title><subtitle>NYC software engineer</subtitle><entry><title type="html">The Basics of Database Indexes for Relational Databases</title><link href="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html" rel="alternate" type="text/html" title="The Basics of Database Indexes for Relational Databases" /><published>2017-08-23T00:00:00-04:00</published><updated>2017-08-23T00:00:00-04:00</updated><id>/2017/08/23/the-basics-of-database-indexes-for-relational-databases</id><content type="html" xml:base="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html">&lt;p&gt;The purpose of creating an index on a particular table in your database is to
 make it faster to search through the table and find the row or rows that you
 want. The downside is that indexes make it slower to add rows or make updates to
 existing rows for that table. So adding indexes can increase read performance
@@ -1218,4 +1218,188 @@ edX&lt;/a&gt;&lt;/li&gt;
 
 &lt;p&gt;These are roughly the steps that I followed for my transition to web
 development. I don’t claim to know the best way to learn web development, but I
-found these resources useful, and I hope you do, too.&lt;/p&gt;</content><author><name></name></author><summary type="html">About 2 years ago, I switched careers from marketing to web development. I won’t bore you with the whole story of why or how I did it. Find any other millennial that attended a coding bootcamp, and I’m sure my story is very similar.</summary></entry></feed>
+found these resources useful, and I hope you do, too.&lt;/p&gt;</content><author><name></name></author><summary type="html">About 2 years ago, I switched careers from marketing to web development. I won’t bore you with the whole story of why or how I did it. Find any other millennial that attended a coding bootcamp, and I’m sure my story is very similar.</summary></entry><entry><title type="html">Keyed Collections in JavaScript: Set vs Map vs WeakSet vs WeakMap</title><link href="/2015/09/10/keyed-collections-in-javascript-set-vs-map-vs-weakset-vs-weakmap.html" rel="alternate" type="text/html" title="Keyed Collections in JavaScript: Set vs Map vs WeakSet vs WeakMap" /><published>2015-09-10T00:00:00-04:00</published><updated>2015-09-10T00:00:00-04:00</updated><id>/2015/09/10/keyed-collections-in-javascript-set-vs-map-vs-weakset-vs-weakmap</id><content type="html" xml:base="/2015/09/10/keyed-collections-in-javascript-set-vs-map-vs-weakset-vs-weakmap.html">&lt;p&gt;In celebration of the &lt;a href=&quot;https://nodejs.org/en/blog/release/v4.0.0/&quot;&gt;release of Node.js
+4.0.0&lt;/a&gt; this week, I’m going to
+cover some more ES2015 features that we now have access to in Node.js by
+default.&lt;/p&gt;
+
+&lt;p&gt;Until ES2015, JavaScript had only one type of collection for data: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Array&lt;/code&gt;.
+Arrays are collections that are indexed using numeric values. But now we have
+four new types of collections: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Set&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Map&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WeakSet&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WeakMap&lt;/code&gt;. Instead
+of being indexed like arrays, these new collections are keyed.&lt;/p&gt;
+
+&lt;p&gt;This article will give an overview of each new collection type so that you can
+begin using them in your code.&lt;/p&gt;
+
+&lt;h2 id=&quot;set&quot;&gt;Set&lt;/h2&gt;
+
+&lt;p&gt;Sets are collections of values, either primitive or object references. These
+values must be unique and are added using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;add&lt;/code&gt; method. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;size&lt;/code&gt; property
+returns the number of values in the set. Here are a couple examples of creating
+sets:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var set1 = new Set();
+set1;
+// ==&amp;gt; Set { }
+
+set1.add('a');
+// ==&amp;gt; Set { 'a' }
+
+set1.add(1);
+// ==&amp;gt; Set { 'a', 1 }
+
+set1.add('1');
+// ==&amp;gt; Set { 'a', 1, '1' }
+
+// The value 1 has already been added.
+set1.add(1);
+// ==&amp;gt; Set { 'a', 1, '1’ }
+
+// Values can be object references.
+var obj1 = { prop1: 'Hello!’ };
+set1.add(obj1);
+// ==&amp;gt; Set { 'a', 1, '1', { prop1: 'Hello!' } }
+
+// Sets can also be created using iterables, such as arrays.
+var set2 = new Set(['a', 'b', 'c', 'c']);
+set2;
+// ==&amp;gt; Set { 'a', 'b', 'c' }
+
+set2.size;
+// ==&amp;gt; 3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;There are many other useful methods, such as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;delete&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;clear&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;has&lt;/code&gt;. They
+function as you might expect:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var set3 = new Set([1, 2, 3, 4, 5]);
+set3;
+// ==&amp;gt; Set { 1, 2, 3, 4, 5 }
+
+set3.has(2);
+// ==&amp;gt; true
+
+set3.delete(2);
+set3;
+// ==&amp;gt; Set { 1, 3, 4, 5 }
+
+set3.has(2);
+// ==&amp;gt; false
+
+set3.clear();
+set3;
+// ==&amp;gt; Set { }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;A cool thing about sets is that when iterating over them, the values are
+iterated over in the order in which they were inserted. You can iterate over
+them using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;forEach&lt;/code&gt; method on &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Set.prototype&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var set4 = new Set();
+set4.add(5);
+set4.add(2);
+set4.add(9);
+set4.add(1);
+
+// The first two params in the callback are the value.
+// This is for consistency with the Array forEach method.
+
+set4.forEach((val1, val2, set) =&amp;gt; { console.log(val1 + 10); });
+// ==&amp;gt; 15
+// ==&amp;gt; 12
+// ==&amp;gt; 19
+// ==&amp;gt; 11
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;map&quot;&gt;Map&lt;/h2&gt;
+
+&lt;p&gt;Maps are another new collection type in JavaScript. The data is stored as
+key-value pairs that can be added using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;set&lt;/code&gt; method. Keys and values can
+both be of any type, primitive or object. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;size&lt;/code&gt; property returns the
+number of key-value pairs in the map.&lt;/p&gt;
+
+&lt;p&gt;Like sets, the keys are iterated over in the order in which they were inserted.
+This is probably the biggest advantage of storing data in a map as opposed to a
+JavaScript &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Object&lt;/code&gt; object.&lt;/p&gt;
+
+&lt;p&gt;Creating a map:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var map1 = new Map();
+map1.set(1, 'hello');
+// ==&amp;gt; Map { 1 =&amp;gt; 'hello’ }
+
+map1.set('jimmy', {x: 'y'})
+// ==&amp;gt; Map { 1 =&amp;gt; 'hello', 'jimmy' =&amp;gt; { lastName: 'farrell' } }
+
+var arr1 = ['a', 'b'];
+map1.set(arr1, [1, 2]);
+// ==&amp;gt; Map { 1 =&amp;gt; 'hello', 'jimmy' =&amp;gt; { x: 'y' }, [ 'a', 'b' ] =&amp;gt; [ 1, 2 ] }
+
+// You can also pass an iterable to the constructor.
+var map2 = new Map([['hello', 'world'], [1, 'one']]);
+map2;
+// ==&amp;gt; Map { 'hello' =&amp;gt; 'world', 1 =&amp;gt; 'one' }
+
+map2.size;
+// ==&amp;gt; 2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Maps have the same &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;delete&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;clear&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;has&lt;/code&gt; methods, but they also have a
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;get&lt;/code&gt; method for accessing the value of a specific key. You can use these
+methods like such:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var map3 = new Map();
+map3.set(1, 'a');
+map3.set(2, 'b');
+map3.set(3, 'c');
+map3;
+// ==&amp;gt; Map { 1 =&amp;gt; 'a', 2 =&amp;gt; 'b', 3 =&amp;gt; 'c' }
+
+map3.has(3);
+// == true
+
+map3.delete(3);
+map3;
+// ==&amp;gt; Map { 1 =&amp;gt; 'a', 2 =&amp;gt; 'b' }
+
+map3.has(3);
+// ==&amp;gt; false
+
+map3.get(2);
+// ==&amp;gt; 'b'
+
+map3.clear();
+map3;
+// ==&amp;gt; Map { }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Maps also have a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;forEach&lt;/code&gt; method, similar to the one for sets.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var map4 = new Map();
+map4.set('hello', 'world');
+map4.set(10, 5);
+
+// First param is the value
+// Second param is the key
+
+map4.forEach((val, key, map) =&amp;gt; { console.log(key + val); });
+// ==&amp;gt; 'helloworld'
+// ==&amp;gt; 15
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;weakset-and-weakmap&quot;&gt;WeakSet and WeakMap&lt;/h2&gt;
+
+&lt;p&gt;As you can tell by their names, weakSets and weakMaps are similar to sets and
+maps, but with some key differences.&lt;/p&gt;
+
+&lt;p&gt;Values in a weakSet can only be object references. Keys in a weakMap can only
+be object references.&lt;/p&gt;
+
+&lt;p&gt;The values in weakSets and keys in weakMaps are weakly held object references.
+This means that if that reference is the only reference to that object, the
+object can be garbage collected and that entry (value in a weakSet, key-value
+pair in a weakMap) will be removed from the collection.&lt;/p&gt;
+
+&lt;p&gt;Because they are comprised of weakly held object references, weakSets and
+weakMaps cannot be iterated over and do not have a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;forEach&lt;/code&gt; method. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;clear&lt;/code&gt;
+method is also not available for weakSets and weakMaps.&lt;/p&gt;</content><author><name></name></author><summary type="html">In celebration of the release of Node.js 4.0.0 this week, I’m going to cover some more ES2015 features that we now have access to in Node.js by default.</summary></entry></feed>
