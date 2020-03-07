@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-03-07T13:53:04-05:00</updated><id>/feed.xml</id><title type="html">Jimmy Farillo</title><subtitle>NYC software engineer</subtitle><entry><title type="html">The Basics of Database Indexes for Relational Databases</title><link href="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html" rel="alternate" type="text/html" title="The Basics of Database Indexes for Relational Databases" /><published>2017-08-23T00:00:00-04:00</published><updated>2017-08-23T00:00:00-04:00</updated><id>/2017/08/23/the-basics-of-database-indexes-for-relational-databases</id><content type="html" xml:base="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html">&lt;p&gt;The purpose of creating an index on a particular table in your database is to
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-03-07T13:54:32-05:00</updated><id>/feed.xml</id><title type="html">Jimmy Farillo</title><subtitle>NYC software engineer</subtitle><entry><title type="html">The Basics of Database Indexes for Relational Databases</title><link href="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html" rel="alternate" type="text/html" title="The Basics of Database Indexes for Relational Databases" /><published>2017-08-23T00:00:00-04:00</published><updated>2017-08-23T00:00:00-04:00</updated><id>/2017/08/23/the-basics-of-database-indexes-for-relational-databases</id><content type="html" xml:base="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html">&lt;p&gt;The purpose of creating an index on a particular table in your database is to
 make it faster to search through the table and find the row or rows that you
 want. The downside is that indexes make it slower to add rows or make updates to
 existing rows for that table. So adding indexes can increase read performance
@@ -1472,7 +1472,8 @@ books!&lt;/p&gt;</content><author><name></name></author><summary type="html">Tod
 into the details of why I chose Fullstack, but let’s just say that, so far, I’m
 extremely happy with my decision. I’m also super pumped about starting!&lt;/p&gt;
 
-&lt;h2 id=&quot;however-i-will-let-you-in-on-why-ive-decided-to-learn-to-code--why-do-i-think-coding-is-so-awesome&quot;&gt;However, I will let you in on why I’ve decided to learn to code.  Why do I think coding is so awesome?&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;However, I will let you in on why I’ve decided to learn to code.  Why do I
+think coding is so awesome?&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;Because it is both logical and creative. I’m sure most people are aware that
 coding is very structured and based in logic. But I think an effective coder
@@ -1481,7 +1482,7 @@ a web application, from essentially nothing is a very creative process. This
 merging of logic and creativity, of structure and imagination, into a single
 skill set is a large part of why coding appeals to me.&lt;/p&gt;
 
-&lt;h2 id=&quot;but-why-do-i-think-logic--creativity-is-cool&quot;&gt;But why do I think logic + creativity is cool?&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;But why do I think logic + creativity is cool?&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;I am both a scientist and a musician. Or at least I pretend to be, to some
 degree, I value both logic and creatively very highly. My entire life I’ve only
@@ -1492,7 +1493,7 @@ mind. Coding does. I love using reasoning to work through a problem and then
 having to be innovative to build out a solution. And as a bonus, you get to see
 the results of your work immediately (in many cases).&lt;/p&gt;
 
-&lt;h2 id=&quot;what-do-i-plan-on-doing-after-ive-gained-some-coding-skills&quot;&gt;What do I plan on doing after I’ve gained some coding skills?&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;What do I plan on doing after I’ve gained some coding skills?&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;Another big part of why I’ve been inspired to learn to code is that the
 potential of this skill set is practically limitless. There is so much
