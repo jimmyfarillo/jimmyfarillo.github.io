@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-03-07T14:01:50-05:00</updated><id>/feed.xml</id><title type="html">Jimmy Farillo</title><subtitle>NYC software engineer</subtitle><entry><title type="html">The Basics of Database Indexes for Relational Databases</title><link href="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html" rel="alternate" type="text/html" title="The Basics of Database Indexes for Relational Databases" /><published>2017-08-23T00:00:00-04:00</published><updated>2017-08-23T00:00:00-04:00</updated><id>/2017/08/23/the-basics-of-database-indexes-for-relational-databases</id><content type="html" xml:base="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html">&lt;p&gt;The purpose of creating an index on a particular table in your database is to
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-03-07T14:03:50-05:00</updated><id>/feed.xml</id><title type="html">Jimmy Farillo</title><subtitle>NYC software engineer</subtitle><entry><title type="html">The Basics of Database Indexes for Relational Databases</title><link href="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html" rel="alternate" type="text/html" title="The Basics of Database Indexes for Relational Databases" /><published>2017-08-23T00:00:00-04:00</published><updated>2017-08-23T00:00:00-04:00</updated><id>/2017/08/23/the-basics-of-database-indexes-for-relational-databases</id><content type="html" xml:base="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html">&lt;p&gt;The purpose of creating an index on a particular table in your database is to
 make it faster to search through the table and find the row or rows that you
 want. The downside is that indexes make it slower to add rows or make updates to
 existing rows for that table. So adding indexes can increase read performance
@@ -1468,67 +1468,19 @@ incomplete, response like I did. And if you’re interested in diving a little
 bit deeper into &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;this&lt;/code&gt;, I highly recommend the &lt;a href=&quot;https://github.com/getify/You-Dont-Know-JS/&quot;&gt;&lt;em&gt;You Don’t Know
 JS&lt;/em&gt;&lt;/a&gt; book series by Kyle Simpson.
 He has the entire series available for free on GitHub, and they are fantastic
-books!&lt;/p&gt;</content><author><name></name></author><summary type="html">Today I had a phone interview for a software engineering position. I felt fairly prepared for the interview, simply because I’ve been living/breathing/eating/sweating/crying code for 6 months straight. But a very simple JavaScript question tripped me up a little bit.</summary></entry><entry><title type="html">The Deal With Closures</title><link href="/2015/03/08/the-deal-with-closures.html" rel="alternate" type="text/html" title="The Deal With Closures" /><published>2015-03-08T00:00:00-05:00</published><updated>2015-03-08T00:00:00-05:00</updated><id>/2015/03/08/the-deal-with-closures</id><content type="html" xml:base="/2015/03/08/the-deal-with-closures.html">&lt;p&gt;Closures are functions that can refer to independent variables that existed
-when the function was created. Many coders says that these functions “remember”
-the environment and the variables in that environment when the functions were
-being defined.&lt;/p&gt;
+books!&lt;/p&gt;</content><author><name></name></author><summary type="html">Today I had a phone interview for a software engineering position. I felt fairly prepared for the interview, simply because I’ve been living/breathing/eating/sweating/crying code for 6 months straight. But a very simple JavaScript question tripped me up a little bit.</summary></entry><entry><title type="html">Educa.re: A Collaborative Writing Workspace Powered by Git</title><link href="/2015/05/27/educa-re-a-collaborative-writing-workspace-powered-by-git.html" rel="alternate" type="text/html" title="Educa.re: A Collaborative Writing Workspace Powered by Git" /><published>2015-05-27T00:00:00-04:00</published><updated>2015-05-27T00:00:00-04:00</updated><id>/2015/05/27/educa-re-a-collaborative-writing-workspace-powered-by-git</id><content type="html" xml:base="/2015/05/27/educa-re-a-collaborative-writing-workspace-powered-by-git.html">&lt;p&gt;I’m in the final phase of my time as a student at Fullstack Academy. The final
+2–3 weeks of the program consists of coming up with an ambitious idea for a web
+app, gathering a team of fellow students to work on it with you, building it
+out, and then presenting it to potential employers.&lt;/p&gt;
 
-&lt;p&gt;Here’s an example of a closure:&lt;/p&gt;
+&lt;p&gt;The past few weeks, my team and I have been working hard on a collaborative
+writing platform that we call Educa.re. It was built using fullstack
+JavaScript, specifically Node.js, Express, MongoDB, and AngularJS. We also used
+Git extensively, leveraging it’s capabilities to act as a database.&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var outerFunc = function() {
-  var yup = &quot;YES! I love it!&quot;;
-  var innerFunc = function() {
-    return yup;
-  };
-  return innerFunc;
-};
+&lt;p&gt;We’ve created a short demo video, so I’ll let you watch that for more
+information about our site. And check out our GitHup repo, if you want.&lt;/p&gt;
 
-var doYouLikePizza = outerFunc();
-doYouLikePizza();
-// &quot;YES! I love it!&quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;In this example, we define an outer function that contains the variable &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;yup&lt;/code&gt;
-as well as the inner function. Then it returns the inner function. Below that,
-we define the variable &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;doYouLikePizza&lt;/code&gt; to the return of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;outerFunc&lt;/code&gt; (this
-essentially means that we’re defining &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;doYouLikePizza&lt;/code&gt; to be &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;innerFunc&lt;/code&gt;). When
-we call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;doYouLikePizza()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;innerFunc&lt;/code&gt; remembers the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;yup&lt;/code&gt; variable from when
-it was created, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;doYouLikePizza()&lt;/code&gt; returns our &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;yup&lt;/code&gt; string.&lt;/p&gt;
-
-&lt;p&gt;Now let’s make the example slightly more interesting:&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var outerFunc = function() {
-  var yup = &quot;YES! I love it!&quot;;
-  var nope = &quot;No. Pizza sucks.&quot;;
-  var count = 0;
-  var innerFunc = function() {
-    count++;
-    if (count % 2 === 0) return nope;
-    return yup;
-  };
-  return innerFunc;
-};
-
-var doYouLikePizza = outerFunc();
-doYouLikePizza();
-// &quot;YES! I love it!&quot;
-
-doYouLikePizza();
-// &quot;No. Pizza sucks.&quot;
-
-doYouLikePizza();
-// &quot;YES! I love it!&quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Now, we’re still defining &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;outerFunc&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;innerFunc&lt;/code&gt; and setting
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;doYouLikePizza&lt;/code&gt; to the return of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;outerFunc&lt;/code&gt;. But inside &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;outerFunc&lt;/code&gt;, we’ve
-defined a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nope&lt;/code&gt; variable as well as a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;count&lt;/code&gt; variable. So when we call
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;doYouLikePizza()&lt;/code&gt;, we increment &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;count&lt;/code&gt; and use it to evaluate which string we
-return.&lt;/p&gt;
-
-&lt;p&gt;Even though &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;doYouLikePizza&lt;/code&gt; does not have direct access to the variables
-defined inside of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;outerFunc&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;innerFunc&lt;/code&gt; (which was assigned to
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;doYouLikePizza&lt;/code&gt;) remembers these variables and can refer to them and write
-over them.&lt;/p&gt;
-
-&lt;p&gt;Pretty nifty!&lt;/p&gt;</content><author><name></name></author><summary type="html">Closures are functions that can refer to independent variables that existed when the function was created. Many coders says that these functions “remember” the environment and the variables in that environment when the functions were being defined.</summary></entry></feed>
+&lt;p&gt;&lt;strong&gt;Educa.re&lt;/strong&gt;: [http://educa.re]
+&lt;strong&gt;Demo Video&lt;/strong&gt;: [https://vimeo.com/129333742]
+&lt;strong&gt;GitHub&lt;/strong&gt;: [https://github.com/jimmyfarrell/educa.re]&lt;/p&gt;</content><author><name></name></author><summary type="html">I’m in the final phase of my time as a student at Fullstack Academy. The final 2–3 weeks of the program consists of coming up with an ambitious idea for a web app, gathering a team of fellow students to work on it with you, building it out, and then presenting it to potential employers.</summary></entry></feed>
