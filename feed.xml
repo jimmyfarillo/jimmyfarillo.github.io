@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-03-07T14:33:18-05:00</updated><id>/feed.xml</id><title type="html">Jimmy Farillo</title><subtitle>NYC software engineer</subtitle><entry><title type="html">The Basics of Database Indexes for Relational Databases</title><link href="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html" rel="alternate" type="text/html" title="The Basics of Database Indexes for Relational Databases" /><published>2017-08-23T00:00:00-04:00</published><updated>2017-08-23T00:00:00-04:00</updated><id>/2017/08/23/the-basics-of-database-indexes-for-relational-databases</id><content type="html" xml:base="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html">&lt;p&gt;The purpose of creating an index on a particular table in your database is to
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-03-07T14:39:17-05:00</updated><id>/feed.xml</id><title type="html">Jimmy Farillo</title><subtitle>NYC software engineer</subtitle><entry><title type="html">The Basics of Database Indexes for Relational Databases</title><link href="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html" rel="alternate" type="text/html" title="The Basics of Database Indexes for Relational Databases" /><published>2017-08-23T00:00:00-04:00</published><updated>2017-08-23T00:00:00-04:00</updated><id>/2017/08/23/the-basics-of-database-indexes-for-relational-databases</id><content type="html" xml:base="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html">&lt;p&gt;The purpose of creating an index on a particular table in your database is to
 make it faster to search through the table and find the row or rows that you
 want. The downside is that indexes make it slower to add rows or make updates to
 existing rows for that table. So adding indexes can increase read performance
@@ -1468,109 +1468,82 @@ incomplete, response like I did. And if you’re interested in diving a little
 bit deeper into &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;this&lt;/code&gt;, I highly recommend the &lt;a href=&quot;https://github.com/getify/You-Dont-Know-JS/&quot;&gt;&lt;em&gt;You Don’t Know
 JS&lt;/em&gt;&lt;/a&gt; book series by Kyle Simpson.
 He has the entire series available for free on GitHub, and they are fantastic
-books!&lt;/p&gt;</content><author><name></name></author><summary type="html">Today I had a phone interview for a software engineering position. I felt fairly prepared for the interview, simply because I’ve been living/breathing/eating/sweating/crying code for 6 months straight. But a very simple JavaScript question tripped me up a little bit.</summary></entry><entry><title type="html">Making a Command Line Tool Npm Package</title><link href="/2015/08/19/making-a-command-line-tool-npm-package.html" rel="alternate" type="text/html" title="Making a Command Line Tool Npm Package" /><published>2015-08-19T00:00:00-04:00</published><updated>2015-08-19T00:00:00-04:00</updated><id>/2015/08/19/making-a-command-line-tool-npm-package</id><content type="html" xml:base="/2015/08/19/making-a-command-line-tool-npm-package.html">&lt;p&gt;This article is meant to be a quick tutorial on creating a globally installed
-npm package that provides a simple command line tool to users. Our command line
-tool will be a clone of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ls&lt;/code&gt; command line tool, which prints a list of the
-contents of a directory.&lt;/p&gt;
+books!&lt;/p&gt;</content><author><name></name></author><summary type="html">Today I had a phone interview for a software engineering position. I felt fairly prepared for the interview, simply because I’ve been living/breathing/eating/sweating/crying code for 6 months straight. But a very simple JavaScript question tripped me up a little bit.</summary></entry><entry><title type="html">Async/Await in ES7 (ES2016)</title><link href="/2015/08/27/async-await-in-es7-es2016.html" rel="alternate" type="text/html" title="Async/Await in ES7 (ES2016)" /><published>2015-08-27T00:00:00-04:00</published><updated>2015-08-27T00:00:00-04:00</updated><id>/2015/08/27/async-await-in-es7-es2016</id><content type="html" xml:base="/2015/08/27/async-await-in-es7-es2016.html">&lt;p&gt;I’ve recently been
+&lt;a href=&quot;/2015/08/13/everything-you-want-to-know-about-koa.html&quot;&gt;learning a bit about Koa&lt;/a&gt;
+, which uses ES6 (ES2015) generator functions in its design and allows us to
+treat our asynchronous operations differently than using callbacks or promises.&lt;/p&gt;
 
-&lt;h2 id=&quot;setting-up-the-package&quot;&gt;Setting Up the Package&lt;/h2&gt;
+&lt;p&gt;After &lt;a href=&quot;http://www.nycnode.com/videos/jimmy-farrell-downstream-and-upstream-request-flow-with-the-koa-web-framework&quot;&gt;I presented about Koa at the NYC Node.js
+meetup&lt;/a&gt;,
+fellow presenter &lt;a href=&quot;https://twitter.com/eddiezane&quot;&gt;Eddie Zaneski&lt;/a&gt; showed me
+something even more awesome than generators: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;async&lt;/code&gt; / &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;await&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;Start off by creating a directory to house your package and then moving into
-that directory. Name it whatever you want.&lt;/p&gt;
+&lt;p&gt;Here’s an example of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;async&lt;/code&gt; / &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;await&lt;/code&gt; in action:&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mkdir list-tool
-cd list-tool
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;async function doSomeStuff() {
+  try {
+    let results1 = await returnsAPromise();
+    let results2 = await alsoReturnsAPromise();
+    return { results1, results2 };
+  } catch (err) {
+    throw new Error(err);
+  }
+}
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Then you’ll want to create a package.json file, which you can easily do by
-running:&lt;/p&gt;
+&lt;p&gt;Our function is defined as an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;async function&lt;/code&gt;, which gives us access to a new
+keyword, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;await&lt;/code&gt;. This keyword does exactly what it says; it waits for an
+asynchronous operation to complete (either resolve or reject) before continuing
+on with the rest of the function’s code.&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;npm init
+&lt;p&gt;The asynchronous operation that is being waited for must return a promise. If
+that promise resolves successfully, then the resolved value is returned from
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;await&lt;/code&gt;. It the promise is rejected, the execution of the code moves in the
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;catch&lt;/code&gt; block.&lt;/p&gt;
+
+&lt;p&gt;This code structure may look familiar if you read my post on Koa. That’s
+because Koa and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;async&lt;/code&gt; / &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;await&lt;/code&gt; are both built using coroutines. However, the
+internals of how each implements coroutines is quite different. In short, Koa
+uses generator functions and a library called co, while &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;async&lt;/code&gt; / &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;await&lt;/code&gt; uses
+a library called node-fibers. More on this here.&lt;/p&gt;
+
+&lt;p&gt;Back to the code.&lt;/p&gt;
+
+&lt;p&gt;Dealing with asynchronicity using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;async&lt;/code&gt; / &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;await&lt;/code&gt; looks a lot like
+synchronous code, and that’s the whole point. No need for messy callbacks or
+promises to handle control flow.&lt;/p&gt;
+
+&lt;p&gt;And though the code may look synchronous, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;async&lt;/code&gt; / &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;await&lt;/code&gt; does not block the
+JavaScript event loop. This means that other operations can be performed while
+our function is awaiting the promise to be resolved/rejected.&lt;/p&gt;
+
+&lt;p&gt;Concurrency with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;async&lt;/code&gt; / &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;await&lt;/code&gt; is also quite simple by wrapping the
+asynchronous operations that are to be performed in parallel in a
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Promise.all&lt;/code&gt;. Like so:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;async function manyThings() {
+  try {
+    let promises = [thing1(), thing2(), thing3()];
+    await Promise.all(promises);
+  } catch (err) {
+    throw new Error(err);
+  }
+}
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;You’ll be asked a series of questions, and you can use the default values for
-all of them, or specify alternate values if you wish. When you are ready to
-publish your package, you’ll want to revisit your package.json to make sure all
-the values are updated and correct.&lt;/p&gt;
+&lt;p&gt;I’ve also seen that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;await*&lt;/code&gt; is proposed syntactic sugar for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Promise.all&lt;/code&gt;.
+Meaning that we could achieve the same thing as above by doing:&lt;/p&gt;
 
-&lt;p&gt;For this package, we don’t need to install any dependencies. However, if you do
-need to install dependencies, you can run the following command to install and
-save them in your package.json:&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;npm install --save &amp;lt;package name&amp;gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;async function manyThings() {
+  try {
+    let promises = [thing1(), thing2(), thing3()];
+    await* promises;
+  } catch (err) {
+    throw new Error(err);
+  }
+}
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;We only need to create 2 more files for this package, but both files need to be
-housed inside a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bin&lt;/code&gt; directory inside of our package’s directory. So run the
-following commands from inside the root directory of the package:&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mkdir bin cd bin
-touch list-tool
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Your package directory should look something like this:&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;list-tool
-│ list-tool
-│ package.json
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Before we get to the code, there are 2 properties you’ll need to add to your
-package.json: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bin&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;preferGlobal&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&quot;bin&quot;: {
-  &quot;list-tool&quot;: &quot;list-tool&quot;
-},
-&quot;preferGlobal&quot;: &quot;true&quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bin&lt;/code&gt; tells npm where your executable file is so that it can install it into
-the PATH. And &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;preferGlobal&lt;/code&gt;, if set to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;true&lt;/code&gt;, will warn users if they try to
-install the package locally. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;preferGlobal&lt;/code&gt; is not necessary, but it can be
-nice to let users know that the package is meant to be installed globally.&lt;/p&gt;
-
-&lt;h2 id=&quot;creating-the-package&quot;&gt;Creating the Package&lt;/h2&gt;
-
-&lt;p&gt;Now we have the basics set up for our package. Let’s get into the code.&lt;/p&gt;
-
-&lt;p&gt;Open up the list-tool file. This is our executable file, so we first need to tell the machine how to run this file:&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;!/usr/bin/env node
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Now let’s require in the built-in Node.js &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fs&lt;/code&gt; module.&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var fs = require('fs');
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Then, we are going to need to read the filenames in the current directory. To
-do this, we are going to use the the synchronous version of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fs.readdir&lt;/code&gt;
-method, which is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fs.readdirSync&lt;/code&gt;. The reason we will use the synchronous
-version is because this is a simple program, and all we need to do is read the
-filenames and print them out. No need for asynchronous operations.&lt;/p&gt;
-
-&lt;p&gt;The code for this should look like:&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var files = fs.readdirSync(process.cwd());
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;If you didn’t guess already, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;process.cwd()&lt;/code&gt; returns the current working
-directory. This is important because our command line tool should work
-correctly no matter where the tool is being called.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fs.readdirSync&lt;/code&gt; will return an array of all the filenames. So all we need to
-do now is print them out one-by-one. You can do this using the
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Array.prototype.forEach&lt;/code&gt; method:&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;files.forEach(function(file) {
-  console.log(file);
-});
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;It’s that easy. So all of the code together is:&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var fs = require('fs');
-var files = fs.readdirSync('.');files.forEach(function(file) {
-  console.log(file);
-});
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">This article is meant to be a quick tutorial on creating a globally installed npm package that provides a simple command line tool to users. Our command line tool will be a clone of the ls command line tool, which prints a list of the contents of a directory.</summary></entry></feed>
+&lt;p&gt;This code is slightly nicer, since we don’t have to directly interact with the
+Promise API. But, alas, we may or may not get this syntax when the ES7 specs
+are finalized. Either way, I’m definitely looking forward to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;async&lt;/code&gt; / &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;await&lt;/code&gt;!&lt;/p&gt;</content><author><name></name></author><summary type="html">I’ve recently been learning a bit about Koa , which uses ES6 (ES2015) generator functions in its design and allows us to treat our asynchronous operations differently than using callbacks or promises.</summary></entry></feed>
