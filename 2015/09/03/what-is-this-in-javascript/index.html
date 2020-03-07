@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  
+  
+  <title>What Is &#39;this&#39; in JavaScript?</title>
+  <meta name="description" content="Today I had a phone interview for a software engineering position. I felt fairly prepared for the interview, simply because I’ve been living/breathing/eating/sweating/crying code for 6 months straight. But a very simple JavaScript question tripped me up a little bit.">
+  
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://heyjimmy.co/2015/09/03/what-is-this-in-javascript/">
+  
+  
+  <link rel="alternate" type="application/rss+xml" title="Jimmy Farillo" href="https://heyjimmy.co/feed.xml">
+
+  
+
+  
+  <meta property="og:title" content="What Is &#39;this&#39; in JavaScript?">
+  <meta property="og:site_name" content="Jimmy Farillo">
+  <meta property="og:url" content="https://heyjimmy.co/2015/09/03/what-is-this-in-javascript/">
+  <meta property="og:description" content="Today I had a phone interview for a software engineering position. I felt fairly prepared for the interview, simply because I’ve been living/breathing/eating/sweating/crying code for 6 months straight. But a very simple JavaScript question tripped me up a little bit.">
+  
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:title" content="What Is &#39;this&#39; in JavaScript?">
+  <meta name="twitter:description" content="Today I had a phone interview for a software engineering position. I felt fairly prepared for the interview, simply because I’ve been living/breathing/eating/sweating/crying code for 6 months strai...">
+  
+  
+
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700&display=swap" rel="stylesheet">
+
+  
+
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Jimmy Farillo</a>
+
+    <nav class="site-nav">
+      
+        
+        <a class="page-link" href="/about/">About</a>
+      
+        
+        <a class="page-link" href="/archives/">Archives</a>
+      
+        
+        <a class="page-link" href="https://github.com/yous/whiteglass">GitHub</a>
+      
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    
+      <h1 class="post-title" itemprop="name headline">What Is &#39;this&#39; in JavaScript?</h1>
+    
+    <p class="post-meta"><time datetime="2015-09-03T00:00:00-04:00" itemprop="datePublished">Sep 3, 2015</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>Today I had a phone interview for a software engineering position. I felt
+fairly prepared for the interview, simply because I’ve been
+living/breathing/eating/sweating/crying code for 6 months straight. But a very
+simple JavaScript question tripped me up a little bit.</p>
+
+<p><em>“What is <code class="language-plaintext highlighter-rouge">this</code> in JavaScript?”</em></p>
+
+<p>Now, I know a lot about JavaScript, and I’ve thought about <code class="language-plaintext highlighter-rouge">this</code> very often in
+the past 6 months. But this very general, very broad question got me a little
+frazzled. I didn’t know where to start my answer because I had never tried to
+answer this question before. And it really does cover a lot of things.</p>
+
+<p>My approach, and I don’t think it was a <em>super</em> terrible one, was to explain as
+much information about <code class="language-plaintext highlighter-rouge">this</code> as I could muster. I won’t go into specifics, but
+I mentioned the methods <code class="language-plaintext highlighter-rouge">call</code>, <code class="language-plaintext highlighter-rouge">apply</code>, and <code class="language-plaintext highlighter-rouge">bind</code> as well as gave a very
+indirect and haphazard explanation of the call site. Not the best response, but
+still a way to show that I know a lot about <code class="language-plaintext highlighter-rouge">this</code> even if I couldn’t answer
+the question succinctly and elegantly.</p>
+
+<p>However, if I had a chance to respond to that question again, this is what I
+would say:</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">this</code> is a binding that is defined in a function’s scope at the time that
+the function is called. It’s value is an object that is determined by the
+call site of the function. There are four rules that govern the value of
+<code class="language-plaintext highlighter-rouge">this</code>. In increasing precedence, these rules are: default binding, implicit
+binding, explicit binding, and <code class="language-plaintext highlighter-rouge">new</code> binding.</p>
+</blockquote>
+
+<p>From there, the interviewer might ask for clarification on what the “call site”
+of a function refers to. And this would be an appropriate response:</p>
+
+<blockquote>
+  <p>The call site of a function is the location in which the function is invoked.
+It is easiest to think about the call site by referencing the call stack when
+the function is invoked. For example, if function <code class="language-plaintext highlighter-rouge">a</code> calls function <code class="language-plaintext highlighter-rouge">b</code>,
+then the call stack when <code class="language-plaintext highlighter-rouge">b</code> is invoked is simply <code class="language-plaintext highlighter-rouge">a</code>. So, to determine the
+value of this during this particular invocation of function <code class="language-plaintext highlighter-rouge">b</code>, we must look
+at where function <code class="language-plaintext highlighter-rouge">b</code> is invoked inside of function <code class="language-plaintext highlighter-rouge">a</code>.</p>
+</blockquote>
+
+<p>Then, the interviewer might ask about the four rules mentioned previously, and
+an answer could be:</p>
+
+<ol>
+  <li><strong>Default binding</strong> is the rule with least precedence. If none of the other
+three rules apply, then the value of <code class="language-plaintext highlighter-rouge">this</code> will be the global object, which
+varies depending on the runtime environment. In the browser, the global
+object is usually <code class="language-plaintext highlighter-rouge">window</code>. In Node.js, it is <code class="language-plaintext highlighter-rouge">global</code>.</li>
+  <li><strong>Implicit binding</strong> refers to the context of the function call. For
+example, if the function is accessed as a method of an object, such as
+<code class="language-plaintext highlighter-rouge">obj.func</code>, then this inside <code class="language-plaintext highlighter-rouge">func</code> will refer to <code class="language-plaintext highlighter-rouge">obj</code>.</li>
+  <li><strong>Explicit binding</strong> takes precedence over the previous two rules and
+requires use of either the <code class="language-plaintext highlighter-rouge">call</code>, <code class="language-plaintext highlighter-rouge">apply</code>, or <code class="language-plaintext highlighter-rouge">bind</code> function methods.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">new</code> binding</strong> is set when the <code class="language-plaintext highlighter-rouge">new</code> keyword is used in a function call.
+The newly constructed object that is created by the <code class="language-plaintext highlighter-rouge">new</code> keyword will be
+the value of <code class="language-plaintext highlighter-rouge">this</code>.</li>
+</ol>
+
+<p>In my opinion, this would’ve been a home run answer to this very common
+JavaScript interview question. Don’t fumble around and give a correct, but
+incomplete, response like I did. And if you’re interested in diving a little
+bit deeper into <code class="language-plaintext highlighter-rouge">this</code>, I highly recommend the <a href="https://github.com/getify/You-Dont-Know-JS/"><em>You Don’t Know
+JS</em></a> book series by Kyle Simpson.
+He has the entire series available for free on GitHub, and they are fantastic
+books!</p>
+
+  </div>
+
+  
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <p>
+      
+
+&copy;  - Powered by <a href="https://jekyllrb.com">Jekyll</a> &amp; <a href="https://github.com/yous/whiteglass">whiteglass</a> - Subscribe via <a href="https://heyjimmy.co/feed.xml">RSS</a>
+
+    </p>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

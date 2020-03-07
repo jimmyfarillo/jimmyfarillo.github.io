@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  
+  
+  <title>Learn Design Patterns: Strategy Pattern</title>
+  <meta name="description" content="The strategy pattern is an alternative to the template method pattern I wrote about in my previous post, providing a different solution to the common programming problem of requiring some variation within an algorithm. Both patterns use polymorphism in their approaches, but while the template method pattern relies on inheritance, the strategy pattern relies on composition and delegation.">
+  
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://heyjimmy.co/2017/02/23/learn-design-patterns-strategy-pattern/">
+  
+  
+  <link rel="alternate" type="application/rss+xml" title="Jimmy Farillo" href="https://heyjimmy.co/feed.xml">
+
+  
+
+  
+  <meta property="og:title" content="Learn Design Patterns: Strategy Pattern">
+  <meta property="og:site_name" content="Jimmy Farillo">
+  <meta property="og:url" content="https://heyjimmy.co/2017/02/23/learn-design-patterns-strategy-pattern/">
+  <meta property="og:description" content="The strategy pattern is an alternative to the template method pattern I wrote about in my previous post, providing a different solution to the common programming problem of requiring some variation within an algorithm. Both patterns use polymorphism in their approaches, but while the template method pattern relies on inheritance, the strategy pattern relies on composition and delegation.">
+  
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:title" content="Learn Design Patterns: Strategy Pattern">
+  <meta name="twitter:description" content="The strategy pattern is an alternative to the template method pattern I wrote about in my previous post, providing a different solution to the common programming problem of requiring some variation...">
+  
+  
+
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700&display=swap" rel="stylesheet">
+
+  
+
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Jimmy Farillo</a>
+
+    <nav class="site-nav">
+      
+        
+        <a class="page-link" href="/about/">About</a>
+      
+        
+        <a class="page-link" href="/archives/">Archives</a>
+      
+        
+        <a class="page-link" href="https://github.com/yous/whiteglass">GitHub</a>
+      
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    
+      <h1 class="post-title" itemprop="name headline">Learn Design Patterns: Strategy Pattern</h1>
+    
+    <p class="post-meta"><time datetime="2017-02-23T00:00:00-05:00" itemprop="datePublished">Feb 23, 2017</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>The strategy pattern is an alternative to the
+<a href="/2017/02/19/learn-design-patterns-template-method-pattern/">template method pattern</a>
+I wrote about in my previous post, providing a different solution to the common
+programming problem of requiring some variation within an algorithm. Both
+patterns use polymorphism in their approaches, but while the template method
+pattern relies on inheritance, the strategy pattern relies on composition and
+delegation.</p>
+
+<h2 id="composition">Composition</h2>
+
+<p>To use the <code class="language-plaintext highlighter-rouge">Party</code> example from the post on the template method pattern, you
+might choose to think about parties as being made up of different parts, such as
+a venue, guests, supplies, and activities. Modeled in code, these parts could be
+defined as instance variables with accessor methods.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Party
+  attr_accessor :venue, :guests, :supplies, :activities
+
+  def initialize(args)
+    @venue = args[:venue]
+    @guests = args[:guests]
+    @supplies = args[:supplies]
+    @activities = args[:activities]
+  end
+end
+</code></pre></div></div>
+
+<p>Composition describes the “has a” relationship between the object and the parts
+that it is made up of. From this perspective, a <code class="language-plaintext highlighter-rouge">Party</code> “has a” <code class="language-plaintext highlighter-rouge">venue</code>, “has a”
+<code class="language-plaintext highlighter-rouge">guests</code>, “has a” <code class="language-plaintext highlighter-rouge">supplies</code>, and “has a” <code class="language-plaintext highlighter-rouge">activities</code>.</p>
+
+<p>This is in contrast with inheritance, which describes a “is a” relationship. A
+<code class="language-plaintext highlighter-rouge">BirthdayParty</code> “is a” <code class="language-plaintext highlighter-rouge">Party</code>.</p>
+
+<p>So another way to look at the different types a <code class="language-plaintext highlighter-rouge">Party</code> could be is to think
+about them in terms of their parts. Here’s an example of a birthday party and a
+game night party implemented using composition rather than inheritance.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Party
+  attr_accessor :venue, :guests, :supplies, :activities
+
+  def initialize(args)
+    @venue = args[:venue]
+    @guests = args[:guests]
+    @supplies = args[:supplies]
+    @activities = args[:activities]
+  end
+end
+
+birthday_party = Party.new(
+  venue: Place.new("Chuck E. Cheese's"),
+  guests: [User.new('Margaret Atwood'), User.new('David Mitchell')],
+  supplies: [Food.new('birthday cake')],
+  activities: [Activity.new('sing happy birthday')]
+)
+
+game_night = Party.new(
+  venue: Place.new('246 Maple Lane'),
+  guests: [User.new('Ruth Ozeki'), User.new('Kazuo Ishiguro')],
+  supplies: [Game.new('Catan'), Game.new('Bananagrams')],
+  activities: [Activity.new('play games')]
+)
+</code></pre></div></div>
+
+<p>In this example, each instance of <code class="language-plaintext highlighter-rouge">Party</code> is instantiated with different parts.
+Specifically, the array supplies for <code class="language-plaintext highlighter-rouge">birthday_party</code> contains a single object
+of type <code class="language-plaintext highlighter-rouge">Food</code>, while <code class="language-plaintext highlighter-rouge">game_night</code> contains two objects of type <code class="language-plaintext highlighter-rouge">Game</code>. We’ll
+come back to this example below, when we get into the specifics of the strategy
+pattern.</p>
+
+<p>Instead of defining different kinds of parties as subclasses of the abstract
+<code class="language-plaintext highlighter-rouge">Party</code> class, instances of <code class="language-plaintext highlighter-rouge">Party</code> are made to be different because they are
+composed of different parts. The advantage of using composition over inheritance
+is that there is no coupling of subclasses to a superclass in composition,
+reducing the number of dependencies in your code.</p>
+
+<h2 id="delegation">Delegation</h2>
+
+<p>Delegation often comes up when composition is used. Delegation is the concept of
+passing off some work to another object.</p>
+
+<p>There will be some logic involved for inviting our guests to the party, and we
+could put that logic inside our <code class="language-plaintext highlighter-rouge">Party</code> class.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Party
+  attr_accessor :venue, :guests, :supplies, :activities
+
+  def initialize(args)
+    @venue = args[:venue]
+    @guests = args[:guests]
+    @supplies = args[:supplies]
+    @activities = args[:activities]
+  end
+
+  def invite_guests
+    guests.each { |guest| invite(guest) }
+  end
+
+  def invite(guest)
+    puts "Hi #{guest.name}, please come to my party at #{venue}!"
+  end
+end
+</code></pre></div></div>
+
+<p>But we could also delegate this task to each guest by placing that logic inside
+the <code class="language-plaintext highlighter-rouge">User</code> class and sending that message to the guest objects.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class User
+  attr_accessor :name
+
+  def initialize(name)
+    @name = name
+  end
+
+  def send_invitation(context)
+    puts "Hi #{name}, please come to my party at #{context.venue}!"
+  end
+end
+
+class Party
+  attr_accessor :venue, :guests, :supplies, :activities
+
+  def initialize(args)
+    @venue = args[:venue]
+    @guests = args[:guests]
+    @supplies = args[:supplies]
+    @activities = args[:activities]
+  end
+
+  def invite_guests
+    guests.each { |guest| guest.send_invitation(self) }
+  end
+end
+</code></pre></div></div>
+
+<p>In the above example, the <code class="language-plaintext highlighter-rouge">invite_guests</code> method on the <code class="language-plaintext highlighter-rouge">Party</code> class sends the
+<code class="language-plaintext highlighter-rouge">send_invitation</code> message to each guest, which is defined in the <code class="language-plaintext highlighter-rouge">User</code> class.
+The instance of <code class="language-plaintext highlighter-rouge">Party</code> also passes a reference of itself, as <code class="language-plaintext highlighter-rouge">self</code>, as an
+argument to <code class="language-plaintext highlighter-rouge">send_invitation</code>, allowing the method to know the context in which
+it should be performed. The logic of how to invite a guest has been passed off
+to each guest object.</p>
+
+<h2 id="the-strategy-pattern">The Strategy Pattern</h2>
+
+<p>Now that we’ve discussed composition and delegation, we can use them in the
+strategy pattern. Let’s Party on! 🎉</p>
+
+<p>You might remember the <code class="language-plaintext highlighter-rouge">throw_party</code> method from the previous post about the
+template method pattern. It contains all the logic necessary for throwing a
+great party.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def throw_party
+  invite_guests
+  buy_supplies
+  clean_house
+  welcome_guests
+  do_activities
+  kick_out_guests
+  clean_house
+end
+</code></pre></div></div>
+
+<p>We can create variation in that algorithm by delegating the responsibilities to
+the different parts that compose each party. If you remember, the only parts
+that differ between birthday parties and game nights are the <code class="language-plaintext highlighter-rouge">supplies</code> and the
+<code class="language-plaintext highlighter-rouge">activities</code>, so I’m going to ignore the methods the deal with <code class="language-plaintext highlighter-rouge">venue</code> and
+<code class="language-plaintext highlighter-rouge">guests</code>.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Party
+  attr_accessor :venue, :guests, :supplies, :activities
+
+  def initialize(args)
+    @venue = args[:venue]
+    @guests = args[:guests]
+    @supplies = args[:supplies]
+    @activities = args[:activities]
+  end
+
+  def throw_party
+    invite_guests
+    buy_supplies
+    clean_house
+    welcome_guests
+    do_activities
+    kick_out_guests
+    clean_house
+  end
+
+  def buy_supplies
+    supplies.each { |supply| supply.buy }
+  end
+
+  def do_activities
+    activities.each { |activity| activity.perform(self) }
+  end
+end
+
+class Food
+  def buy
+    ...
+  end
+end
+
+class Game
+  def buy
+    ...
+  end
+end
+
+class Activity
+  def perform
+    ...
+  end
+end
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">supplies</code> and <code class="language-plaintext highlighter-rouge">activities</code> are the objects that compose our <code class="language-plaintext highlighter-rouge">Party</code>. All
+<code class="language-plaintext highlighter-rouge">supplies</code> that make up our <code class="language-plaintext highlighter-rouge">Party</code> should implement the <code class="language-plaintext highlighter-rouge">buy</code> method, whether
+each object is a <code class="language-plaintext highlighter-rouge">Game</code>, <code class="language-plaintext highlighter-rouge">Food</code>, or any other party supply. These objects all
+implement a common interface, even though the implementations will likely be
+different for each type of object. Similarly, all activities will implement the
+<code class="language-plaintext highlighter-rouge">perform</code> method. Without knowing the internals of <code class="language-plaintext highlighter-rouge">Activity#perform</code>, we can
+safely assume that the <code class="language-plaintext highlighter-rouge">perform</code> method for the <code class="language-plaintext highlighter-rouge">Activity</code> object for singing
+happy birthday will likely have different side effects than the one for playing
+games. All of these sections of the algorithm have been delegated to the parts
+of the <code class="language-plaintext highlighter-rouge">Party</code> object that are involved in their execution.</p>
+
+<p>The strategy pattern solves the same problem that the template method pattern
+solves, but it reduces the amount of coupling between objects by using
+composition over inheritance. Instead of identifying the sections of your
+algorithm that can vary and then placing those sections in subclasses of an
+abstract superclass, the algorithm has been delegated to the different parts
+that compose your object, and those objects implement their respective portions
+of the algorithm however they see fit.</p>
+
+  </div>
+
+  
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <p>
+      
+
+&copy;  - Powered by <a href="https://jekyllrb.com">Jekyll</a> &amp; <a href="https://github.com/yous/whiteglass">whiteglass</a> - Subscribe via <a href="https://heyjimmy.co/feed.xml">RSS</a>
+
+    </p>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
