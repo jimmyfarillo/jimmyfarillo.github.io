@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Automating Assessments at Fullstack Using GitHub and Docker | Jimmy Farillo</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Automating Assessments at Fullstack Using GitHub and Docker" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="As a Teaching Fellow at Fullstack Academy, I am required to complete a thesis project of my choosing. Another fellow, Christian Cueto, and I decided to team up on our theses and streamline/automate the assessment process at Fullstack." />
+<meta property="og:description" content="As a Teaching Fellow at Fullstack Academy, I am required to complete a thesis project of my choosing. Another fellow, Christian Cueto, and I decided to team up on our theses and streamline/automate the assessment process at Fullstack." />
+<link rel="canonical" href="/2015/07/12/automating-assessments-at-fullstack-using-github-and-docker.html" />
+<meta property="og:url" content="/2015/07/12/automating-assessments-at-fullstack-using-github-and-docker.html" />
+<meta property="og:site_name" content="Jimmy Farillo" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-07-12T00:00:00-04:00" />
+<script type="application/ld+json">
+{"url":"/2015/07/12/automating-assessments-at-fullstack-using-github-and-docker.html","headline":"Automating Assessments at Fullstack Using GitHub and Docker","dateModified":"2015-07-12T00:00:00-04:00","datePublished":"2015-07-12T00:00:00-04:00","description":"As a Teaching Fellow at Fullstack Academy, I am required to complete a thesis project of my choosing. Another fellow, Christian Cueto, and I decided to team up on our theses and streamline/automate the assessment process at Fullstack.","mainEntityOfPage":{"@type":"WebPage","@id":"/2015/07/12/automating-assessments-at-fullstack-using-github-and-docker.html"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Jimmy Farillo" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Jimmy Farillo</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Automating Assessments at Fullstack Using GitHub and Docker</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2015-07-12T00:00:00-04:00" itemprop="datePublished">Jul 12, 2015
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>As a Teaching Fellow at Fullstack Academy, I am required to complete a thesis
+project of my choosing. Another fellow, <a href="https://www.linkedin.com/in/christianmcueto">Christian
+Cueto</a>, and I decided to team up
+on our theses and streamline/automate the assessment process at Fullstack.</p>
+
+<p>When we were students taking assessments at Fullstack, the only way to submit
+assessments was by forking the assessment repository on GitHub, doing our work
+on our local machines, pushing to our GitHub repos, going to GitHub.com to
+download the ZIP file of our repos, then emailing that ZIP file to the
+instructors. Hardly a technically progressive process, especially for a
+progressive coding bootcamp.</p>
+
+<p>But the grading process for the instructors was even worse. They would receive
+an email from each of the students (25 students total in our cohort), each
+containing a ZIP file. They would have to download the ZIP, decompress it, run
+the install procedures (npm install, bower install, etc.), run the test
+command, then manually record the scores for each student in a Google
+spreadsheet. That sounds terrible.</p>
+
+<p>This is why we decided to automate this process with a project we call
+AssessDot.</p>
+
+<p>We have not yet completed AssessDot, but I’m going to walk you through the
+architecture of the project.</p>
+
+<h2 id="assessment-creation">Assessment Creation</h2>
+
+<p>An instructor creates an <code class="language-plaintext highlighter-rouge">assessment</code> using a GitHub repository. Assessments
+actually consist of multiple “steps”, but for these diagrams we have simplified
+things, and assessments consist of only a GitHub repo.</p>
+
+<p>When the instructor administers the assessment to a cohort, a
+<code class="language-plaintext highlighter-rouge">cohortAssessment</code> document is created. This cohortAssessment consists of a
+reference to the assessment, a reference to the cohort, and the start and end
+times that the students can take the assessment. Administering an assessment
+also creates a <code class="language-plaintext highlighter-rouge">studentSolution</code> document for each student in the cohort. A
+studentSolution represents the student’s assessment score and responses to the
+assessment; in this simplified case, the URL of the student’s GitHub repo.</p>
+
+<p>Creation of a cohortAssessment grants the students in the cohort access to view
+the assessment on Learndot, Fullstack’s internal educational platform. The
+reason for having both assessments and cohortAssessments is because assessments
+are administered to each new cohort. So instead of recreating the same
+assessment for each cohort, the cohort is given access to the assessment via
+the cohortAssessment.</p>
+
+<h2 id="github-integration">GitHub Integration</h2>
+
+<p>For students, taking an assessment under this new system is much the same as
+before. Students will still fork the assessment repository, clone to their
+machines, and write their code in the local dev environments. But when they
+submit, all they will need to do is simply <code class="language-plaintext highlighter-rouge">git push</code> to their GitHub repos.
+AssessDot will handle everything after that.</p>
+
+<p>This is done using GitHub webhooks. When a student forks the main assessment
+repo (which will be done via the Learndot application), AssessDot will create a
+webhook on the student’s repo. This webhook will ping the Learndot server and
+inform us anytime that student pushes to that GitHub repo.</p>
+
+<h2 id="docker-containers">Docker Containers</h2>
+
+<p>When the Learndot server is informed of a push to a student’s assessment repo,
+we extract relevant info from the webhook payload, such as the student’s GitHub
+username and the repo URL that was pushed to. The Learndot server sends this
+information to a separate Docker server which will spin up a Docker container
+from an image that we’ve already setup. The Docker container clones the
+student’s repo, runs the tests, and calculates the student’s score. The
+student’s results are then sent to Learndot and the Docker container is shut
+down.</p>
+
+<p>The need for Docker is to create an environment to be able to safely run the
+students’ code. Without this contained environment, our server would be
+extremely vulnerable to attacks both intentional and unintentional.</p>
+
+  </div><a class="u-url" href="/2015/07/12/automating-assessments-at-fullstack-using-github-and-docker.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Jimmy Farillo</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list"><li><a class="u-email" href="mailto:jimmy@farillo.co">jimmy@farillo.co</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/jimmyfarillo"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">jimmyfarillo</span></a></li><li><a href="https://www.linkedin.com/in/jimmyfarillo"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">jimmyfarillo</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>NYC software engineer</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

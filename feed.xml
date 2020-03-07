@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-03-07T14:03:50-05:00</updated><id>/feed.xml</id><title type="html">Jimmy Farillo</title><subtitle>NYC software engineer</subtitle><entry><title type="html">The Basics of Database Indexes for Relational Databases</title><link href="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html" rel="alternate" type="text/html" title="The Basics of Database Indexes for Relational Databases" /><published>2017-08-23T00:00:00-04:00</published><updated>2017-08-23T00:00:00-04:00</updated><id>/2017/08/23/the-basics-of-database-indexes-for-relational-databases</id><content type="html" xml:base="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html">&lt;p&gt;The purpose of creating an index on a particular table in your database is to
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-03-07T14:07:14-05:00</updated><id>/feed.xml</id><title type="html">Jimmy Farillo</title><subtitle>NYC software engineer</subtitle><entry><title type="html">The Basics of Database Indexes for Relational Databases</title><link href="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html" rel="alternate" type="text/html" title="The Basics of Database Indexes for Relational Databases" /><published>2017-08-23T00:00:00-04:00</published><updated>2017-08-23T00:00:00-04:00</updated><id>/2017/08/23/the-basics-of-database-indexes-for-relational-databases</id><content type="html" xml:base="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html">&lt;p&gt;The purpose of creating an index on a particular table in your database is to
 make it faster to search through the table and find the row or rows that you
 want. The downside is that indexes make it slower to add rows or make updates to
 existing rows for that table. So adding indexes can increase read performance
@@ -1468,19 +1468,76 @@ incomplete, response like I did. And if you’re interested in diving a little
 bit deeper into &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;this&lt;/code&gt;, I highly recommend the &lt;a href=&quot;https://github.com/getify/You-Dont-Know-JS/&quot;&gt;&lt;em&gt;You Don’t Know
 JS&lt;/em&gt;&lt;/a&gt; book series by Kyle Simpson.
 He has the entire series available for free on GitHub, and they are fantastic
-books!&lt;/p&gt;</content><author><name></name></author><summary type="html">Today I had a phone interview for a software engineering position. I felt fairly prepared for the interview, simply because I’ve been living/breathing/eating/sweating/crying code for 6 months straight. But a very simple JavaScript question tripped me up a little bit.</summary></entry><entry><title type="html">Educa.re: A Collaborative Writing Workspace Powered by Git</title><link href="/2015/05/27/educa-re-a-collaborative-writing-workspace-powered-by-git.html" rel="alternate" type="text/html" title="Educa.re: A Collaborative Writing Workspace Powered by Git" /><published>2015-05-27T00:00:00-04:00</published><updated>2015-05-27T00:00:00-04:00</updated><id>/2015/05/27/educa-re-a-collaborative-writing-workspace-powered-by-git</id><content type="html" xml:base="/2015/05/27/educa-re-a-collaborative-writing-workspace-powered-by-git.html">&lt;p&gt;I’m in the final phase of my time as a student at Fullstack Academy. The final
-2–3 weeks of the program consists of coming up with an ambitious idea for a web
-app, gathering a team of fellow students to work on it with you, building it
-out, and then presenting it to potential employers.&lt;/p&gt;
+books!&lt;/p&gt;</content><author><name></name></author><summary type="html">Today I had a phone interview for a software engineering position. I felt fairly prepared for the interview, simply because I’ve been living/breathing/eating/sweating/crying code for 6 months straight. But a very simple JavaScript question tripped me up a little bit.</summary></entry><entry><title type="html">Automating Assessments at Fullstack Using GitHub and Docker</title><link href="/2015/07/12/automating-assessments-at-fullstack-using-github-and-docker.html" rel="alternate" type="text/html" title="Automating Assessments at Fullstack Using GitHub and Docker" /><published>2015-07-12T00:00:00-04:00</published><updated>2015-07-12T00:00:00-04:00</updated><id>/2015/07/12/automating-assessments-at-fullstack-using-github-and-docker</id><content type="html" xml:base="/2015/07/12/automating-assessments-at-fullstack-using-github-and-docker.html">&lt;p&gt;As a Teaching Fellow at Fullstack Academy, I am required to complete a thesis
+project of my choosing. Another fellow, &lt;a href=&quot;https://www.linkedin.com/in/christianmcueto&quot;&gt;Christian
+Cueto&lt;/a&gt;, and I decided to team up
+on our theses and streamline/automate the assessment process at Fullstack.&lt;/p&gt;
 
-&lt;p&gt;The past few weeks, my team and I have been working hard on a collaborative
-writing platform that we call Educa.re. It was built using fullstack
-JavaScript, specifically Node.js, Express, MongoDB, and AngularJS. We also used
-Git extensively, leveraging it’s capabilities to act as a database.&lt;/p&gt;
+&lt;p&gt;When we were students taking assessments at Fullstack, the only way to submit
+assessments was by forking the assessment repository on GitHub, doing our work
+on our local machines, pushing to our GitHub repos, going to GitHub.com to
+download the ZIP file of our repos, then emailing that ZIP file to the
+instructors. Hardly a technically progressive process, especially for a
+progressive coding bootcamp.&lt;/p&gt;
 
-&lt;p&gt;We’ve created a short demo video, so I’ll let you watch that for more
-information about our site. And check out our GitHup repo, if you want.&lt;/p&gt;
+&lt;p&gt;But the grading process for the instructors was even worse. They would receive
+an email from each of the students (25 students total in our cohort), each
+containing a ZIP file. They would have to download the ZIP, decompress it, run
+the install procedures (npm install, bower install, etc.), run the test
+command, then manually record the scores for each student in a Google
+spreadsheet. That sounds terrible.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Educa.re&lt;/strong&gt;: [http://educa.re]
-&lt;strong&gt;Demo Video&lt;/strong&gt;: [https://vimeo.com/129333742]
-&lt;strong&gt;GitHub&lt;/strong&gt;: [https://github.com/jimmyfarrell/educa.re]&lt;/p&gt;</content><author><name></name></author><summary type="html">I’m in the final phase of my time as a student at Fullstack Academy. The final 2–3 weeks of the program consists of coming up with an ambitious idea for a web app, gathering a team of fellow students to work on it with you, building it out, and then presenting it to potential employers.</summary></entry></feed>
+&lt;p&gt;This is why we decided to automate this process with a project we call
+AssessDot.&lt;/p&gt;
+
+&lt;p&gt;We have not yet completed AssessDot, but I’m going to walk you through the
+architecture of the project.&lt;/p&gt;
+
+&lt;h2 id=&quot;assessment-creation&quot;&gt;Assessment Creation&lt;/h2&gt;
+
+&lt;p&gt;An instructor creates an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;assessment&lt;/code&gt; using a GitHub repository. Assessments
+actually consist of multiple “steps”, but for these diagrams we have simplified
+things, and assessments consist of only a GitHub repo.&lt;/p&gt;
+
+&lt;p&gt;When the instructor administers the assessment to a cohort, a
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cohortAssessment&lt;/code&gt; document is created. This cohortAssessment consists of a
+reference to the assessment, a reference to the cohort, and the start and end
+times that the students can take the assessment. Administering an assessment
+also creates a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;studentSolution&lt;/code&gt; document for each student in the cohort. A
+studentSolution represents the student’s assessment score and responses to the
+assessment; in this simplified case, the URL of the student’s GitHub repo.&lt;/p&gt;
+
+&lt;p&gt;Creation of a cohortAssessment grants the students in the cohort access to view
+the assessment on Learndot, Fullstack’s internal educational platform. The
+reason for having both assessments and cohortAssessments is because assessments
+are administered to each new cohort. So instead of recreating the same
+assessment for each cohort, the cohort is given access to the assessment via
+the cohortAssessment.&lt;/p&gt;
+
+&lt;h2 id=&quot;github-integration&quot;&gt;GitHub Integration&lt;/h2&gt;
+
+&lt;p&gt;For students, taking an assessment under this new system is much the same as
+before. Students will still fork the assessment repository, clone to their
+machines, and write their code in the local dev environments. But when they
+submit, all they will need to do is simply &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git push&lt;/code&gt; to their GitHub repos.
+AssessDot will handle everything after that.&lt;/p&gt;
+
+&lt;p&gt;This is done using GitHub webhooks. When a student forks the main assessment
+repo (which will be done via the Learndot application), AssessDot will create a
+webhook on the student’s repo. This webhook will ping the Learndot server and
+inform us anytime that student pushes to that GitHub repo.&lt;/p&gt;
+
+&lt;h2 id=&quot;docker-containers&quot;&gt;Docker Containers&lt;/h2&gt;
+
+&lt;p&gt;When the Learndot server is informed of a push to a student’s assessment repo,
+we extract relevant info from the webhook payload, such as the student’s GitHub
+username and the repo URL that was pushed to. The Learndot server sends this
+information to a separate Docker server which will spin up a Docker container
+from an image that we’ve already setup. The Docker container clones the
+student’s repo, runs the tests, and calculates the student’s score. The
+student’s results are then sent to Learndot and the Docker container is shut
+down.&lt;/p&gt;
+
+&lt;p&gt;The need for Docker is to create an environment to be able to safely run the
+students’ code. Without this contained environment, our server would be
+extremely vulnerable to attacks both intentional and unintentional.&lt;/p&gt;</content><author><name></name></author><summary type="html">As a Teaching Fellow at Fullstack Academy, I am required to complete a thesis project of my choosing. Another fellow, Christian Cueto, and I decided to team up on our theses and streamline/automate the assessment process at Fullstack.</summary></entry></feed>
