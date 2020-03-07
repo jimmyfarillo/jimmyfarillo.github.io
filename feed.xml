@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-03-07T13:36:31-05:00</updated><id>/feed.xml</id><title type="html">Jimmy Farillo</title><subtitle>NYC software engineer</subtitle><entry><title type="html">The Basics of Database Indexes for Relational Databases</title><link href="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html" rel="alternate" type="text/html" title="The Basics of Database Indexes for Relational Databases" /><published>2017-08-23T00:00:00-04:00</published><updated>2017-08-23T00:00:00-04:00</updated><id>/2017/08/23/the-basics-of-database-indexes-for-relational-databases</id><content type="html" xml:base="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html">&lt;p&gt;The purpose of creating an index on a particular table in your database is to
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-03-07T13:47:11-05:00</updated><id>/feed.xml</id><title type="html">Jimmy Farillo</title><subtitle>NYC software engineer</subtitle><entry><title type="html">The Basics of Database Indexes for Relational Databases</title><link href="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html" rel="alternate" type="text/html" title="The Basics of Database Indexes for Relational Databases" /><published>2017-08-23T00:00:00-04:00</published><updated>2017-08-23T00:00:00-04:00</updated><id>/2017/08/23/the-basics-of-database-indexes-for-relational-databases</id><content type="html" xml:base="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html">&lt;p&gt;The purpose of creating an index on a particular table in your database is to
 make it faster to search through the table and find the row or rows that you
 want. The downside is that indexes make it slower to add rows or make updates to
 existing rows for that table. So adding indexes can increase read performance
@@ -1402,4 +1402,70 @@ pair in a weakMap) will be removed from the collection.&lt;/p&gt;
 
 &lt;p&gt;Because they are comprised of weakly held object references, weakSets and
 weakMaps cannot be iterated over and do not have a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;forEach&lt;/code&gt; method. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;clear&lt;/code&gt;
-method is also not available for weakSets and weakMaps.&lt;/p&gt;</content><author><name></name></author><summary type="html">In celebration of the release of Node.js 4.0.0 this week, I’m going to cover some more ES2015 features that we now have access to in Node.js by default.</summary></entry></feed>
+method is also not available for weakSets and weakMaps.&lt;/p&gt;</content><author><name></name></author><summary type="html">In celebration of the release of Node.js 4.0.0 this week, I’m going to cover some more ES2015 features that we now have access to in Node.js by default.</summary></entry><entry><title type="html">What Is ‘this’ in JavaScript?</title><link href="/2015/09/03/what-is-this-in-javascript.html" rel="alternate" type="text/html" title="What Is 'this' in JavaScript?" /><published>2015-09-03T00:00:00-04:00</published><updated>2015-09-03T00:00:00-04:00</updated><id>/2015/09/03/what-is-this-in-javascript</id><content type="html" xml:base="/2015/09/03/what-is-this-in-javascript.html">&lt;p&gt;Today I had a phone interview for a software engineering position. I felt
+fairly prepared for the interview, simply because I’ve been
+living/breathing/eating/sweating/crying code for 6 months straight. But a very
+simple JavaScript question tripped me up a little bit.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;“What is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;this&lt;/code&gt; in JavaScript?”&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Now, I know a lot about JavaScript, and I’ve thought about &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;this&lt;/code&gt; very often in
+the past 6 months. But this very general, very broad question got me a little
+frazzled. I didn’t know where to start my answer because I had never tried to
+answer this question before. And it really does cover a lot of things.&lt;/p&gt;
+
+&lt;p&gt;My approach, and I don’t think it was a &lt;em&gt;super&lt;/em&gt; terrible one, was to explain as
+much information about &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;this&lt;/code&gt; as I could muster. I won’t go into specifics, but
+I mentioned the methods &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;call&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;apply&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bind&lt;/code&gt; as well as gave a very
+indirect and haphazard explanation of the call site. Not the best response, but
+still a way to show that I know a lot about &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;this&lt;/code&gt; even if I couldn’t answer
+the question succinctly and elegantly.&lt;/p&gt;
+
+&lt;p&gt;However, if I had a chance to respond to that question again, this is what I
+would say:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;this&lt;/code&gt; is a binding that is defined in a function’s scope at the time that
+the function is called. It’s value is an object that is determined by the
+call site of the function. There are four rules that govern the value of
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;this&lt;/code&gt;. In increasing precedence, these rules are: default binding, implicit
+binding, explicit binding, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;new&lt;/code&gt; binding.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;From there, the interviewer might ask for clarification on what the “call site”
+of a function refers to. And this would be an appropriate response:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The call site of a function is the location in which the function is invoked.
+It is easiest to think about the call site by referencing the call stack when
+the function is invoked. For example, if function &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;a&lt;/code&gt; calls function &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;b&lt;/code&gt;,
+then the call stack when &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;b&lt;/code&gt; is invoked is simply &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;a&lt;/code&gt;. So, to determine the
+value of this during this particular invocation of function &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;b&lt;/code&gt;, we must look
+at where function &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;b&lt;/code&gt; is invoked inside of function &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;a&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Then, the interviewer might ask about the four rules mentioned previously, and
+an answer could be:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Default binding&lt;/strong&gt; is the rule with least precedence. If none of the other
+three rules apply, then the value of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;this&lt;/code&gt; will be the global object, which
+varies depending on the runtime environment. In the browser, the global
+object is usually &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;window&lt;/code&gt;. In Node.js, it is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;global&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Implicit binding&lt;/strong&gt; refers to the context of the function call. For
+example, if the function is accessed as a method of an object, such as
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;obj.func&lt;/code&gt;, then this inside &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;func&lt;/code&gt; will refer to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;obj&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Explicit binding&lt;/strong&gt; takes precedence over the previous two rules and
+requires use of either the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;call&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;apply&lt;/code&gt;, or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bind&lt;/code&gt; function methods.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;new&lt;/code&gt; binding&lt;/strong&gt; is set when the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;new&lt;/code&gt; keyword is used in a function call.
+The newly constructed object that is created by the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;new&lt;/code&gt; keyword will be
+the value of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;this&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;In my opinion, this would’ve been a home run answer to this very common
+JavaScript interview question. Don’t fumble around and give a correct, but
+incomplete, response like I did. And if you’re interested in diving a little
+bit deeper into &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;this&lt;/code&gt;, I highly recommend the &lt;a href=&quot;https://github.com/getify/You-Dont-Know-JS/&quot;&gt;&lt;em&gt;You Don’t Know
+JS&lt;/em&gt;&lt;/a&gt; book series by Kyle Simpson.
+He has the entire series available for free on GitHub, and they are fantastic
+books!&lt;/p&gt;</content><author><name></name></author><summary type="html">Today I had a phone interview for a software engineering position. I felt fairly prepared for the interview, simply because I’ve been living/breathing/eating/sweating/crying code for 6 months straight. But a very simple JavaScript question tripped me up a little bit.</summary></entry></feed>
