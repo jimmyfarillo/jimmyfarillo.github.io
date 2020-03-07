@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-03-07T14:18:00-05:00</updated><id>/feed.xml</id><title type="html">Jimmy Farillo</title><subtitle>NYC software engineer</subtitle><entry><title type="html">The Basics of Database Indexes for Relational Databases</title><link href="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html" rel="alternate" type="text/html" title="The Basics of Database Indexes for Relational Databases" /><published>2017-08-23T00:00:00-04:00</published><updated>2017-08-23T00:00:00-04:00</updated><id>/2017/08/23/the-basics-of-database-indexes-for-relational-databases</id><content type="html" xml:base="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html">&lt;p&gt;The purpose of creating an index on a particular table in your database is to
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-03-07T14:29:05-05:00</updated><id>/feed.xml</id><title type="html">Jimmy Farillo</title><subtitle>NYC software engineer</subtitle><entry><title type="html">The Basics of Database Indexes for Relational Databases</title><link href="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html" rel="alternate" type="text/html" title="The Basics of Database Indexes for Relational Databases" /><published>2017-08-23T00:00:00-04:00</published><updated>2017-08-23T00:00:00-04:00</updated><id>/2017/08/23/the-basics-of-database-indexes-for-relational-databases</id><content type="html" xml:base="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html">&lt;p&gt;The purpose of creating an index on a particular table in your database is to
 make it faster to search through the table and find the row or rows that you
 want. The downside is that indexes make it slower to add rows or make updates to
 existing rows for that table. So adding indexes can increase read performance
@@ -1468,119 +1468,283 @@ incomplete, response like I did. And if you’re interested in diving a little
 bit deeper into &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;this&lt;/code&gt;, I highly recommend the &lt;a href=&quot;https://github.com/getify/You-Dont-Know-JS/&quot;&gt;&lt;em&gt;You Don’t Know
 JS&lt;/em&gt;&lt;/a&gt; book series by Kyle Simpson.
 He has the entire series available for free on GitHub, and they are fantastic
-books!&lt;/p&gt;</content><author><name></name></author><summary type="html">Today I had a phone interview for a software engineering position. I felt fairly prepared for the interview, simply because I’ve been living/breathing/eating/sweating/crying code for 6 months straight. But a very simple JavaScript question tripped me up a little bit.</summary></entry><entry><title type="html">Lodash Methods FTW!</title><link href="/2015/08/06/lodash-methods-ftw.html" rel="alternate" type="text/html" title="Lodash Methods FTW!" /><published>2015-08-06T00:00:00-04:00</published><updated>2015-08-06T00:00:00-04:00</updated><id>/2015/08/06/lodash-methods-ftw</id><content type="html" xml:base="/2015/08/06/lodash-methods-ftw.html">&lt;p&gt;I only recently realized the power of the &lt;a href=&quot;https://lodash.com/&quot;&gt;Lodash&lt;/a&gt;
-library. Previously, I had only used the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_.extend&lt;/code&gt; method (also called
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_.assign&lt;/code&gt;) which can be used as follows:&lt;/p&gt;
+books!&lt;/p&gt;</content><author><name></name></author><summary type="html">Today I had a phone interview for a software engineering position. I felt fairly prepared for the interview, simply because I’ve been living/breathing/eating/sweating/crying code for 6 months straight. But a very simple JavaScript question tripped me up a little bit.</summary></entry><entry><title type="html">Everything You Want to Know About Koa</title><link href="/2015/08/13/everything-you-want-to-know-about-koa.html" rel="alternate" type="text/html" title="Everything You Want to Know About Koa" /><published>2015-08-13T00:00:00-04:00</published><updated>2015-08-13T00:00:00-04:00</updated><id>/2015/08/13/everything-you-want-to-know-about-koa</id><content type="html" xml:base="/2015/08/13/everything-you-want-to-know-about-koa.html">&lt;p&gt;&lt;em&gt;Update (8/20/15): I recently &lt;a href=&quot;http://www.nycnode.com/videos/jimmy-farrell-downstream-and-upstream-request-flow-with-the-koa-web-framework&quot;&gt;gave a talk about
+Koa&lt;/a&gt;
+at the NYC Node.js meetup. The &lt;a href=&quot;https://github.com/jimmyfarrell/intro-to-koa&quot;&gt;GitHub
+repository&lt;/a&gt; for that talk
+provides some live code examples of Koa.&lt;/em&gt;&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var object1 = {
-  prop1: 'hello',
-  prop2: 'bye'
-};
+&lt;h2 id=&quot;the-basics&quot;&gt;The Basics&lt;/h2&gt;
 
-var object2 = {
-  prop1: 'hey',
-  prop3: 'what is up?'
-};
+&lt;p&gt;If you’re a &lt;a href=&quot;https://nodejs.org/&quot;&gt;Node.js&lt;/a&gt; developer, you most likely use
+&lt;a href=&quot;http://expressjs.com/&quot;&gt;Express&lt;/a&gt; as your web application framework. I believe
+it has become the default technology. But that doesn’t mean it is the only
+option you have. In fact, the team behind Express also created another web
+application framework called &lt;a href=&quot;http://koajs.com/&quot;&gt;Koa&lt;/a&gt;. This post will serve as
+a basic introduction so that you can begin using Koa for your next web app.&lt;/p&gt;
 
-_.extend(object1, object2);console.log(object1);
-// ==&amp;gt; { prop1: 'hey', prop2: 'bye', prop3: 'what is up?' }
+&lt;p&gt;The most unique aspect of Koa, especially if you’re coming from Express, is
+that Koa leverages ES6 generator functions in its architecture. This blog post
+will not go in-depth on generators, so if you are unfamiliar with generators,
+you can learn more
+&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*&quot;&gt;here&lt;/a&gt;
+or &lt;a href=&quot;http://davidwalsh.name/es6-generators&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;In Express you would define middleware like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var express = require('express');
+var app = express();
+
+app.use(function(req, res, next) {
+  console.log('Do something');
+  next();
+});
+
+app.listen(8000);
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Essentially, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_.extend&lt;/code&gt; takes an object as its first parameter, another object
-as its second parameter, and adds the properties from the second object to the
-first object as well as overwriting the properties on the first object if those
-properties also exist on the second object.&lt;/p&gt;
+&lt;p&gt;In Koa, that same middleware would be defined like this:&lt;/p&gt;
 
-&lt;p&gt;My primary use case for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_.extend&lt;/code&gt; is in PUT routes in my API back-end. That
-data flow looks like this:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var koa = require('koa');
+var app = koa();
 
-&lt;ul&gt;
-  &lt;li&gt;User updates document using a form on the front-end&lt;/li&gt;
-  &lt;li&gt;Front-end code sends the updated document to the server using an AJAX PUT
-request&lt;/li&gt;
-  &lt;li&gt;PUT route on server queries the database for the document (this is the old
-version)&lt;/li&gt;
-  &lt;li&gt;PUT route on server uses &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_.extend&lt;/code&gt; to update the old version of the document&lt;/li&gt;
-  &lt;li&gt;PUT route on server saves the newly updated document and sends it back to the
-front-end&lt;/li&gt;
-&lt;/ul&gt;
+app.use(function*(next) {
+  console.log('Do something');
+  yield next;
+});
 
-&lt;h2 id=&quot;_findindex--_findwhere&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_.findIndex&lt;/code&gt; &amp;amp; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_.findWhere&lt;/code&gt;&lt;/h2&gt;
-
-&lt;p&gt;This week I discovered &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_.findIndex&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_.findWhere&lt;/code&gt;, and they are nice
-additions to JavaScript’s built-in array methods such as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.filter&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.forEach&lt;/code&gt;,
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.map&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.reduce&lt;/code&gt;. This is how you can use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_.findIndex&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var foods = [
-  { id: 1, food: 'pizza' },
-  { id: 2, food: 'ice cream' },
-  { id: 3, food: 'ramen' },
-  { id: 4, food: 'veggie burger' }
-];
-
-var ramenIndex = _.findIndex(arr, (item) =&amp;gt; item.food === 'ramen');
-console.log(ramenIndex);
-// ==&amp;gt; 2
+app.listen(8000);
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_.findIndex&lt;/code&gt; returns the index of the first element in the array that returns
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;true&lt;/code&gt; in its callback function. Clutch!&lt;/p&gt;
+&lt;p&gt;These trivial middleware functions both do the same thing: print “Do something”
+and then allow the request to continue downstream along to the next piece in
+the pipeline.&lt;/p&gt;
 
-&lt;p&gt;The second Lodash method I discovered this week is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_.findWhere&lt;/code&gt;. I am a big
-fan of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.filter&lt;/code&gt; in JavaScript. It is awesome because you can do this:&lt;/p&gt;
+&lt;h2 id=&quot;bidirectional-request-flow&quot;&gt;Bidirectional Request Flow&lt;/h2&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var animals = [
-  { name: 'Carl'', type: 'bunny' },
-  { name: 'Bob', type: 'bunny' },
-  { name: 'Sue', type: 'cat' },
-  { name: 'Sally', type: 'bunny' }
-];
+&lt;p&gt;Fairly similar so far. But Express is unidirectional, whereas Koa allows for
+downstream &lt;strong&gt;AND&lt;/strong&gt; upstream request flow. Here’s an example of downstream and
+upstream flow:&lt;/p&gt;
 
-var bunnies = animals.filter((animal) =&amp;gt; animal.type === 'bunny');
-console.log(bunnies);
-// ==&amp;gt; [
-// { name: 'Carl', type: 'bunny' },
-// { name: 'Bob', type: 'bunny' },
-// { name: 'Sally', type: 'bunny' }
-// ]
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var koa = require('koa');
+var app = koa();
+
+app.use(function*(next) {
+  console.log('A');
+  yield next;
+  console.log('B');
+});
+
+app.use(function*(next) {
+  console.log('C');
+  yield next;
+  console.log('D');
+});
+
+app.use(function*(next) {
+  console.log('E');
+  yield next;
+});
+
+app.listen(8000);
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;But, when you only expect/want one element out of that array, you would have to
-do this:&lt;/p&gt;
+&lt;p&gt;You might’ve guessed, but the order that these letters prints out is: A, C, E,
+D, then B. The request flows through the first function where it prints A, then
+it yields to the next function in the middleware pipeline, that function prints
+C and then yields to the next function, that function prints E then yields to
+the next function (which in this case, since there is no more middleware, is an
+internal Koa generator). Since the request reached the “bottom” of the pipeline
+and the previous two generators have not completed, the request begins flowing
+upstream. The second generator function resumes where it left off and then
+prints D, then the request continues flowing upstream, and the first generator
+function resumes where it left off and prints B.&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var animals = [
-  { name: 'Carl'', type: 'bunny' },
-  { name: 'Bob', type: 'bunny' },
-  { name: 'Sue', type: 'cat' },
-  { name: 'Sally', type: 'bunny' }
-];
+&lt;p&gt;This can be a bit trippy to understand at first. The &lt;a href=&quot;https://github.com/koajs/koa/blob/master/docs/guide.md&quot;&gt;Koa
+Guide&lt;/a&gt; calls the code
+before the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;yield next&lt;/code&gt; the “capture phase” and the code after the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;yield next&lt;/code&gt;
+the “bubble phase”. I just call it awesome.&lt;/p&gt;
 
-var sue = animals.filter((animal) =&amp;gt; animal.type === 'cat')[0];
-console.log(sue);
-// ==&amp;gt; { name: 'Sue', type: 'cat' }
+&lt;p&gt;It might be difficult to think of times when you would want to utilize this
+upstream request flow, but there are use cases. With upstream request flow, you
+can attach properties to the server response that may be dependent on other
+downstream middleware. But really, it’s more of a design choice than a feature
+that expands your server’s functionality in a mind-blowing manner.&lt;/p&gt;
+
+&lt;h2 id=&quot;asynchronous-operations&quot;&gt;Asynchronous Operations&lt;/h2&gt;
+
+&lt;p&gt;In my opinion, the coolest thing about Koa is how you are able to handle async
+code. With Node.js, we are familiar with callbacks and promises. Let’s show a
+simple GET route that makes a database query.&lt;/p&gt;
+
+&lt;p&gt;First with a callback using Express:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var express = require('express');
+var app = express();
+
+app.get('/', function(req, res) {
+  User.find({}, function(err, users) {
+    res.json(users);
+  });
+});
+
+app.listen(8000);
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Getting an array of only one element is not nice. That’s why &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_.findWhere&lt;/code&gt; is
-so awesome. It allows you to do this:&lt;/p&gt;
+&lt;p&gt;Now with a promise in Express:&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var animals = [
-  { name: 'Carl'', type: 'bunny' },
-  { name: 'Bob', type: 'bunny' },
-  { name: 'Sue', type: 'cat' },
-  { name: 'Sally', type: 'bunny' }
-];
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var express = require('express');
+var app = express();
 
-var sue = _.findWhere(animals, { type: 'cat' });
-console.log(sue);
-// ==&amp;gt; { name: 'Sue', type: 'cat' }
+app.get('/', function(req, res) {
+  User.find()
+    .then(function(users) {
+      res.json(users);
+    });
+});
+
+app.listen(8000);
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Same result, but much cleaner code. It searches the array and returns the first
-element where all the properties match the object you’ve passed as the second
-parameter. And that is why I love &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_.findWhere&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;But with Koa, you can forget about callbacks and promises, because there is an
+even simpler way to handle async operations using generators.&lt;/p&gt;
 
-&lt;p&gt;I will definitely be looking into utilizing more Lodash methods in my code, now
-that I’m finally understanding how they can simplify my code and make it more
-semantic. And I definitely suggest that you check out the
-&lt;a href=&quot;https://lodash.com/&quot;&gt;Lodash&lt;/a&gt; library; because why write things that have
-already been written for you?&lt;/p&gt;</content><author><name></name></author><summary type="html">I only recently realized the power of the Lodash library. Previously, I had only used the _.extend method (also called _.assign) which can be used as follows:</summary></entry></feed>
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var koa = require('koa');
+var app = koa();
+var router = require('koa-router');
+
+router.get('/', function*() {
+  var users = yield User.find();
+  this.body = users;
+});
+
+app.use(router.routes());app.listen(8000);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;A few things are happening in this small block of code, so let’s go through it.
+The first 2 lines are requiring in Koa and creating an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app&lt;/code&gt; instance. The
+third line is requiring in a third-party router that can be used with Koa since
+Koa does not come with its own router. We use the router by passing it to our
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app&lt;/code&gt;, like in the second to last line of this code block. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;router.routes()&lt;/code&gt;
+returns a generator function that Koa can use. This router allows us to create
+routes like our &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;router.get&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;router.get&lt;/code&gt; defines the URL for this route as well as a generator function
+to be used. The first line of this generator is declaring a variable &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;users&lt;/code&gt;
+and then yielding to the database query &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;User.find()&lt;/code&gt;. Since this is an
+asynchronous operation, this generator will pause and wait for the database
+query to finish. When the database query finishes, the generator resumes and
+the result of the query is stored in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;users&lt;/code&gt; variable.&lt;/p&gt;
+
+&lt;p&gt;On the last line of the generator, we set &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;this.body&lt;/code&gt; to our &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;users&lt;/code&gt; variable.
+In Koa, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;this&lt;/code&gt; is the Koa context, which is essentially a wrapper for the
+Node.js request and response. By setting &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;this.body&lt;/code&gt;, we are setting the
+server’s response body that will get sent back to the client.&lt;/p&gt;
+
+&lt;p&gt;The last line simply starts our server and has it listening on port 8000.&lt;/p&gt;
+
+&lt;p&gt;As you can see, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;yield&lt;/code&gt; keyword lets us write extremely readable code that
+appears synchronous. No need for annoying callbacks or mysterious promises
+(TBH, I LOVE promises!). Just super simple code.&lt;/p&gt;
+
+&lt;h2 id=&quot;error-handling&quot;&gt;Error Handling&lt;/h2&gt;
+
+&lt;p&gt;Okay, but there is no error handling in that code. True, let’s talk about that.&lt;/p&gt;
+
+&lt;p&gt;Error handling in Koa is pretty straightforward. Again, I’m going to compare
+with callbacks and promises in Express.&lt;/p&gt;
+
+&lt;p&gt;In Express, you define error handling middleware by creating a middleware with
+a specific signature, namely, a function with 4 parameters.&lt;/p&gt;
+
+&lt;p&gt;Error handling with callbacks in Express:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var express = require('express');
+var app = express();
+
+app.get('/', function(req, res) {
+  User.find({}, function(err, users) {
+    if (err) next(err);
+    res.json(users);
+  });
+});
+
+app.use(function(err, req, res, next) {
+  res.status = err.status || 500;
+  res.send(err.message || 'Internal server error.');
+});
+
+app.listen(8000);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Error handling with promises in Express:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var express = require('express');
+var app = express();
+
+app.get('/', function(req, res) {
+  User.find()
+    .then(function(users) {
+      res.json(users);
+    })
+    .then(null, next);
+});
+
+app.use(function(err, req, res, next) {
+  res.status = err.status || 500;
+  res.send(err.message || 'Internal server error.');
+});
+
+app.listen(8000);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;In Koa, you also define error handling middleware at the top of the pipeline
+and give it a signature of:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;try {
+  yield next;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Here is an example of error handling in Koa:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var koa = require('koa');
+var app = koa();
+var router = require('koa-router');
+
+app.use(function*(next) {
+  try {
+    yield next;
+  } catch (err) {
+    this.status = err.status || 500;
+    this.body = err.message || 'Internal server error';
+    this.app.emit('error', err, this);
+  }
+});
+
+router.get('/', function*() {
+  try {
+    var users = yield User.find();
+    this.body = users;
+  } catch (err) {
+    this.throw(err, 500);
+  }
+});
+
+app.use(router.routes());app.listen(8000);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;As our first middleware function, we define a generator that tries to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;yield
+next&lt;/code&gt; and catches an error if there is one. Koa will use this middleware if we
+throw an error somewhere in our code, like we are doing in our GET route.&lt;/p&gt;
+
+&lt;p&gt;In the GET route, we are attempting to retrieve the users from the database and
+set them to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;this.body&lt;/code&gt;. If an error occurs, we move into the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;catch&lt;/code&gt; block
+where we throw an error using the Koa context’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;throw&lt;/code&gt; method. This causes the
+request to flow to our error handling middleware, where set the response status
+and body as well as emit an error to our Koa app. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;this.app.emit&lt;/code&gt; line is
+recommended by the Koa creators to allow your Koa app’s default error handling
+behavior to execute.&lt;/p&gt;
+
+&lt;p&gt;If you made it this far, you’re definitely ready to start implementing your own
+back-end using Koa. May the generators guide you well!&lt;/p&gt;</content><author><name></name></author><summary type="html">Update (8/20/15): I recently gave a talk about Koa at the NYC Node.js meetup. The GitHub repository for that talk provides some live code examples of Koa.</summary></entry></feed>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Everything You Want to Know About Koa | Jimmy Farillo</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Everything You Want to Know About Koa" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Update (8/20/15): I recently gave a talk about Koa at the NYC Node.js meetup. The GitHub repository for that talk provides some live code examples of Koa." />
+<meta property="og:description" content="Update (8/20/15): I recently gave a talk about Koa at the NYC Node.js meetup. The GitHub repository for that talk provides some live code examples of Koa." />
+<link rel="canonical" href="/2015/08/13/everything-you-want-to-know-about-koa.html" />
+<meta property="og:url" content="/2015/08/13/everything-you-want-to-know-about-koa.html" />
+<meta property="og:site_name" content="Jimmy Farillo" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-08-13T00:00:00-04:00" />
+<script type="application/ld+json">
+{"url":"/2015/08/13/everything-you-want-to-know-about-koa.html","headline":"Everything You Want to Know About Koa","dateModified":"2015-08-13T00:00:00-04:00","datePublished":"2015-08-13T00:00:00-04:00","description":"Update (8/20/15): I recently gave a talk about Koa at the NYC Node.js meetup. The GitHub repository for that talk provides some live code examples of Koa.","mainEntityOfPage":{"@type":"WebPage","@id":"/2015/08/13/everything-you-want-to-know-about-koa.html"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Jimmy Farillo" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Jimmy Farillo</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Everything You Want to Know About Koa</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2015-08-13T00:00:00-04:00" itemprop="datePublished">Aug 13, 2015
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><em>Update (8/20/15): I recently <a href="http://www.nycnode.com/videos/jimmy-farrell-downstream-and-upstream-request-flow-with-the-koa-web-framework">gave a talk about
+Koa</a>
+at the NYC Node.js meetup. The <a href="https://github.com/jimmyfarrell/intro-to-koa">GitHub
+repository</a> for that talk
+provides some live code examples of Koa.</em></p>
+
+<h2 id="the-basics">The Basics</h2>
+
+<p>If you’re a <a href="https://nodejs.org/">Node.js</a> developer, you most likely use
+<a href="http://expressjs.com/">Express</a> as your web application framework. I believe
+it has become the default technology. But that doesn’t mean it is the only
+option you have. In fact, the team behind Express also created another web
+application framework called <a href="http://koajs.com/">Koa</a>. This post will serve as
+a basic introduction so that you can begin using Koa for your next web app.</p>
+
+<p>The most unique aspect of Koa, especially if you’re coming from Express, is
+that Koa leverages ES6 generator functions in its architecture. This blog post
+will not go in-depth on generators, so if you are unfamiliar with generators,
+you can learn more
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*">here</a>
+or <a href="http://davidwalsh.name/es6-generators">here</a>.</p>
+
+<p>In Express you would define middleware like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var express = require('express');
+var app = express();
+
+app.use(function(req, res, next) {
+  console.log('Do something');
+  next();
+});
+
+app.listen(8000);
+</code></pre></div></div>
+
+<p>In Koa, that same middleware would be defined like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var koa = require('koa');
+var app = koa();
+
+app.use(function*(next) {
+  console.log('Do something');
+  yield next;
+});
+
+app.listen(8000);
+</code></pre></div></div>
+
+<p>These trivial middleware functions both do the same thing: print “Do something”
+and then allow the request to continue downstream along to the next piece in
+the pipeline.</p>
+
+<h2 id="bidirectional-request-flow">Bidirectional Request Flow</h2>
+
+<p>Fairly similar so far. But Express is unidirectional, whereas Koa allows for
+downstream <strong>AND</strong> upstream request flow. Here’s an example of downstream and
+upstream flow:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var koa = require('koa');
+var app = koa();
+
+app.use(function*(next) {
+  console.log('A');
+  yield next;
+  console.log('B');
+});
+
+app.use(function*(next) {
+  console.log('C');
+  yield next;
+  console.log('D');
+});
+
+app.use(function*(next) {
+  console.log('E');
+  yield next;
+});
+
+app.listen(8000);
+</code></pre></div></div>
+
+<p>You might’ve guessed, but the order that these letters prints out is: A, C, E,
+D, then B. The request flows through the first function where it prints A, then
+it yields to the next function in the middleware pipeline, that function prints
+C and then yields to the next function, that function prints E then yields to
+the next function (which in this case, since there is no more middleware, is an
+internal Koa generator). Since the request reached the “bottom” of the pipeline
+and the previous two generators have not completed, the request begins flowing
+upstream. The second generator function resumes where it left off and then
+prints D, then the request continues flowing upstream, and the first generator
+function resumes where it left off and prints B.</p>
+
+<p>This can be a bit trippy to understand at first. The <a href="https://github.com/koajs/koa/blob/master/docs/guide.md">Koa
+Guide</a> calls the code
+before the <code class="language-plaintext highlighter-rouge">yield next</code> the “capture phase” and the code after the <code class="language-plaintext highlighter-rouge">yield next</code>
+the “bubble phase”. I just call it awesome.</p>
+
+<p>It might be difficult to think of times when you would want to utilize this
+upstream request flow, but there are use cases. With upstream request flow, you
+can attach properties to the server response that may be dependent on other
+downstream middleware. But really, it’s more of a design choice than a feature
+that expands your server’s functionality in a mind-blowing manner.</p>
+
+<h2 id="asynchronous-operations">Asynchronous Operations</h2>
+
+<p>In my opinion, the coolest thing about Koa is how you are able to handle async
+code. With Node.js, we are familiar with callbacks and promises. Let’s show a
+simple GET route that makes a database query.</p>
+
+<p>First with a callback using Express:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var express = require('express');
+var app = express();
+
+app.get('/', function(req, res) {
+  User.find({}, function(err, users) {
+    res.json(users);
+  });
+});
+
+app.listen(8000);
+</code></pre></div></div>
+
+<p>Now with a promise in Express:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var express = require('express');
+var app = express();
+
+app.get('/', function(req, res) {
+  User.find()
+    .then(function(users) {
+      res.json(users);
+    });
+});
+
+app.listen(8000);
+</code></pre></div></div>
+
+<p>But with Koa, you can forget about callbacks and promises, because there is an
+even simpler way to handle async operations using generators.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var koa = require('koa');
+var app = koa();
+var router = require('koa-router');
+
+router.get('/', function*() {
+  var users = yield User.find();
+  this.body = users;
+});
+
+app.use(router.routes());app.listen(8000);
+</code></pre></div></div>
+
+<p>A few things are happening in this small block of code, so let’s go through it.
+The first 2 lines are requiring in Koa and creating an <code class="language-plaintext highlighter-rouge">app</code> instance. The
+third line is requiring in a third-party router that can be used with Koa since
+Koa does not come with its own router. We use the router by passing it to our
+<code class="language-plaintext highlighter-rouge">app</code>, like in the second to last line of this code block. <code class="language-plaintext highlighter-rouge">router.routes()</code>
+returns a generator function that Koa can use. This router allows us to create
+routes like our <code class="language-plaintext highlighter-rouge">router.get</code>.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">router.get</code> defines the URL for this route as well as a generator function
+to be used. The first line of this generator is declaring a variable <code class="language-plaintext highlighter-rouge">users</code>
+and then yielding to the database query <code class="language-plaintext highlighter-rouge">User.find()</code>. Since this is an
+asynchronous operation, this generator will pause and wait for the database
+query to finish. When the database query finishes, the generator resumes and
+the result of the query is stored in the <code class="language-plaintext highlighter-rouge">users</code> variable.</p>
+
+<p>On the last line of the generator, we set <code class="language-plaintext highlighter-rouge">this.body</code> to our <code class="language-plaintext highlighter-rouge">users</code> variable.
+In Koa, <code class="language-plaintext highlighter-rouge">this</code> is the Koa context, which is essentially a wrapper for the
+Node.js request and response. By setting <code class="language-plaintext highlighter-rouge">this.body</code>, we are setting the
+server’s response body that will get sent back to the client.</p>
+
+<p>The last line simply starts our server and has it listening on port 8000.</p>
+
+<p>As you can see, the <code class="language-plaintext highlighter-rouge">yield</code> keyword lets us write extremely readable code that
+appears synchronous. No need for annoying callbacks or mysterious promises
+(TBH, I LOVE promises!). Just super simple code.</p>
+
+<h2 id="error-handling">Error Handling</h2>
+
+<p>Okay, but there is no error handling in that code. True, let’s talk about that.</p>
+
+<p>Error handling in Koa is pretty straightforward. Again, I’m going to compare
+with callbacks and promises in Express.</p>
+
+<p>In Express, you define error handling middleware by creating a middleware with
+a specific signature, namely, a function with 4 parameters.</p>
+
+<p>Error handling with callbacks in Express:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var express = require('express');
+var app = express();
+
+app.get('/', function(req, res) {
+  User.find({}, function(err, users) {
+    if (err) next(err);
+    res.json(users);
+  });
+});
+
+app.use(function(err, req, res, next) {
+  res.status = err.status || 500;
+  res.send(err.message || 'Internal server error.');
+});
+
+app.listen(8000);
+</code></pre></div></div>
+
+<p>Error handling with promises in Express:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var express = require('express');
+var app = express();
+
+app.get('/', function(req, res) {
+  User.find()
+    .then(function(users) {
+      res.json(users);
+    })
+    .then(null, next);
+});
+
+app.use(function(err, req, res, next) {
+  res.status = err.status || 500;
+  res.send(err.message || 'Internal server error.');
+});
+
+app.listen(8000);
+</code></pre></div></div>
+
+<p>In Koa, you also define error handling middleware at the top of the pipeline
+and give it a signature of:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>try {
+  yield next;
+}
+</code></pre></div></div>
+
+<p>Here is an example of error handling in Koa:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var koa = require('koa');
+var app = koa();
+var router = require('koa-router');
+
+app.use(function*(next) {
+  try {
+    yield next;
+  } catch (err) {
+    this.status = err.status || 500;
+    this.body = err.message || 'Internal server error';
+    this.app.emit('error', err, this);
+  }
+});
+
+router.get('/', function*() {
+  try {
+    var users = yield User.find();
+    this.body = users;
+  } catch (err) {
+    this.throw(err, 500);
+  }
+});
+
+app.use(router.routes());app.listen(8000);
+</code></pre></div></div>
+
+<p>As our first middleware function, we define a generator that tries to <code class="language-plaintext highlighter-rouge">yield
+next</code> and catches an error if there is one. Koa will use this middleware if we
+throw an error somewhere in our code, like we are doing in our GET route.</p>
+
+<p>In the GET route, we are attempting to retrieve the users from the database and
+set them to <code class="language-plaintext highlighter-rouge">this.body</code>. If an error occurs, we move into the <code class="language-plaintext highlighter-rouge">catch</code> block
+where we throw an error using the Koa context’s <code class="language-plaintext highlighter-rouge">throw</code> method. This causes the
+request to flow to our error handling middleware, where set the response status
+and body as well as emit an error to our Koa app. The <code class="language-plaintext highlighter-rouge">this.app.emit</code> line is
+recommended by the Koa creators to allow your Koa app’s default error handling
+behavior to execute.</p>
+
+<p>If you made it this far, you’re definitely ready to start implementing your own
+back-end using Koa. May the generators guide you well!</p>
+
+  </div><a class="u-url" href="/2015/08/13/everything-you-want-to-know-about-koa.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Jimmy Farillo</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list"><li><a class="u-email" href="mailto:jimmy@farillo.co">jimmy@farillo.co</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/jimmyfarillo"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">jimmyfarillo</span></a></li><li><a href="https://www.linkedin.com/in/jimmyfarillo"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">jimmyfarillo</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>NYC software engineer</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
