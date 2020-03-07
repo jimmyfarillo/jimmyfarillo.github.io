@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-03-07T12:05:22-05:00</updated><id>/feed.xml</id><title type="html">Jimmy Farillo</title><subtitle>NYC software engineer</subtitle><entry><title type="html">The Basics of Database Indexes for Relational Databases</title><link href="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html" rel="alternate" type="text/html" title="The Basics of Database Indexes for Relational Databases" /><published>2017-08-23T00:00:00-04:00</published><updated>2017-08-23T00:00:00-04:00</updated><id>/2017/08/23/the-basics-of-database-indexes-for-relational-databases</id><content type="html" xml:base="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html">&lt;p&gt;The purpose of creating an index on a particular table in your database is to
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-03-07T12:18:14-05:00</updated><id>/feed.xml</id><title type="html">Jimmy Farillo</title><subtitle>NYC software engineer</subtitle><entry><title type="html">The Basics of Database Indexes for Relational Databases</title><link href="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html" rel="alternate" type="text/html" title="The Basics of Database Indexes for Relational Databases" /><published>2017-08-23T00:00:00-04:00</published><updated>2017-08-23T00:00:00-04:00</updated><id>/2017/08/23/the-basics-of-database-indexes-for-relational-databases</id><content type="html" xml:base="/2017/08/23/the-basics-of-database-indexes-for-relational-databases.html">&lt;p&gt;The purpose of creating an index on a particular table in your database is to
 make it faster to search through the table and find the row or rows that you
 want. The downside is that indexes make it slower to add rows or make updates to
 existing rows for that table. So adding indexes can increase read performance
@@ -230,7 +230,240 @@ I attended), and the mission of the conference is quite admirable and important
 in our largely homogenous, oftentimes uninviting industry.&lt;/p&gt;
 
 &lt;p&gt;And a big thanks to my friend &amp;amp; coworker Melissa Moy for urging me to attend
-this event!&lt;/p&gt;</content><author><name></name></author><summary type="html">This weekend I attended my first AlterConf, a one-day conference with the aim of helping to create a more inclusive tech industry. There were many great talks throughout the day as the speakers shared their inspiring stories and delved into thought-provoking topics, including:</summary></entry><entry><title type="html">Learn Design Patterns: Strategy Pattern</title><link href="/2017/02/23/learn-design-patterns-strategy-pattern.html" rel="alternate" type="text/html" title="Learn Design Patterns: Strategy Pattern" /><published>2017-02-23T00:00:00-05:00</published><updated>2017-02-23T00:00:00-05:00</updated><id>/2017/02/23/learn-design-patterns-strategy-pattern</id><content type="html" xml:base="/2017/02/23/learn-design-patterns-strategy-pattern.html"></content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Learn Design Patterns: Template Method Pattern</title><link href="/2017/02/19/learn-design-patterns-template-method-pattern.html" rel="alternate" type="text/html" title="Learn Design Patterns: Template Method Pattern" /><published>2017-02-19T00:00:00-05:00</published><updated>2017-02-19T00:00:00-05:00</updated><id>/2017/02/19/learn-design-patterns-template-method-pattern</id><content type="html" xml:base="/2017/02/19/learn-design-patterns-template-method-pattern.html">&lt;p&gt;A couple friends and I have a web development book club. The goal is to learn
+this event!&lt;/p&gt;</content><author><name></name></author><summary type="html">This weekend I attended my first AlterConf, a one-day conference with the aim of helping to create a more inclusive tech industry. There were many great talks throughout the day as the speakers shared their inspiring stories and delved into thought-provoking topics, including:</summary></entry><entry><title type="html">Learn Design Patterns: Strategy Pattern</title><link href="/2017/02/23/learn-design-patterns-strategy-pattern.html" rel="alternate" type="text/html" title="Learn Design Patterns: Strategy Pattern" /><published>2017-02-23T00:00:00-05:00</published><updated>2017-02-23T00:00:00-05:00</updated><id>/2017/02/23/learn-design-patterns-strategy-pattern</id><content type="html" xml:base="/2017/02/23/learn-design-patterns-strategy-pattern.html">&lt;p&gt;The strategy pattern is an alternative to the
+&lt;a href=&quot;/2017/02/19/learn-design-patterns-template-method-pattern.html&quot;&gt;template method pattern&lt;/a&gt;
+I wrote about in my previous post, providing a different solution to the common
+programming problem of requiring some variation within an algorithm. Both
+patterns use polymorphism in their approaches, but while the template method
+pattern relies on inheritance, the strategy pattern relies on composition and
+delegation.&lt;/p&gt;
+
+&lt;h2 id=&quot;composition&quot;&gt;Composition&lt;/h2&gt;
+
+&lt;p&gt;To use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Party&lt;/code&gt; example from the post on the template method pattern, you
+might choose to think about parties as being made up of different parts, such as
+a venue, guests, supplies, and activities. Modeled in code, these parts could be
+defined as instance variables with accessor methods.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class Party
+  attr_accessor :venue, :guests, :supplies, :activities
+
+  def initialize(args)
+    @venue = args[:venue]
+    @guests = args[:guests]
+    @supplies = args[:supplies]
+    @activities = args[:activities]
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Composition describes the “has a” relationship between the object and the parts
+that it is made up of. From this perspective, a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Party&lt;/code&gt; “has a” &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;venue&lt;/code&gt;, “has a”
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;guests&lt;/code&gt;, “has a” &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;supplies&lt;/code&gt;, and “has a” &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;activities&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;This is in contrast with inheritance, which describes a “is a” relationship. A
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BirthdayParty&lt;/code&gt; “is a” &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Party&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;So another way to look at the different types a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Party&lt;/code&gt; could be is to think
+about them in terms of their parts. Here’s an example of a birthday party and a
+game night party implemented using composition rather than inheritance.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class Party
+  attr_accessor :venue, :guests, :supplies, :activities
+
+  def initialize(args)
+    @venue = args[:venue]
+    @guests = args[:guests]
+    @supplies = args[:supplies]
+    @activities = args[:activities]
+  end
+end
+
+birthday_party = Party.new(
+  venue: Place.new(&quot;Chuck E. Cheese's&quot;),
+  guests: [User.new('Margaret Atwood'), User.new('David Mitchell')],
+  supplies: [Food.new('birthday cake')],
+  activities: [Activity.new('sing happy birthday')]
+)
+
+game_night = Party.new(
+  venue: Place.new('246 Maple Lane'),
+  guests: [User.new('Ruth Ozeki'), User.new('Kazuo Ishiguro')],
+  supplies: [Game.new('Catan'), Game.new('Bananagrams')],
+  activities: [Activity.new('play games')]
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;In this example, each instance of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Party&lt;/code&gt; is instantiated with different parts.
+Specifically, the array supplies for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;birthday_party&lt;/code&gt; contains a single object
+of type &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Food&lt;/code&gt;, while &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;game_night&lt;/code&gt; contains two objects of type &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Game&lt;/code&gt;. We’ll
+come back to this example below, when we get into the specifics of the strategy
+pattern.&lt;/p&gt;
+
+&lt;p&gt;Instead of defining different kinds of parties as subclasses of the abstract
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Party&lt;/code&gt; class, instances of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Party&lt;/code&gt; are made to be different because they are
+composed of different parts. The advantage of using composition over inheritance
+is that there is no coupling of subclasses to a superclass in composition,
+reducing the number of dependencies in your code.&lt;/p&gt;
+
+&lt;h2 id=&quot;delegation&quot;&gt;Delegation&lt;/h2&gt;
+
+&lt;p&gt;Delegation often comes up when composition is used. Delegation is the concept of
+passing off some work to another object.&lt;/p&gt;
+
+&lt;p&gt;There will be some logic involved for inviting our guests to the party, and we
+could put that logic inside our &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Party&lt;/code&gt; class.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class Party
+  attr_accessor :venue, :guests, :supplies, :activities
+
+  def initialize(args)
+    @venue = args[:venue]
+    @guests = args[:guests]
+    @supplies = args[:supplies]
+    @activities = args[:activities]
+  end
+
+  def invite_guests
+    guests.each { |guest| invite(guest) }
+  end
+
+  def invite(guest)
+    puts &quot;Hi #{guest.name}, please come to my party at #{venue}!&quot;
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;But we could also delegate this task to each guest by placing that logic inside
+the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;User&lt;/code&gt; class and sending that message to the guest objects.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class User
+  attr_accessor :name
+
+  def initialize(name)
+    @name = name
+  end
+
+  def send_invitation(context)
+    puts &quot;Hi #{name}, please come to my party at #{context.venue}!&quot;
+  end
+end
+
+class Party
+  attr_accessor :venue, :guests, :supplies, :activities
+
+  def initialize(args)
+    @venue = args[:venue]
+    @guests = args[:guests]
+    @supplies = args[:supplies]
+    @activities = args[:activities]
+  end
+
+  def invite_guests
+    guests.each { |guest| guest.send_invitation(self) }
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;In the above example, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;invite_guests&lt;/code&gt; method on the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Party&lt;/code&gt; class sends the
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;send_invitation&lt;/code&gt; message to each guest, which is defined in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;User&lt;/code&gt; class.
+The instance of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Party&lt;/code&gt; also passes a reference of itself, as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;self&lt;/code&gt;, as an
+argument to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;send_invitation&lt;/code&gt;, allowing the method to know the context in which
+it should be performed. The logic of how to invite a guest has been passed off
+to each guest object.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-strategy-pattern&quot;&gt;The Strategy Pattern&lt;/h2&gt;
+
+&lt;p&gt;Now that we’ve discussed composition and delegation, we can use them in the
+strategy pattern. Let’s Party on! 🎉&lt;/p&gt;
+
+&lt;p&gt;You might remember the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;throw_party&lt;/code&gt; method from the previous post about the
+template method pattern. It contains all the logic necessary for throwing a
+great party.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def throw_party
+  invite_guests
+  buy_supplies
+  clean_house
+  welcome_guests
+  do_activities
+  kick_out_guests
+  clean_house
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;We can create variation in that algorithm by delegating the responsibilities to
+the different parts that compose each party. If you remember, the only parts
+that differ between birthday parties and game nights are the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;supplies&lt;/code&gt; and the
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;activities&lt;/code&gt;, so I’m going to ignore the methods the deal with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;venue&lt;/code&gt; and
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;guests&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class Party
+  attr_accessor :venue, :guests, :supplies, :activities
+
+  def initialize(args)
+    @venue = args[:venue]
+    @guests = args[:guests]
+    @supplies = args[:supplies]
+    @activities = args[:activities]
+  end
+
+  def throw_party
+    invite_guests
+    buy_supplies
+    clean_house
+    welcome_guests
+    do_activities
+    kick_out_guests
+    clean_house
+  end
+
+  def buy_supplies
+    supplies.each { |supply| supply.buy }
+  end
+
+  def do_activities
+    activities.each { |activity| activity.perform(self) }
+  end
+end
+
+class Food
+  def buy
+    ...
+  end
+end
+
+class Game
+  def buy
+    ...
+  end
+end
+
+class Activity
+  def perform
+    ...
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;supplies&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;activities&lt;/code&gt; are the objects that compose our &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Party&lt;/code&gt;. All
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;supplies&lt;/code&gt; that make up our &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Party&lt;/code&gt; should implement the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;buy&lt;/code&gt; method, whether
+each object is a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Game&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Food&lt;/code&gt;, or any other party supply. These objects all
+implement a common interface, even though the implementations will likely be
+different for each type of object. Similarly, all activities will implement the
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;perform&lt;/code&gt; method. Without knowing the internals of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Activity#perform&lt;/code&gt;, we can
+safely assume that the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;perform&lt;/code&gt; method for the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Activity&lt;/code&gt; object for singing
+happy birthday will likely have different side effects than the one for playing
+games. All of these sections of the algorithm have been delegated to the parts
+of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Party&lt;/code&gt; object that are involved in their execution.&lt;/p&gt;
+
+&lt;p&gt;The strategy pattern solves the same problem that the template method pattern
+solves, but it reduces the amount of coupling between objects by using
+composition over inheritance. Instead of identifying the sections of your
+algorithm that can vary and then placing those sections in subclasses of an
+abstract superclass, the algorithm has been delegated to the different parts
+that compose your object, and those objects implement their respective portions
+of the algorithm however they see fit.&lt;/p&gt;</content><author><name></name></author><summary type="html">The strategy pattern is an alternative to the template method pattern I wrote about in my previous post, providing a different solution to the common programming problem of requiring some variation within an algorithm. Both patterns use polymorphism in their approaches, but while the template method pattern relies on inheritance, the strategy pattern relies on composition and delegation.</summary></entry><entry><title type="html">Learn Design Patterns: Template Method Pattern</title><link href="/2017/02/19/learn-design-patterns-template-method-pattern.html" rel="alternate" type="text/html" title="Learn Design Patterns: Template Method Pattern" /><published>2017-02-19T00:00:00-05:00</published><updated>2017-02-19T00:00:00-05:00</updated><id>/2017/02/19/learn-design-patterns-template-method-pattern</id><content type="html" xml:base="/2017/02/19/learn-design-patterns-template-method-pattern.html">&lt;p&gt;A couple friends and I have a web development book club. The goal is to learn
 and grow together as software engineers. But really, sometimes it’s more like a
 support group, where we use a lot of 😞, ☹️, and 😢 to discuss our respective
 screw-ups at work and the impossible vastness of information about web
