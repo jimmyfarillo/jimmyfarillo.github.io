@@ -31,6 +31,8 @@ linkedin_username: jimmyfarillo
 theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-paginate
+paginate: 5
 show_excerpts: true
 
 # Exclude from processing.
