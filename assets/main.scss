@@ -29,6 +29,14 @@ a {
   }
 }
 
+pre, code, .highlighter-rouge {
+  background-color: #eee;
+
+  .highlight {
+    background-color: #eee;
+  }
+}
+
 hr {
   margin: 20px auto;
   border: 1px dashed;
