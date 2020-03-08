@@ -1,0 +1,48 @@
+---
+---
+
+@import "minima";
+
+p {
+  line-height: 30px;
+}
+
+a {
+  color: lighten($text-color, 20%);
+  text-decoration: underline;
+
+  &:hover {
+    color: $text-color;
+    text-decoration: underline;
+  }
+
+  &:visited {
+    color: lighten($text-color, 20%);
+  }
+
+  &.post-link, &.site-title, &.page-link, &.next, &.previous {
+    color: $text-color;
+    text-decoration: none;
+
+    &:hover, &:visited {
+      color: $text-color;
+      text-decoration: none;
+    }
+  }
+}
+
+hr {
+  margin: 20px auto;
+  border: 1px dashed;
+  width: 25%;
+}
+
+.site-header {
+  border-top: none;
+}
+
+.pagination {
+  .next {
+    float: right;
+  }
+}

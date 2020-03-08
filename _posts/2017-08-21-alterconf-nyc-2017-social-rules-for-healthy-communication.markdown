@@ -36,7 +36,7 @@ at such an admission, it can inhibit the learning process for that individual.
 
 _A: "Beethoven's Symphony №5 is probably his most famous work, and he was 38
 years old when he finished it. It's my favorite of his, especially the second
-movement."
+movement."  
 B: "Well, actually he was 37 years old."_
 
 A well-actually is when someone corrects (often by interruption) an
@@ -49,8 +49,8 @@ course, always welcome.
 
 ## No Backseat Driving
 
-_A: "Maybe running that rake task again will fix it."
-B: "I tried running it 5 times already."
+_A: "Maybe running that rake task again will fix it."  
+B: "I tried running it 5 times already."  
 C: "Just clear the cache!"_
 
 Backseat driving is when a conversation is happening between two or more people

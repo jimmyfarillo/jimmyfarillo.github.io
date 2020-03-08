@@ -33,6 +33,7 @@ plugins:
   - jekyll-feed
   - jekyll-paginate
 paginate: 5
+paginate_path: ":num"
 show_excerpts: true
 
 # Exclude from processing.
