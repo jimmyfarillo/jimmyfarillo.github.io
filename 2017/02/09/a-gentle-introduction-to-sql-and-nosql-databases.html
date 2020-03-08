@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>A Gentle Introduction to SQL and NoSQL Databases | Jimmy Farillo</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="A Gentle Introduction to SQL and NoSQL Databases" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="At some point during your career as a web developer, you will have to decide what type of database is best suited for your application. You might face this decision very soon, if you are planning on building your own application as a side project. And at the very least, you will probably be asked about databases in a job interview for a web developer role." />
+<meta property="og:description" content="At some point during your career as a web developer, you will have to decide what type of database is best suited for your application. You might face this decision very soon, if you are planning on building your own application as a side project. And at the very least, you will probably be asked about databases in a job interview for a web developer role." />
+<link rel="canonical" href="http://localhost:4000/2017/02/09/a-gentle-introduction-to-sql-and-nosql-databases.html" />
+<meta property="og:url" content="http://localhost:4000/2017/02/09/a-gentle-introduction-to-sql-and-nosql-databases.html" />
+<meta property="og:site_name" content="Jimmy Farillo" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-02-09T00:00:00-05:00" />
+<script type="application/ld+json">
+{"url":"http://localhost:4000/2017/02/09/a-gentle-introduction-to-sql-and-nosql-databases.html","description":"At some point during your career as a web developer, you will have to decide what type of database is best suited for your application. You might face this decision very soon, if you are planning on building your own application as a side project. And at the very least, you will probably be asked about databases in a job interview for a web developer role.","dateModified":"2017-02-09T00:00:00-05:00","datePublished":"2017-02-09T00:00:00-05:00","headline":"A Gentle Introduction to SQL and NoSQL Databases","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2017/02/09/a-gentle-introduction-to-sql-and-nosql-databases.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css">
+  <link rel="shortcut icon" type="image/png" href="favicon.png"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Jimmy Farillo" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Jimmy Farillo</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">A Gentle Introduction to SQL and NoSQL Databases</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2017-02-09T00:00:00-05:00" itemprop="datePublished">Feb 9, 2017
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>At some point during your career as a web developer, you will have to decide
+what type of database is best suited for your application. You might face this
+decision very soon, if you are planning on building your own application as a
+side project. And at the very least, you will probably be asked about databases
+in a job interview for a web developer role.</p>
+
+<p>Web applications use either relational (SQL) or non-relational (NoSQL) databases
+for persistent data storage. The point of this post is to provide a simple,
+high-level overviews of relational and non-relational databases, highlight their
+differences and discuss scenarios in which to use each, and briefly examine
+common database management systems for each. I do not claim to be a database
+expert, so some of the language in this post will use generalizations. I am
+always looking to learn more about databases, but I know enough to be an
+effective developer, and hopefully this post will provide you with enough info
+so you can make more informed decisions regarding databases.</p>
+
+<h2 id="relational-sql-databases">Relational (SQL) Databases</h2>
+
+<p>In relational databases, the data is stored in tables. These tables are like
+Excel spreadsheets with rows and columns, except a table in a database is
+generally much more strict in its structure. A row in a table represents a
+single record, and the columns are the attributes for that record. For example,
+we might have a <code class="language-plaintext highlighter-rouge">blog_posts</code> table with various attributes for <code class="language-plaintext highlighter-rouge">title</code>, <code class="language-plaintext highlighter-rouge">body</code>,
+and <code class="language-plaintext highlighter-rouge">date_published</code>. The table will also have an <code class="language-plaintext highlighter-rouge">id</code> column, which is a unique
+number for each record in the table.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># blog_posts
+
+| id | title       | body            | data_published |
+|  1 | First Post! | blah blah...    | Feb 6, 2017    |
+|  2 | Iguanas     | Yay iguanas...  | Feb 7, 2017    |
+</code></pre></div></div>
+
+<p>As you can imagine, data often has relationships with other data. That’s where
+the term “relational” comes from. In our <code class="language-plaintext highlighter-rouge">blog_posts</code> example, we might want to
+also want to store the <code class="language-plaintext highlighter-rouge">author</code> for each blog post. We could store attributes
+such as <code class="language-plaintext highlighter-rouge">author_first_name</code>, <code class="language-plaintext highlighter-rouge">author_last_name</code>, <code class="language-plaintext highlighter-rouge">author_email</code>, etc. with each
+<code class="language-plaintext highlighter-rouge">blog_post</code> record, but that would get very messy very fast. Plus, there’s
+probably already a <code class="language-plaintext highlighter-rouge">users</code> table with all that information. So instead, we can
+add an <code class="language-plaintext highlighter-rouge">author_id</code> column to our <code class="language-plaintext highlighter-rouge">blog_posts</code> table.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># blog_posts
+
+| id | title       | body           | data_published | author_id |
+|  1 | First Post! | blah blah...   | Feb 6, 2017    |        23 |
+|  2 | Iguanas     | Yay iguanas... | Feb 7, 2017    |         5 |
+</code></pre></div></div>
+
+<p>And the <code class="language-plaintext highlighter-rouge">author_id</code> values match up to <code class="language-plaintext highlighter-rouge">id</code> values in the authors table.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># author
+
+| id | first_name  | last_name | email                 |
+|  5 | David       | Mitchell  | dmitch@cloudatlas.com |
+| 23 | Margaret    | Atwood    | handmaid@tales.com    |
+</code></pre></div></div>
+
+<p>So when you retrieve a blog post, you can “join” the data with the corresponding
+author data by matching the <code class="language-plaintext highlighter-rouge">author_id</code> and <code class="language-plaintext highlighter-rouge">id</code> columns from the tables.
+Conversely, you can lookup an author and then “join” the blog post data to find
+all the blog posts by a particular author.</p>
+
+<p>SQL stands for “structured query language,” the language used to interact with
+relational databases.</p>
+
+<h2 id="non-relational-nosql-databases">Non-Relational (NoSQL) Databases</h2>
+
+<p>Non-relational databases make up all the other types of databases that aren’t
+relational databases, and NoSQL means “not only SQL.” This post will cover two
+types of NoSQL databases, document stores and key-value stores.</p>
+
+<h3 id="document-stores">Document Stores</h3>
+
+<p>In document stores, the data is stored in collections, and collections are made
+up of objects referred to as documents. These collections are the equivalent of
+relational tables, and documents are the equivalent of records. So a <code class="language-plaintext highlighter-rouge">users</code>
+collection would consist of documents, each one representing a different user.</p>
+
+<p>Documents have attributes, which are defined for each collection. In the case of
+the <code class="language-plaintext highlighter-rouge">users</code> collection, we might have attributes like <code class="language-plaintext highlighter-rouge">first_name</code>, <code class="language-plaintext highlighter-rouge">last_name</code>,
+and <code class="language-plaintext highlighter-rouge">email</code>. Document objects are encoded using familiar formats such as JSON,
+XML, or YAML. So JSON-encoded documents might look like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># users
+
+{
+    "first_name": "David",
+    "last_name": "Mitchell",
+    "email": "dmitch@cloudatlas.com"
+},
+{
+    "first_name": "Margaret",
+    "last_name": "Atwood",
+    "email": "handmaid@tales.com"
+}
+</code></pre></div></div>
+
+<p>Document stores can also allow for relationships between documents through a
+similar method as is done in relational databases, referencing another object’s
+<code class="language-plaintext highlighter-rouge">id</code>.</p>
+
+<p>In the following example, there is some redundancy, but it illustrates two ways
+a relationship could be defined. In the <code class="language-plaintext highlighter-rouge">authors</code> collection, documents contain
+a <code class="language-plaintext highlighter-rouge">blog_posts</code> attribute which is an array of references to blog post documents.
+In the <code class="language-plaintext highlighter-rouge">blog_posts</code> collection, the documents contain an <code class="language-plaintext highlighter-rouge">author_id</code> attribute
+which is a reference to the <code class="language-plaintext highlighter-rouge">authors</code> collection. Based on the data you are
+working with, a one-to-many or many-to-many relationship could be handled with
+either method.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># authors
+
+{
+    "id": 2,
+    "first_name": "David",
+    "last_name": "Mitchell",
+    "email": "dmitch@cloudatlas.com",
+    "blog_posts": [1, 4]
+}
+
+# blog_posts
+
+{
+    "id": 1,
+    "title": "First Post!",
+    "body": "blah blah...",
+    "date_published": "Feb 6, 2017",
+    "author_id": 2
+},
+{
+    "id": 4,
+    "title": "Iguanas",
+    "body": "Yay iguanas...",
+    "date_published": "Feb 7, 2017",
+    "author_id": 2
+}
+</code></pre></div></div>
+
+<p>For some data, it may even make sense to define relationships between data by
+embedding documents within documents. An example of this might be a shopping
+cart:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># shopping_carts
+
+{
+    "user_id": 24,
+    "items": [{
+        "name": "Black Swan Green",
+        "price": 15.99,
+        "quantity": 2
+    }, {
+        "name": "Oryx and Crake"
+        "price": 24.99,
+        "quantity": 1
+    }]
+}
+</code></pre></div></div>
+
+<h3 id="key-value-stores">Key-Value Stores</h3>
+
+<p>Key-value stores are simpler than document stores and are exactly what they
+sound like, key-value pairs. Like big hashes. Some key-value stores are just
+string keys paired with string values. Others allow for more complex data
+structures for the values, such as unordered sets of strings.</p>
+
+<p>A common use case for key-value stores in web applications is for storing user
+preferences. User preferences often need to persist across user sessions, but
+they may not be appropriate to be stored directly on the user record/document in
+the database. Because key-value stores are generally made to be accessed
+quickly, they provide a simple and fast storage solution for user preferences.</p>
+
+<h2 id="acid-compliance">ACID Compliance</h2>
+
+<p>An important topic to discuss when comparing relational and non-relational
+databases is ACID. Acid stands for:</p>
+
+<ul>
+  <li><strong>A</strong>tomicity: Transactions are performed in an “all or nothing” manner. If
+one or more operations within the transaction fails, then all other operations
+in the transaction will fail. A common example is a banking transaction where
+money should be withdrawn from one bank account and deposited into another. If
+either of those operations fail, you want the entire transaction to fail.</li>
+  <li><strong>C</strong>onsistency: The data can only be modified in ways that are allowed and
+adhere to any and all defined constraints. An example of a constraint is that
+the <code class="language-plaintext highlighter-rouge">email</code> attribute is limited to 100 characters. In this case, consistency
+in the database means that a transaction will never result in an email with
+more than 100 characters.</li>
+  <li><strong>I</strong>solation: Concurrent transactions result in the data being in a state as
+if the transactions occurred one after the other. There’s a bit more to it,
+but to keep it simple you can think of isolation as data being locked when it
+is the target of a transaction. When data is locked, other transactions are
+not operating on the data, and the data is isolated.</li>
+  <li><strong>D</strong>urability: Once a transaction is complete, the new state of the data will
+persist even if a system failure or some other error occurs immediately
+afterward.</li>
+</ul>
+
+<p>Again, I’m speaking in generalizations, but it is commonly understood in web
+development that relational databases are ACID-compliant while non-relational
+databases are not fully ACID-compliant.</p>
+
+<p>With full ACID compliance, there are some drawbacks. Most notably, performance
+and scalability. Many NoSQL databases are designed to be more highly scalable
+and faster than SQL databases, having sacrificed ACID-compliance.</p>
+
+<h2 id="deciding-between-sql-and-nosql-using-the-cap-theorem">Deciding Between SQL and NoSQL Using the CAP Theorem</h2>
+
+<p>To help you evaluate the needs of your application in order to determine if you
+should use a relational or non-relational database, you can reference the CAP
+Theorem.</p>
+
+<p>There’s a <a href="https://youtu.be/Jw1iFr4v58M">great video explanation</a> (only 4.5
+minutes!) on YouTube that I recommend, but I’ll try my hand at explaining it.</p>
+
+<p>The CAP Theorem proposes that distributed database systems (“distributed”
+meaning comprised of multiple nodes that communicate with each other to act as a
+single system) have 3 potential attributes:</p>
+
+<ul>
+  <li><strong>C</strong>onsistency: When performing a “read” from one node in the system, you
+always receive the most recent “write”, even if that “write” occurred on a
+different node. Different than the “consistency” in ACID.</li>
+  <li><strong>A</strong>vailability: When a request is made to a node, as long as the node has
+not failed, it will respond to the request.</li>
+  <li><strong>P</strong>artition Tolerance: When a node is removed from the system, the system
+continues to operate and uphold its other attributes.</li>
+</ul>
+
+<p>However, the CAP Theorem also states that a distributed database system can have
+a maximum of 2 of these attributes and it is theoretically impossible to have
+all 3.</p>
+
+<p>For example, if a “write” happens to one node in the system and is immediately
+followed by a “read” to a different node, there are 3 possible outcomes of the
+“read”:</p>
+
+<ul>
+  <li><strong>C &amp; P</strong>: The system is partition tolerant, so the nodes are not able to talk
+to each other. The node would wait until it is able to talk to the other nodes
+in order to maintain consistency before returning the data. However, since the
+nodes are not able to communicate, the node would not respond to the request
+and is thus not available.</li>
+  <li><strong>A &amp; P</strong>: The system is partition tolerant, so the nodes are not able to talk
+to each other. The node would maintain availability and return the most recent
+version of the data that it has, even though it is not the most recent version
+of the data in the system. So the node is not consistent.</li>
+  <li><strong>A &amp; C</strong>: The system is not partition tolerant and can only uphold its other
+attributes when all nodes are connected to the system. This means that the
+node would be able to communicate with the others nodes, maintain consistency
+by retrieving the most recent data, and maintain availability by responding to
+the request.</li>
+</ul>
+
+<p><img src="/assets/cap_theorem.jpeg" alt="CAP Theorem Diagram" /></p>
+
+<p>The third outcome can be dismissed because partition tolerance is an integral
+aspect of distributed database systems. Therefore, the choice comes down to
+consistency or availability.</p>
+
+<p>From the section on ACID, we can generalize that since ACID-compliant database
+systems are less performant than non-ACID-compliant database systems, then
+ACID-compliant databases are less available than non-ACID-compliant systems.
+They are less available but more consistent. Conversely, non-ACID-compliant
+databases are more available and less consistent.</p>
+
+<p>This choice between availability and consistency should be one of the factors
+you consider when deciding between relational and non-relational databases. Is
+it more important for your application to maintain very strict control over your
+data, even at the cost of performance? Or is the speed of your application more
+important than making sure your data is handled exactly as you expect 100% of
+the time?</p>
+
+<h2 id="common-database-management-systems">Common Database Management Systems</h2>
+
+<p>This will be a short section about the database management systems that I see
+most often in job listings, web applications I’ve worked on, web applications my
+friends work on, etc.</p>
+
+<h3 id="relational">Relational</h3>
+
+<ul>
+  <li><a href="https://www.mysql.com/">MySQL</a>: Very popular.</li>
+  <li><a href="https://www.postgresql.org/">PostgreSQL</a>: Implements more advanced data types
+than MySQL.</li>
+  <li><a href="https://mariadb.org/">MariaDB</a>: Community-developed fork of MySQL.</li>
+  <li><a href="https://www.sqlite.org/">SQLite</a>: Lightweight.</li>
+</ul>
+
+<h3 id="non-relational">Non-Relational</h3>
+
+<ul>
+  <li><a href="https://www.mongodb.com/">MongoDB</a>: JSON-like document store.</li>
+  <li><a href="http://couchdb.apache.org/">CouchDB</a>: JSON document store.</li>
+  <li><a href="https://redis.io/">Redis</a>: Key-value store. Supports strings, lists, sets,
+hashes, and more.</li>
+  <li><a href="http://cassandra.apache.org/">Cassandra</a>: “Multiple master” model for high
+availability and scalability.</li>
+  <li><a href="https://aws.amazon.com/dynamodb/">DynamoDB</a>: Cloud data store from AWS.</li>
+  <li><a href="https://neo4j.com/">Neo4j</a>: Graph database.</li>
+</ul>
+
+<hr />
+
+<p>For many web applications, the database provides the foundation upon which the
+application is built. It is important to choose a database that will serve your
+application and its users appropriately for the foreseeable future of your
+application. However, as your application evolves, you can always re-evaluate
+your database needs and migrate your data over to a new system.</p>
+
+<p>And there you go! More than you ever probably wanted to read about databases in
+the context of web development.</p>
+
+  </div><a class="u-url" href="/2017/02/09/a-gentle-introduction-to-sql-and-nosql-databases.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Jimmy Farillo</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list"><li><a class="u-email" href="mailto:jimmy@farillo.co">jimmy@farillo.co</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/jimmyfarillo"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">jimmyfarillo</span></a></li><li><a href="https://www.linkedin.com/in/jimmyfarillo"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">jimmyfarillo</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>NYC software engineer</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
