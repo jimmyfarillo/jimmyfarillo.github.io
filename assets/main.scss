@@ -8,7 +8,7 @@ p {
 }
 
 a {
-  color: lighten($text-color, 20%);
+  color: lighten($text-color, 25%);
   text-decoration: underline;
 
   &:hover {
@@ -17,17 +17,15 @@ a {
   }
 
   &:visited {
-    color: lighten($text-color, 20%);
+    color: lighten($text-color, 25%);
+
+    &:hover {
+      color: $text-color;
+    }
   }
 
   &.post-link, &.site-title, &.page-link, &.next, &.previous {
-    color: $text-color;
     text-decoration: none;
-
-    &:hover, &:visited {
-      color: $text-color;
-      text-decoration: none;
-    }
   }
 }
 
@@ -39,6 +37,10 @@ hr {
 
 .site-header {
   border-top: none;
+}
+
+.site-title {
+  color: $text-color;
 }
 
 .pagination {
