@@ -30,8 +30,10 @@ theme: minima
 plugins:
   - jekyll-feed
   - jekyll-paginate
+  - jekyll-seo-tag
 paginate: 5
-paginate_path: ":num"
+paginate_path: "page_:num"
+seo_paginator_message: ""
 show_excerpts: true
 
 # Exclude from processing.
