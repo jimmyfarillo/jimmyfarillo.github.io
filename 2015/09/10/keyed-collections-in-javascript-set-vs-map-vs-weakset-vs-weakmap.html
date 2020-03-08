@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Keyed Collections in JavaScript: Set vs Map vs WeakSet vs WeakMap | Jimmy Farillo</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Keyed Collections in JavaScript: Set vs Map vs WeakSet vs WeakMap" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="In celebration of the release of Node.js 4.0.0 this week, I’m going to cover some more ES2015 features that we now have access to in Node.js by default." />
+<meta property="og:description" content="In celebration of the release of Node.js 4.0.0 this week, I’m going to cover some more ES2015 features that we now have access to in Node.js by default." />
+<link rel="canonical" href="http://localhost:4000/2015/09/10/keyed-collections-in-javascript-set-vs-map-vs-weakset-vs-weakmap.html" />
+<meta property="og:url" content="http://localhost:4000/2015/09/10/keyed-collections-in-javascript-set-vs-map-vs-weakset-vs-weakmap.html" />
+<meta property="og:site_name" content="Jimmy Farillo" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-09-10T00:00:00-04:00" />
+<script type="application/ld+json">
+{"url":"http://localhost:4000/2015/09/10/keyed-collections-in-javascript-set-vs-map-vs-weakset-vs-weakmap.html","description":"In celebration of the release of Node.js 4.0.0 this week, I’m going to cover some more ES2015 features that we now have access to in Node.js by default.","dateModified":"2015-09-10T00:00:00-04:00","datePublished":"2015-09-10T00:00:00-04:00","headline":"Keyed Collections in JavaScript: Set vs Map vs WeakSet vs WeakMap","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2015/09/10/keyed-collections-in-javascript-set-vs-map-vs-weakset-vs-weakmap.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css">
+  <link rel="shortcut icon" type="image/png" href="favicon.png"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Jimmy Farillo" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Jimmy Farillo</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Keyed Collections in JavaScript: Set vs Map vs WeakSet vs WeakMap</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2015-09-10T00:00:00-04:00" itemprop="datePublished">Sep 10, 2015
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>In celebration of the <a href="https://nodejs.org/en/blog/release/v4.0.0/">release of Node.js
+4.0.0</a> this week, I’m going to
+cover some more ES2015 features that we now have access to in Node.js by
+default.</p>
+
+<p>Until ES2015, JavaScript had only one type of collection for data: <code class="language-plaintext highlighter-rouge">Array</code>.
+Arrays are collections that are indexed using numeric values. But now we have
+four new types of collections: <code class="language-plaintext highlighter-rouge">Set</code>, <code class="language-plaintext highlighter-rouge">Map</code>, <code class="language-plaintext highlighter-rouge">WeakSet</code>, and <code class="language-plaintext highlighter-rouge">WeakMap</code>. Instead
+of being indexed like arrays, these new collections are keyed.</p>
+
+<p>This article will give an overview of each new collection type so that you can
+begin using them in your code.</p>
+
+<h2 id="set">Set</h2>
+
+<p>Sets are collections of values, either primitive or object references. These
+values must be unique and are added using the <code class="language-plaintext highlighter-rouge">add</code> method. The <code class="language-plaintext highlighter-rouge">size</code> property
+returns the number of values in the set. Here are a couple examples of creating
+sets:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var set1 = new Set();
+set1;
+// ==&gt; Set { }
+
+set1.add('a');
+// ==&gt; Set { 'a' }
+
+set1.add(1);
+// ==&gt; Set { 'a', 1 }
+
+set1.add('1');
+// ==&gt; Set { 'a', 1, '1' }
+
+// The value 1 has already been added.
+set1.add(1);
+// ==&gt; Set { 'a', 1, '1' }
+
+// Values can be object references.
+var obj1 = { prop1: 'Hello!' };
+set1.add(obj1);
+// ==&gt; Set { 'a', 1, '1', { prop1: 'Hello!' } }
+
+// Sets can also be created using iterables, such as arrays.
+var set2 = new Set(['a', 'b', 'c', 'c']);
+set2;
+// ==&gt; Set { 'a', 'b', 'c' }
+
+set2.size;
+// ==&gt; 3
+</code></pre></div></div>
+
+<p>There are many other useful methods, such as <code class="language-plaintext highlighter-rouge">delete</code>, <code class="language-plaintext highlighter-rouge">clear</code>, and <code class="language-plaintext highlighter-rouge">has</code>. They
+function as you might expect:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var set3 = new Set([1, 2, 3, 4, 5]);
+set3;
+// ==&gt; Set { 1, 2, 3, 4, 5 }
+
+set3.has(2);
+// ==&gt; true
+
+set3.delete(2);
+set3;
+// ==&gt; Set { 1, 3, 4, 5 }
+
+set3.has(2);
+// ==&gt; false
+
+set3.clear();
+set3;
+// ==&gt; Set { }
+</code></pre></div></div>
+
+<p>A cool thing about sets is that when iterating over them, the values are
+iterated over in the order in which they were inserted. You can iterate over
+them using the <code class="language-plaintext highlighter-rouge">forEach</code> method on <code class="language-plaintext highlighter-rouge">Set.prototype</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var set4 = new Set();
+set4.add(5);
+set4.add(2);
+set4.add(9);
+set4.add(1);
+
+// The first two params in the callback are the value.
+// This is for consistency with the Array forEach method.
+
+set4.forEach((val1, val2, set) =&gt; { console.log(val1 + 10); });
+// ==&gt; 15
+// ==&gt; 12
+// ==&gt; 19
+// ==&gt; 11
+</code></pre></div></div>
+
+<h2 id="map">Map</h2>
+
+<p>Maps are another new collection type in JavaScript. The data is stored as
+key-value pairs that can be added using the <code class="language-plaintext highlighter-rouge">set</code> method. Keys and values can
+both be of any type, primitive or object. The <code class="language-plaintext highlighter-rouge">size</code> property returns the
+number of key-value pairs in the map.</p>
+
+<p>Like sets, the keys are iterated over in the order in which they were inserted.
+This is probably the biggest advantage of storing data in a map as opposed to a
+JavaScript <code class="language-plaintext highlighter-rouge">Object</code> object.</p>
+
+<p>Creating a map:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var map1 = new Map();
+map1.set(1, 'hello');
+// ==&gt; Map { 1 =&gt; 'hello' }
+
+map1.set('jimmy', {x: 'y'})
+// ==&gt; Map { 1 =&gt; 'hello', 'jimmy' =&gt; { lastName: 'farrell' } }
+
+var arr1 = ['a', 'b'];
+map1.set(arr1, [1, 2]);
+// ==&gt; Map { 1 =&gt; 'hello', 'jimmy' =&gt; { x: 'y' }, [ 'a', 'b' ] =&gt; [ 1, 2 ] }
+
+// You can also pass an iterable to the constructor.
+var map2 = new Map([['hello', 'world'], [1, 'one']]);
+map2;
+// ==&gt; Map { 'hello' =&gt; 'world', 1 =&gt; 'one' }
+
+map2.size;
+// ==&gt; 2
+</code></pre></div></div>
+
+<p>Maps have the same <code class="language-plaintext highlighter-rouge">delete</code>, <code class="language-plaintext highlighter-rouge">clear</code>, and <code class="language-plaintext highlighter-rouge">has</code> methods, but they also have a
+<code class="language-plaintext highlighter-rouge">get</code> method for accessing the value of a specific key. You can use these
+methods like such:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var map3 = new Map();
+map3.set(1, 'a');
+map3.set(2, 'b');
+map3.set(3, 'c');
+map3;
+// ==&gt; Map { 1 =&gt; 'a', 2 =&gt; 'b', 3 =&gt; 'c' }
+
+map3.has(3);
+// == true
+
+map3.delete(3);
+map3;
+// ==&gt; Map { 1 =&gt; 'a', 2 =&gt; 'b' }
+
+map3.has(3);
+// ==&gt; false
+
+map3.get(2);
+// ==&gt; 'b'
+
+map3.clear();
+map3;
+// ==&gt; Map { }
+</code></pre></div></div>
+
+<p>Maps also have a <code class="language-plaintext highlighter-rouge">forEach</code> method, similar to the one for sets.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var map4 = new Map();
+map4.set('hello', 'world');
+map4.set(10, 5);
+
+// First param is the value
+// Second param is the key
+
+map4.forEach((val, key, map) =&gt; { console.log(key + val); });
+// ==&gt; 'helloworld'
+// ==&gt; 15
+</code></pre></div></div>
+
+<h2 id="weakset-and-weakmap">WeakSet and WeakMap</h2>
+
+<p>As you can tell by their names, weakSets and weakMaps are similar to sets and
+maps, but with some key differences.</p>
+
+<p>Values in a weakSet can only be object references. Keys in a weakMap can only
+be object references.</p>
+
+<p>The values in weakSets and keys in weakMaps are weakly held object references.
+This means that if that reference is the only reference to that object, the
+object can be garbage collected and that entry (value in a weakSet, key-value
+pair in a weakMap) will be removed from the collection.</p>
+
+<p>Because they are comprised of weakly held object references, weakSets and
+weakMaps cannot be iterated over and do not have a <code class="language-plaintext highlighter-rouge">forEach</code> method. The <code class="language-plaintext highlighter-rouge">clear</code>
+method is also not available for weakSets and weakMaps.</p>
+
+  </div><a class="u-url" href="/2015/09/10/keyed-collections-in-javascript-set-vs-map-vs-weakset-vs-weakmap.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Jimmy Farillo</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list"><li><a class="u-email" href="mailto:jimmy@farillo.co">jimmy@farillo.co</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/jimmyfarillo"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">jimmyfarillo</span></a></li><li><a href="https://www.linkedin.com/in/jimmyfarillo"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">jimmyfarillo</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>NYC software engineer</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Iffy About IIFEs? | Jimmy Farillo</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Iffy About IIFEs?" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Typically, when writing code, we build out functions and then write out some other code that calls those functions. Something like this:" />
+<meta property="og:description" content="Typically, when writing code, we build out functions and then write out some other code that calls those functions. Something like this:" />
+<link rel="canonical" href="http://localhost:4000/2015/03/03/iffy-about-iifes.html" />
+<meta property="og:url" content="http://localhost:4000/2015/03/03/iffy-about-iifes.html" />
+<meta property="og:site_name" content="Jimmy Farillo" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-03-03T00:00:00-05:00" />
+<script type="application/ld+json">
+{"url":"http://localhost:4000/2015/03/03/iffy-about-iifes.html","description":"Typically, when writing code, we build out functions and then write out some other code that calls those functions. Something like this:","dateModified":"2015-03-03T00:00:00-05:00","datePublished":"2015-03-03T00:00:00-05:00","headline":"Iffy About IIFEs?","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2015/03/03/iffy-about-iifes.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css">
+  <link rel="shortcut icon" type="image/png" href="favicon.png"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Jimmy Farillo" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Jimmy Farillo</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Iffy About IIFEs?</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2015-03-03T00:00:00-05:00" itemprop="datePublished">Mar 3, 2015
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Typically, when writing code, we build out functions and then write out some
+other code that calls those functions. Something like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function myFunc() {
+  return "I swear it's not me!";
+}
+
+var whatsThatSmell = myFunc();
+</code></pre></div></div>
+
+<p>However, there’s a cool thing in JavaScript called an IIFE (immediately-invoked
+function expression). IIFEs define functions and then run them right after
+being created. Like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(function myFunc2() {
+  return "I'm not the one who smells funny!"
+}());
+</code></pre></div></div>
+
+<p>The parentheses after the function’s closing brace immediately calls that
+function.</p>
+
+<h2 id="but-why-would-we-want-to-use-an-iife">But why would we want to use an IIFE?</h2>
+
+<p>One reason is that an IIFE allows you to create a private scope. Scope is a
+term to describe what parts of the code have access to other parts of the code.
+So having a private scope for your function means that the data, such as
+variables, inside the function are fully contained in the function and not
+accessible from other parts of the code. For cases where using an IIFE is
+appropriate, not using an IIFE would likely require you to define global
+variables. Beautiful code tries to limit superfluous global variables, as
+having too many global variables is considered to be “polluting” the namespace
+— so don’t do that.</p>
+
+<p>You would not want to use an IIFE for functions that you need to run multiple
+times. But for code that you just need to run once, and that you want to be
+fully contained within a private scope, then an IIFE might be what you need.</p>
+
+<p>A couple more cool things about IIFEs: 1) they don’t need to be named and 2)
+you can use crazy simple variables inside of them. Like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(function() {
+  var x = 50;
+  return x;
+}());
+</code></pre></div></div>
+
+<p>Defining a variable named <code class="language-plaintext highlighter-rouge">x</code> in your code is usually a terrible idea because
+it is both nondescript and likely to interfere with any other variables named
+<code class="language-plaintext highlighter-rouge">x</code> that may exist in the environment where your code is being executed. But in
+an IIFE, that <code class="language-plaintext highlighter-rouge">x</code> isn’t touching anything else and nothing else can touch it.
+You still probably wouldn’t want to name a variable <code class="language-plaintext highlighter-rouge">x</code> in your IIFE because it
+is extremely nondescript, but it’s cool that you could do it without the
+possibility of breaking your code.</p>
+
+  </div><a class="u-url" href="/2015/03/03/iffy-about-iifes.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Jimmy Farillo</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list"><li><a class="u-email" href="mailto:jimmy@farillo.co">jimmy@farillo.co</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/jimmyfarillo"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">jimmyfarillo</span></a></li><li><a href="https://www.linkedin.com/in/jimmyfarillo"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">jimmyfarillo</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>NYC software engineer</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
