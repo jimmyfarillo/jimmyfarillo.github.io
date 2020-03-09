@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Learn Design Patterns: Observer Pattern"
-date: Date.new(2020, 08, 11),
+date: 2020-03-08
 ---
 
 In object-oriented programming, we have objects passing many different messages
