@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Learn Design Patterns: Observer Pattern"
+title: "Design Patterns: Observer Pattern"
 date: 2020-03-08
 ---
 
@@ -284,3 +284,5 @@ third-party that it wants to be notified of those changes. This third-party
 broker manages all the update messages from the publisher and sends them out the
 the appropriate subscribers. The observer pattern does not utilize a
 third-party.
+
+{% include design_patterns.markdown %}

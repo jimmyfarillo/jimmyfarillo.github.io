@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "Learn Design Patterns: Strategy Pattern"
+title: "Design Patterns: Strategy Pattern"
 date: 2017-02-23
 ---
 
 The strategy pattern is an alternative to the
-[template method pattern]({% post_url 2017-02-19-learn-design-patterns-template-method-pattern %})
+[template method pattern]({% post_url 2017-02-19-design-patterns-template-method-pattern %})
 I wrote about in my previous post, providing a different solution to the common
 programming problem of requiring some variation within an algorithm. Both
 patterns use polymorphism in their approaches, but while the template method
@@ -244,3 +244,5 @@ algorithm that can vary and then placing those sections in subclasses of an
 abstract superclass, the algorithm has been delegated to the different parts
 that compose your object, and those objects implement their respective portions
 of the algorithm however they see fit.
+
+{% include design_patterns.markdown %}

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Learn Design Patterns: Template Method Pattern"
+title: "Design Patterns: Template Method Pattern"
 date: 2017-02-19
 ---
 
@@ -262,3 +262,5 @@ Whatever object decides to throw a party can do so by sending the `throw_party`
 message to an instance of either `BirthdayParty` or `GameNight`. It doesn't care
 which type of object it sends the message to, and even though the results may be
 different, both types of objects will respond to the message.
+
+{% include design_patterns.markdown %}
