@@ -83,7 +83,7 @@ few key thoughts that helped me make my final decision:
   Justworks
 - I remember how my excitement of starting my previous job at Medidata was
   sustained for a much longer period
-- I was referred to my new company by a close friend that I trust and who had
+- I was referred to my new company by a close friend whom I trust and who had
   wonderful things to say about the company
 - I'm not happy in my current position
 
